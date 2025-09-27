@@ -4,15 +4,11 @@ extends AnimatedSprite2D
 @export var left_limit: float = 2.0
 @export var right_limit: float = 1150.0
 
-## No need for sprite reference, root is AnimatedSprite2D
-
 var _facing_right: bool = true
 
 func _ready() -> void:
-	# Ensure this node can be found by enemies via group lookup.
 	if not is_in_group("player"):
 		add_to_group("player")
-	# Ensure an idle animation is playing if present.
 	var names = sprite_frames.get_animation_names()
 	if not is_playing():
 		if "standing" in names:
@@ -31,11 +27,10 @@ func _process(delta: float) -> void:
 		_play_if_exists("run")
 	else:
 		_play_if_exists("standing")
-	# Move horizontally and vertically
 	position.x += dir_x * move_speed * delta
 	position.y += dir_y * move_speed * delta
 	position.x = clamp(position.x, left_limit, right_limit)
-	position.y = clamp(position.y, 0, 700) # Adjust 0,700 as needed for your scene
+	position.y = clamp(position.y, 0, 700)
 
 func _set_facing(right: bool) -> void:
 	if right == _facing_right:
@@ -52,8 +47,6 @@ func _play_if_exists(anim_name: String) -> void:
 			play(anim_name)
 
 func force_face_right(right: bool):
-	# External helper if other systems need to enforce orientation.
 	_set_facing(right)
 
 # --- Helpers ---
-# No longer needed since root is AnimatedSprite2D

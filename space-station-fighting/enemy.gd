@@ -15,13 +15,10 @@ var is_megabot: bool = false
 var _player: Node = null
 
 func _ready():
-	# Primary lookup via exported path (now case-correct)
 	if has_node(player_path):
 		_player = get_node(player_path)
-	# Fallback: look for a node in group 'player'
 	if not _player:
 		_player = get_tree().get_first_node_in_group("player")
-	# Secondary fallback: try common explicit path again (in case scene changes name)
 	if not _player:
 		_player = get_node_or_null("/root/Main/character")
 	if not is_playing():
