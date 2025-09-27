@@ -1,6 +1,3 @@
-<<<<<<< Updated upstream
-[gd_scene format=3 uid="uid://c5diyoudfe1og"]
-=======
 [gd_scene load_steps=6 format=3 uid="uid://c5diyoudfe1og"]
 
 [ext_resource type="Texture2D" uid="uid://duyso3ir31een" path="res://Screenshot_2025-09-27_at_12.22.05_pm-removebg-preview.png" id="1_7k104"]
@@ -33,7 +30,6 @@ animations = [{
 "name": &"attack",
 "speed": 5.0
 }]
->>>>>>> Stashed changes
 
 [node name="enemy" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_epg4t")

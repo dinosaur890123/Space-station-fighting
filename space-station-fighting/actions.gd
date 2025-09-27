@@ -12,6 +12,5 @@ func _on_divert_signal_button_pressed():
 		var remaining_damage = damage_to_deal - GameData.shield_integrity
 		GameData.shield_integrity = 0
 		GameData.health -= remaining_damage
-	
 	GameData.signal_boost_timer = 5.0
 	print("Diverting power to signal!")
