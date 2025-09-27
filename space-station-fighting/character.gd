@@ -6,7 +6,7 @@ extends AnimatedSprite2D
 @export var jump_speed: float = 500
 @export var gravity: float = 1200
 var velocity_y: float = 0 
-var _moving = false
+var moving = false
 var on_ground: bool = true  
 var right = true
 const SHOT_DAMAGE := 15.0
@@ -15,32 +15,36 @@ func _ready() -> void:
 	$shot.hide()
 	if shot_area and not shot_area.area_entered.is_connected(_on_shot_area_entered):
 		shot_area.area_entered.connect(_on_shot_area_entered)
+var shot = false
+func _ready() -> void:
+	$shot.hide() 
+	pass
 
 func _process(delta):
-	_moving = false
+	moving = false
 	if Input.is_action_pressed("left"):
 		flip_h = true
 		position.x -= speed * delta
 		play("run")
-		_moving = true
+		moving = true
 		right = false
 	if Input.is_action_pressed("right"):
 		flip_h = false
 		position.x += speed * delta
 		play("run")
-		_moving = true
+		moving = true
 		right = true
-	if Input.is_action_just_pressed("attack_air"):
-		$shot.global_position = position
+	if Input.is_action_just_pressed("attack_air") and not $shot.visible:
+		$shot.global_position = position  # start at player
 		$shot.show()
 	if $shot.visible and right == true:
-		$shot.global_position.x += 800 * delta
+		$shot.global_position.x += 800 * delta  # move at bullet speed
 		if $shot.global_position.x > right_limit:
-			$shot.hide()
+			$shot.hide()  # hide when off-screen
 	if $shot.visible and right == false:
-		$shot.global_position.x -= 800 * delta
-		if $shot.global_position.x > right_limit:
-			$shot.hide()
+		$shot.global_position.x -= 800 * delta  # move at bullet speed
+		if $shot.global_position.x < left_limit:
+			$shot.hide()  # hide when off-screen
 	if Input.is_action_just_pressed("jump") and on_ground:
 		velocity_y = -jump_speed
 		on_ground = false
@@ -51,7 +55,7 @@ func _process(delta):
 		position.y = 485
 		velocity_y = 0
 		on_ground = true
-	if _moving == false:
+	if moving == false:
 		play("standing")
 	position.x = clamp(position.x, left_limit, right_limit)
 
