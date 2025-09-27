@@ -317,8 +317,5 @@ scale = Vector2(2.5, 2.5)
 sprite_frames = SubResource("SpriteFrames_d4y6u")
 animation = &"attack 1"
 script = ExtResource("2_dspso")
-speed = null
-upper_limit = null
-lower_limit = null
 
 [node name="AnimatedSprite2D" type="Area2D" parent="."]

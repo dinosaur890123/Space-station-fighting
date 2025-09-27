@@ -11,7 +11,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	var moving == false
+	var moving := false
 	var direction = 0
 	if Input.is_action_pressed("left"):
 		position.x -= speed * delta  # Move up
