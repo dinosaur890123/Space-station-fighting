@@ -6,6 +6,8 @@
 
 [node name="Character" parent="." instance=ExtResource("1_aw4sl")]
 position = Vector2(117, 448)
+animation = &"new_animation"
+script = null
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 offset_right = 1177.0
@@ -17,6 +19,7 @@ text = "MAIN BATTERY"
 
 [node name="BatteryBar" type="ProgressBar" parent="VBoxContainer"]
 layout_mode = 2
+value = 100.0
 
 [node name="Label2" type="Label" parent="VBoxContainer"]
 layout_mode = 2
@@ -24,6 +27,9 @@ text = "SHIELD INTEGRITY"
 
 [node name="ShieldBar" type="ProgressBar" parent="VBoxContainer"]
 layout_mode = 2
+max_value = 50.0
+step = 1.0
+value = 50.0
 
 [node name="Label3" type="Label" parent="VBoxContainer"]
 layout_mode = 2
@@ -42,3 +48,15 @@ layout_mode = 2
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 offset_right = 1156.0
 offset_bottom = 651.0
+
+[node name="DivertShieldButton" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "Divert to Shield"
+
+[node name="DivertSignalButton" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "Divert to Signal"
+
+[node name="OverchargeButton" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "Emergency Overcharge"
