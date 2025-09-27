@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bk1vy0rr1lry7"]
+[gd_scene load_steps=8 format=3 uid="uid://bk1vy0rr1lry7"]
 
 [ext_resource type="PackedScene" uid="uid://bq23m3f7jfw0b" path="res://character.tscn" id="1_aw4sl"]
 [ext_resource type="Script" path="res://main.gd" id="1_bquf4"]
@@ -7,11 +7,15 @@
 [ext_resource type="PackedScene" uid="uid://cbxoi8afg8x5r" path="res://bullet.tscn" id="4_5cqrd"]
 [ext_resource type="Script" path="res://ui_controller.gd" id="5_ui"]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ssnb4"]
+radius = 133.0
+height = 278.0
+
 [node name="Main" type="Node2D"]
 script = ExtResource("1_bquf4")
 
 [node name="HelloWorkedTodayOnAnAnimatedReactorForTheSpaceshipV03Lbhd4q0m6Gc1" type="Sprite2D" parent="."]
-position = Vector2(574, 378)
+position = Vector2(593, 378)
 scale = Vector2(1.85337, 1.87321)
 texture = ExtResource("3_h2yge")
 
@@ -22,6 +26,13 @@ frame_progress = 0.872475
 [node name="bullet" parent="." instance=ExtResource("4_5cqrd")]
 position = Vector2(123, 480)
 scale = Vector2(0.5, 0.5)
+
+[node name="cant_walk" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="cant_walk" type="CollisionShape2D" parent="cant_walk"]
+position = Vector2(592, 384)
+shape = SubResource("CapsuleShape2D_ssnb4")
 
 [node name="DivertShieldButton" type="Button" parent="."]
 modulate = Color(1, 0.141176, 0, 1)
@@ -162,3 +173,5 @@ offset_left = 795.0
 offset_top = 228.0
 offset_right = 1149.0
 offset_bottom = 255.0
+
+[connection signal="area_shape_entered" from="cant_walk" to="character" method="_on_cant_walk_area_shape_entered"]

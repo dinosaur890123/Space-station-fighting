@@ -352,3 +352,4 @@ animation = &"attack 1"
 script = ExtResource("2_dspso")
 
 [node name="area" type="Area2D" parent="."]
+collision_layer = 2

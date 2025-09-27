@@ -34,7 +34,6 @@ func _process(delta: float) -> void:
 	# Move horizontally and vertically
 	position.x += dir_x * move_speed * delta
 	position.y += dir_y * move_speed * delta
-	# Clamp world limits
 	position.x = clamp(position.x, left_limit, right_limit)
 	position.y = clamp(position.y, 0, 700) # Adjust 0,700 as needed for your scene
 
@@ -42,7 +41,6 @@ func _set_facing(right: bool) -> void:
 	if right == _facing_right:
 		return
 	_facing_right = right
-	# AnimatedSprite2D flips with flip_h.
 	flip_h = not right
 
 func get_facing_direction() -> int:
