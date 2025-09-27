@@ -37,6 +37,9 @@ func _process(delta: float) -> void:
 	position.y += dir_y * move_speed * delta
 	position.x = clamp(position.x, left_limit, right_limit)
 	position.y = clamp(position.y, 0, 700)
+func _on_animation_finished() -> void:
+	if animation == "attack 1":
+		_attacking = false
 
 func _set_facing(right: bool) -> void:
 	if right == _facing_right:
