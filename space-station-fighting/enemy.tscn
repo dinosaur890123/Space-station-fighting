@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://c5diyoudfe1og"]
+[gd_scene load_steps=7 format=3 uid="uid://c5diyoudfe1og"]
 
 [ext_resource type="Texture2D" uid="uid://duyso3ir31een" path="res://Screenshot_2025-09-27_at_12.22.05_pm-removebg-preview.png" id="1_7k104"]
+[ext_resource type="Script" uid="uid://bumybht4loc41" path="res://enemy.gd" id="2_enemy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4gyqm"]
 atlas = ExtResource("1_7k104")
@@ -34,5 +35,8 @@ animations = [{
 [node name="enemy" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_epg4t")
 animation = &"attack"
+script = ExtResource("2_enemy")
 
 [node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
