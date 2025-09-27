@@ -62,9 +62,7 @@ func _process(delta):
 		$bullet.show()
 	if $bullet.visible:
 		$bullet.global_position.x += 800 * delta * _bullet_direction
-		# Check for hits while bullet is active
 		_check_bullet_hits()
-		# If bullet was hidden due to a hit, skip out-of-bounds check
 		if $bullet.visible and ($bullet.global_position.x > right_limit or $bullet.global_position.x < left_limit):
 			$bullet.hide()
 func _check_bullet_hits():

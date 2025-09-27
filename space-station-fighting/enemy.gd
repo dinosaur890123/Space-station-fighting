@@ -57,21 +57,38 @@ func _process(delta: float) -> void:
 	position.x -= speed * delta
 	if position.y != ground_y:
 		position.y = ground_y
-	if _player and position.x <= _player.position.x:
-		_apply_contact_damage()
-		queue_free()
+	if not _player:
+		_player = get_tree().get_first_node_in_group("player")
+		if _player:
+			print("Enemy: found player at runtime:", _player, "player_global=", _player.global_position)
+	if _player:
+		var contact_distance = 40.0
+		var dist = global_position.distance_to(_player.global_position)
+		print("Enemy: checking contact: dist=", dist, " contact_distance=", contact_distance, " enemy_global=", global_position, " player_global=", _player.global_position)
+		if dist < contact_distance:
+			print("Enemy: contact! Applying damage. Damage=", damage, " shield=", GameData.shield_integrity, " health=", GameData.health)
+			_apply_contact_damage()
+			print("Enemy: after damage shield=", GameData.shield_integrity, " health=", GameData.health)
+			queue_free()
 	if position.x < -200:
 		queue_free()
 	if show_health_bar:
 		queue_redraw()
 
 func _apply_contact_damage():
+	print("Enemy._apply_contact_damage: entering; damage=", damage, " GameData=", GameData)
+	var remaining_damage = damage
+	print("Enemy._apply_contact_damage: before shield=", GameData.shield_integrity, " health=", GameData.health)
 	if GameData.shield_integrity > 0.0:
-		var take: float = min(damage, GameData.shield_integrity)
-		GameData.shield_integrity -= take
-		damage -= take
-	if damage > 0.0:
-		GameData.health = max(0.0, GameData.health - damage)
+		var shield_take = min(remaining_damage, GameData.shield_integrity)
+		GameData.shield_integrity -= shield_take
+		remaining_damage -= shield_take
+		print("Enemy._apply_contact_damage: shield_take=", shield_take, " shield_after=", GameData.shield_integrity, " remaining_damage=", remaining_damage)
+	if remaining_damage > 0.0:
+		var old_health = GameData.health
+		GameData.health = max(0.0, GameData.health - remaining_damage)
+		print("Enemy._apply_contact_damage: applied_to_health=", remaining_damage, " health_before=", old_health, " health_after=", GameData.health)
+	print("Enemy._apply_contact_damage: exiting; shield=", GameData.shield_integrity, " health=", GameData.health)
 
 func take_hit(amount: float):
 	health -= amount
