@@ -28,8 +28,12 @@ func _process(delta):
 		play("run")
 		moving = true
 	if Input.is_action_just_pressed("attack_air"):
+		$shot.global_position = position  # start at player
 		$shot.show()
-		$shot.position.x += 20 
+	if $shot.visible:
+		$shot.global_position.x += 800 * delta  # move at bullet speed
+		if $shot.global_position.x > right_limit:
+			$shot.hide()  # hide when off-screen
 	if Input.is_action_just_pressed("jump") and on_ground:
 		velocity_y = -jump_speed
 		on_ground = false

@@ -430,8 +430,6 @@ sprite_frames = SubResource("SpriteFrames_d4y6u")
 animation = &"attack 1"
 script = ExtResource("2_dspso")
 
-[node name="area" type="Area2D" parent="."]
-
 [node name="shot" type="AnimatedSprite2D" parent="."]
 position = Vector2(21.2, 1.2)
 scale = Vector2(0.1, 0.1)
@@ -440,3 +438,5 @@ animation = &"shot"
 frame_progress = 0.429457
 
 [node name="shot_area" type="Area2D" parent="shot"]
+
+[node name="area" type="Area2D" parent="."]
