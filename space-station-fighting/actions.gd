@@ -1,9 +1,10 @@
 extends Node
 
 func _ready():
-	_connect_button("/root/Main/HBoxContainer/OverchargeButton", _on_overcharge_button_pressed)
-	_connect_button("/root/Main/HBoxContainer/DivertShieldButton", _on_divert_shield_button_pressed)
-	_connect_button("/root/Main/HBoxContainer/DivertSignalButton", _on_divert_signal_button_pressed)
+	# Adjusted paths: buttons are direct children of Main (no HBoxContainer in current scene)
+	_connect_button("/root/Main/OverchargeButton", _on_overcharge_button_pressed)
+	_connect_button("/root/Main/DivertShieldButton", _on_divert_shield_button_pressed)
+	_connect_button("/root/Main/DivertSignalButton", _on_divert_signal_button_pressed)
 
 func _connect_button(path: String, method_ref):
 	var btn = get_node_or_null(path)
@@ -31,7 +32,7 @@ func _on_overcharge_button_pressed():
 	# Limit to 3 safe overcharges (avoid reducing max battery to 0 which causes instant loss)
 	if GameData.overcharge_count >= 3:
 		print("ERROR: Maximum Overcharge Reached!")
-		var btn = get_node_or_null("/root/Main/HBoxContainer/OverchargeButton")
+		var btn = get_node_or_null("/root/Main/OverchargeButton")
 		if btn:
 			btn.disabled = true
 		return
@@ -42,7 +43,7 @@ func _on_overcharge_button_pressed():
 	GameData.max_battery = max(10.0, GameData.max_battery) # safety floor
 	GameData.current_battery = clamp(GameData.current_battery, 0.0, GameData.max_battery)
 	if GameData.overcharge_count >= 3:
-		var btn2 = get_node_or_null("/root/Main/HBoxContainer/OverchargeButton")
+		var btn2 = get_node_or_null("/root/Main/OverchargeButton")
 		if btn2:
 			btn2.disabled = true
 	print("Emergency Overcharge Activated! (" + str(GameData.overcharge_count) + "/3)")

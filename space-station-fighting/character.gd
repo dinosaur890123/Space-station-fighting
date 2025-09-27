@@ -9,6 +9,7 @@ var velocity_y: float = 0
 var moving = false
 var on_ground: bool = true  
 var shot = false
+var right: bool = true # track facing (true=right, false=left)
 func _ready() -> void:
 	pass
 
@@ -20,6 +21,7 @@ func _process(delta):
 		position.x -= speed * delta
 		play("run")
 		moving = true
+		right = false
 	if Input.is_action_pressed("right"):
 		flip_h = false
 		$shot.flip_h = false
@@ -31,14 +33,11 @@ func _process(delta):
 		$shot.global_position = position
 		$shot.flip_h = false  # start at player
 		$shot.show()
-	if $shot.visible and right == true:
-		$shot.global_position.x += 800 * delta  # move at bullet speed
-		if $shot.global_position.x > right_limit:
-			$shot.hide()  # hide when off-screen
-	if $shot.visible and right == false:
-		$shot.global_position.x -= 800 * delta  # move at bullet speed
-		if $shot.global_position.x < left_limit:
-			$shot.hide()  # hide when off-screen
+	if $shot.visible:
+		var dir := 1 if right else -1
+		$shot.global_position.x += 800 * delta * dir
+		if $shot.global_position.x > right_limit or $shot.global_position.x < left_limit:
+			$shot.hide()
 	if Input.is_action_just_pressed("jump") and on_ground:
 		velocity_y = -jump_speed
 		on_ground = false
