@@ -11,7 +11,7 @@ var spawn_interval: float = 3.0
 var min_spawn_interval: float = 0.75
 var spawn_accel: float = 0.02 
 var battery_tick_timer: float = 0.0
-const ENABLE_AUTO_SHIELD_RECHARGE := false
+const ENABLE_AUTO_SHIELD_RECHARGE := true
 var _game_over: bool = false
 var _bullet_direction: Vector2 = Vector2.ZERO 
 var bullet_speed: float = 800 
@@ -48,7 +48,7 @@ func _process(delta):
 	if ENABLE_AUTO_SHIELD_RECHARGE:
 		var power_needed = GameData.MAX_CAPACITY - GameData.shield_integrity
 		if power_needed > 0.0 and GameData.current_battery > 0.0:
-			var recharge_rate = 5.0 * delta
+			var recharge_rate = 1.0 * delta
 			var to_transfer = min(power_needed, recharge_rate, GameData.current_battery)
 			GameData.shield_integrity += to_transfer
 			GameData.current_battery -= to_transfer
