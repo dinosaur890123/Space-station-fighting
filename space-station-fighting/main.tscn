@@ -19,7 +19,8 @@ position = Vector2(117, 448)
 frame_progress = 0.872475
 
 [node name="bullet" parent="." instance=ExtResource("4_5cqrd")]
-scale = Vector2(100, 100)
+position = Vector2(123, 480)
+scale = Vector2(0.5, 0.5)
 
 [node name="BatteryLabel" type="Label" parent="."]
 offset_left = 21.0

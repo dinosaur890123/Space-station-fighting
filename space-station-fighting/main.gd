@@ -56,18 +56,17 @@ func _process(delta):
 	
 	if GameData.signal_progress >= GameData.MAX_CAPACITY:
 		game_over("SUCCESS: Signal Transmission Complete!")
-	if Input.is_action_just_pressed("attack_air"):
-		if character and character is Sprite2D:
-			_bullet_direction = -1 if character.flip_h else 1
-		$bullet.global_position = character.global_position
+
+	if Input.is_action_just_pressed("attack_air") and not $bullet.visible:
+		$bullet.global_position = $character.global_position
 		$bullet.show()
+		_bullet_direction = -1 if $character.flip_h else 1
 	if $bullet.visible:
 		$bullet.global_position.x += 800 * delta * _bullet_direction
 		if $bullet.global_position.x > right_limit or $bullet.global_position.x < left_limit:
 			$bullet.hide()
-		else:
-			_check_bullet_hits()
-
+	else:
+		_check_bullet_hits()
 func _check_bullet_hits():
 	var bullet_area := $bullet.get_node_or_null("shot/shot_area")
 	if not (bullet_area and bullet_area is Area2D):
