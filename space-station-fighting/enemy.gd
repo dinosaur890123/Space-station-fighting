@@ -3,7 +3,7 @@ extends AnimatedSprite2D
 @export var speed: float = 120.0
 @export var damage: float = 10.0
 @export var ground_y: float = 485.0
-@export var player_path: NodePath = ^"/root/Main/Character"
+@export var player_path: NodePath = ^"/root/Main/character" # NOTE: fixed case to match actual node name
 var max_health: float = 25.0
 var health: float = 25.0
 var is_megabot: bool = false
@@ -15,8 +15,15 @@ var is_megabot: bool = false
 var _player: Node = null
 
 func _ready():
+	# Primary lookup via exported path (now case-correct)
 	if has_node(player_path):
 		_player = get_node(player_path)
+	# Fallback: look for a node in group 'player'
+	if not _player:
+		_player = get_tree().get_first_node_in_group("player")
+	# Secondary fallback: try common explicit path again (in case scene changes name)
+	if not _player:
+		_player = get_node_or_null("/root/Main/character")
 	if not is_playing():
 		play()
 	_update_visual()
