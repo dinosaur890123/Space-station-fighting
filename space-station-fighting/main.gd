@@ -65,23 +65,21 @@ func _process(delta):
 		var dir_y := 0
 		if Input.is_action_pressed("right"):
 			dir_x = 1
-			$bullet.rotation = 0
 			$bullet/shot.play("shot")
 		elif Input.is_action_pressed("left"):
 			dir_x = -1
-			$bullet.rotation = 180
 			$bullet/shot.play("shot")
 		if Input.is_action_pressed("up"):
 			dir_y = -1
-			$bullet.rotation = 90
 			$bullet/shot.play("shot")
 		elif Input.is_action_pressed("down"):
 			dir_y = 1
-			$bullet.rotation = 270
 			$bullet/shot.play("shot")
 		if dir_x == 0 and dir_y == 0:
 			dir_x = -1 if $character.flip_h else 1
-		_bullet_direction = Vector2(dir_x, dir_y).normalized()  # normalize for diagonal speed
+		$bullet.rotation = _bullet_direction.angle()
+		$bullet/shot.play("shot")
+		_bullet_direction = Vector2(dir_x, dir_y).normalized()
 	if $bullet.visible:
 		$bullet.global_position += _bullet_direction * bullet_speed * delta
 		_check_bullet_hits()
