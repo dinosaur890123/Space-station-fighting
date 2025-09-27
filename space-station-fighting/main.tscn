@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bk1vy0rr1lry7"]
+[gd_scene load_steps=3 format=3 uid="uid://bk1vy0rr1lry7"]
 
 [ext_resource type="PackedScene" uid="uid://bq23m3f7jfw0b" path="res://character.tscn" id="1_aw4sl"]
+[ext_resource type="Script" uid="uid://csesvry1vxl4y" path="res://actions.gd" id="2_0xm2m"]
 
 [node name="Main" type="Node2D"]
 
@@ -86,3 +87,18 @@ offset_left = 261.0
 offset_right = 448.0
 offset_bottom = 651.0
 text = "Emergency Overcharge"
+
+[node name="GameOverScreen" type="PanelContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = 1.0
+offset_right = 1152.0
+offset_bottom = 649.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ActionsManager" type="Node" parent="."]
+script = ExtResource("2_0xm2m")
