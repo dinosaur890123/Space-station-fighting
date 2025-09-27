@@ -1,0 +1,14 @@
+63f7b34db8d8cdea90c76aacccf841ec
+::res://::1758947017
+actions.gd::GDScript::-1::1758947005::0::1::::<>Node<><>0<>0<><>::
+character.gd::GDScript::7864214575544006030::1758947005::0::1::::<>AnimatedSprite2D<><>0<>0<><>::
+character.tscn::PackedScene::3566903366429562403::1758947005::0::1::::<><><>0<>0<><>::uid://b6wxnerdip1kj::::res://Screenshot 2025-09-27 at 11.10.13 AM-Photoroom.png<>res://character.gd
+enemy.tscn::PackedScene::-1::1758945551::0::1::::<><><>0<>0<><>::
+game_data.gd::GDScript::5986434380027170153::1758946456::0::1::::<>Node<><>0<>0<><>::
+hello-worked-today-on-an-animated-reactor-for-the-spaceship-v0-3lbhd4q0m6gc1.webp::CompressedTexture2D::290020003214795245::1758946574::1758947031::1::::<><><>0<>0<>759b0a71dbbcf0acc84c97018da48963<>res://.godot/imported/hello-worked-today-on-an-animated-reactor-for-the-spaceship-v0-3lbhd4q0m6gc1.webp-a6545c7fb9ae799aafd8eae67fee468d.ctex::
+icon.svg::CompressedTexture2D::8554973375523433088::1758946456::1758947031::1::::<><><>0<>0<>016b80725250afec3d43856a37d9192c<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
+main.gd::GDScript::4859559059256686761::1758945646::0::1::::<>Control<><>0<>0<><>::
+main.tscn::PackedScene::3143302197733820780::1758947017::0::1::::<><><>0<>0<><>::uid://bq23m3f7jfw0b::::res://character.tscn<>res://actions.gd<>uid://nvsys3xvytjt::::res://hello-worked-today-on-an-animated-reactor-for-the-spaceship-v0-3lbhd4q0m6gc1.webp
+Screenshot 2025-09-27 at 11.10.13 AM-Photoroom.png::CompressedTexture2D::4609111089718504925::1758939941::1758947031::1::::<><><>0<>0<>703bac2fceeaecfb691bcbac272fba86<>res://.godot/imported/Screenshot 2025-09-27 at 11.10.13 AM-Photoroom.png-3d20581ad5c8d38d76538c3234c2e10c.ctex::
+Screenshot_2025-09-27_at_2.00.50_PM-removebg-preview.png::CompressedTexture2D::3744117027133399881::1758946456::1758947031::1::::<><><>0<>0<>7de31723a0780ea2584f27bdc9901f29<>res://.godot/imported/Screenshot_2025-09-27_at_2.00.50_PM-removebg-preview.png-1a3ef4ab6a54a5c0b03eeee6f8744189.ctex::
+Screenshot_2025-09-27_at_12.22.05_pm-removebg-preview.png::CompressedTexture2D::8613703380744936021::1758939845::1758947031::1::::<><><>0<>0<>68c63464a5e4e243e394ef00e04970ce<>res://.godot/imported/Screenshot_2025-09-27_at_12.22.05_pm-removebg-preview.png-c53bf35251485912bf697573eecdee93.ctex::
