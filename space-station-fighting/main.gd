@@ -19,6 +19,10 @@ func _ready():
 	GameData.reset()
 	get_tree().paused = false
 	randomize()
+	# Start background music (autoload MusicManager ensures it persists across scenes)
+	if typeof(MusicManager) != TYPE_NIL and not MusicManager.is_playing():
+		# Using the imported MP3 that exists in the project root
+		MusicManager.play_track("res://Bad Beat - Dyalla.mp3", true, 1.0)
 	var restart_btn = get_node_or_null("GameOverScreen/VBoxContainer/RestartButton")
 	if restart_btn and not restart_btn.pressed.is_connected(_on_restart_button_pressed):
 		restart_btn.pressed.connect(_on_restart_button_pressed)
