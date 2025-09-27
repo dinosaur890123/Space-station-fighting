@@ -8,6 +8,7 @@ extends AnimatedSprite2D
 var velocity_y: float = 0 
 var moving = false
 var on_ground: bool = true  
+var right = true
 func _ready() -> void:
 	$shot.hide() 
 	pass
@@ -17,17 +18,24 @@ func _process(delta):
 	if Input.is_action_pressed("left"):
 		flip_h = true
 		position.x -= speed * delta
+		play("run")
 		moving = true
+		right = false
 	if Input.is_action_pressed("right"):
 		flip_h = false
 		position.x += speed * delta
 		play("run")
 		moving = true
+		right = true
 	if Input.is_action_just_pressed("attack_air"):
 		$shot.global_position = position  # start at player
 		$shot.show()
-	if $shot.visible:
+	if $shot.visible and right == true:
 		$shot.global_position.x += 800 * delta  # move at bullet speed
+		if $shot.global_position.x > right_limit:
+			$shot.hide()  # hide when off-screen
+	if $shot.visible and right == false:
+		$shot.global_position.x -= 800 * delta  # move at bullet speed
 		if $shot.global_position.x > right_limit:
 			$shot.hide()  # hide when off-screen
 	if Input.is_action_just_pressed("jump") and on_ground:
