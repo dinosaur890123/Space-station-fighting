@@ -5,17 +5,17 @@ extends AnimatedSprite2D
 @export var right_limit: float = 1150
 @export var jump_speed: float = 500
 @export var gravity: float = 1200
-var velocity_y: float = 0 
-var moving = false
-var on_ground: bool = true  
-var right = true
-const SHOT_DAMAGE := 15.0
+var velocity_y: float = 0
+var moving: bool = false
+var on_ground: bool = true
+var right: bool = true
+const SHOT_DAMAGE: float = 15.0
 @onready var shot_area: Area2D = $shot/shot_area
 func _ready() -> void:
 	$shot.hide()
 	if shot_area and not shot_area.area_entered.is_connected(_on_shot_area_entered):
 		shot_area.area_entered.connect(_on_shot_area_entered)
-var shot = false
+	moving = false
 func _process(delta):
 	moving = false
 	if Input.is_action_pressed("left"):
@@ -51,7 +51,7 @@ func _process(delta):
 		position.y = 485
 		velocity_y = 0
 		on_ground = true
-	if moving == false:
+	if not moving:
 		play("standing")
 	position.x = clamp(position.x, left_limit, right_limit)
 
