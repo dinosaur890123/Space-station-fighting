@@ -6,7 +6,7 @@ extends AnimatedSprite2D
 @export var jump_speed: float = 500
 @export var gravity: float = 1200
 var velocity_y: float = 0
-var moving: bool = false
+var _moving: bool = false
 var on_ground: bool = true
 var right: bool = true
 const SHOT_DAMAGE: float = 15.0
@@ -15,20 +15,20 @@ func _ready() -> void:
 	$shot.hide()
 	if shot_area and not shot_area.area_entered.is_connected(_on_shot_area_entered):
 		shot_area.area_entered.connect(_on_shot_area_entered)
-	moving = false
+	_moving = false
 func _process(delta):
-	moving = false
+	_moving = false
 	if Input.is_action_pressed("left"):
 		flip_h = true
 		position.x -= speed * delta
 		play("run")
-		moving = true
+		_moving = true
 		right = false
 	if Input.is_action_pressed("right"):
 		flip_h = false
 		position.x += speed * delta
 		play("run")
-		moving = true
+		_moving = true
 		right = true
 	if Input.is_action_just_pressed("attack_air") and not $shot.visible:
 		$shot.global_position = position
@@ -51,7 +51,7 @@ func _process(delta):
 		position.y = 485
 		velocity_y = 0
 		on_ground = true
-	if not moving:
+	if not _moving:
 		play("standing")
 	position.x = clamp(position.x, left_limit, right_limit)
 
