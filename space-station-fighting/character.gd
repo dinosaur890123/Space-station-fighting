@@ -11,7 +11,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	var moving := false
+	var moving = false
 	var direction = 0
 	if Input.is_action_pressed("left"):
 		position.x -= speed * delta  # Move up
@@ -21,7 +21,7 @@ func _process(delta):
 		position.x += speed * delta
 		play("run")
 		moving = true  
-	if not moving:
-		play("Standing")
+	if moving == false:
+		play("standing")
 	position.y += direction * speed * delta
 	position.y = clamp(position.y, upper_limit, lower_limit)
