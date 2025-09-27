@@ -14,8 +14,14 @@ func _process(delta):
 		battery_bar.max_value = GameData.max_battery
 		battery_bar.value = GameData.current_battery
 	if is_instance_valid(shield_bar):
+		shield_bar.max_value = GameData.MAX_CAPACITY
+		if abs(shield_bar.value - GameData.shield_integrity) > 0.01:
+			print("UI: shield_bar exists. shield_bar.value=", shield_bar.value, " GameData.shield_integrity=", GameData.shield_integrity)
 		shield_bar.value = GameData.shield_integrity
 	if is_instance_valid(health_bar):
+		health_bar.max_value = GameData.MAX_CAPACITY
+		if abs(health_bar.value - GameData.health) > 0.01:
+			print("UI: health_bar exists. health_bar.value=", health_bar.value, " GameData.health=", GameData.health)
 		health_bar.value = GameData.health
 	if is_instance_valid(signal_bar):
 		signal_bar.value = GameData.signal_progress
