@@ -19,11 +19,10 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	var dir_x: float = Input.get_action_strength("right") - Input.get_action_strength("left")
 	var dir_y: float = Input.get_action_strength("down") - Input.get_action_strength("up")
-	var moving: bool = abs(dir_x) > 0.1 or abs(dir_y) > 0.1
 	if abs(dir_x) > 0.1:
 		_set_facing(dir_x > 0)
 		_play_if_exists("run")
-	elif moving:
+	elif abs(dir_y) > 0.1:
 		_play_if_exists("run")
 	else:
 		_play_if_exists("standing")
