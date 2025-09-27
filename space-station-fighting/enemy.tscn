@@ -31,8 +31,11 @@ animations = [{
 "speed": 5.0
 }]
 
+[ext_resource type="Script" path="res://enemy.gd" id="2_enemy"]
+
 [node name="enemy" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_epg4t")
 animation = &"attack"
+script = ExtResource("2_enemy")
 
 [node name="Area2D" type="Area2D" parent="."]

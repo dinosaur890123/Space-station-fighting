@@ -440,13 +440,10 @@ animation = &"shot"
 frame_progress = 0.429457
 
 [node name="shot_area" type="Area2D" parent="shot"]
-<<<<<<< Updated upstream
-=======
 
 [node name="running_back" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_shhrb")
-animation = &"back"
+sprite_frames = SubResource("SpriteFrames_d4y6u")
+animation = &"run_backwards"
 flip_h = true
 
 [node name="back_area" type="Area2D" parent="running_back"]
->>>>>>> Stashed changes

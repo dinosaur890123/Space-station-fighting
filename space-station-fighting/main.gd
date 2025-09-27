@@ -2,12 +2,23 @@ extends Control
 
 @onready var game_over_screen: Control = $GameOverScreen
 @onready var result_message: Label = $GameOverScreen/VBoxContainer/ResultMessage
+@onready var character: Node2D = $Character
+
+var enemy_scene: PackedScene = preload("res://enemy.tscn")
+var spawn_timer: float = 0.0
+var spawn_interval: float = 3.0
+var min_spawn_interval: float = 0.75
+var spawn_accel: float = 0.02 # how much to shrink interval per second (difficulty ramp)
+
 func _ready():
 	GameData.reset()
 	get_tree().paused = false
 
 
 func _process(delta):
+	if get_tree().paused:
+		return
+	_handle_enemy_spawning(delta)
 	GameData.current_battery -= 3.0 * delta
 	var shield_drain_rate = 0.8
 	if GameData.shield_boost_timer > 0:
@@ -33,6 +44,25 @@ func _process(delta):
 	
 	if GameData.signal_progress >= GameData.MAX_CAPACITY:
 		game_over("SUCCESS: Signal Transmission Complete!")
+
+func _handle_enemy_spawning(delta: float) -> void:
+	spawn_timer -= delta
+	if spawn_timer <= 0.0:
+		_spawn_enemy()
+		spawn_interval = max(min_spawn_interval, spawn_interval - spawn_accel)
+		spawn_timer = spawn_interval
+
+func _spawn_enemy():
+	if not enemy_scene:
+		return
+	var enemy = enemy_scene.instantiate()
+	# Spawn at right edge, random vertical jitter near ground (if you later add flying types adjust here)
+	var viewport_width = get_viewport_rect().size.x
+	enemy.position = Vector2(viewport_width + 50, 485)
+	add_child(enemy)
+	# Optional: ensure enemy renders behind UI (z_index if using CanvasItem layering)
+	if enemy is CanvasItem:
+		enemy.z_index = -1
 func game_over(reason: String):
 	if not game_over_screen: return
 	result_message.text = reason
@@ -40,4 +70,8 @@ func game_over(reason: String):
 	get_tree().paused = true
 
 func _on_restart_button_pressed():
+	# Unpause, reset state, then reload scene for a clean restart
+	get_tree().paused = false
+	if typeof(GameData) != TYPE_NIL:
+		GameData.reset()
 	get_tree().reload_current_scene()
