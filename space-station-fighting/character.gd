@@ -7,18 +7,22 @@ extends AnimatedSprite2D
 @export var gravity: float = 1200
 var velocity_y: float = 0 
 var moving = false
-var on_ground: bool = true    
+var on_ground: bool = true  
 func _ready() -> void:
 	$shot.hide() 
+	$running_back.hide()
 	pass
 
 func _process(delta):
 	moving = false
 	if Input.is_action_pressed("left"):
 		position.x -= speed * delta
-		play("run")
+		$running_back.show()
+		$running_back.play("back")
 		moving = true
 	if Input.is_action_pressed("right"):
+		self.modulate.a = 1
+		$running_back.hide()
 		position.x += speed * delta
 		play("run")
 		moving = true
