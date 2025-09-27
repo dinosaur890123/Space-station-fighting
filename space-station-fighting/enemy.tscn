@@ -1,5 +1,42 @@
+<<<<<<< Updated upstream
 [gd_scene format=3 uid="uid://c5diyoudfe1og"]
+=======
+[gd_scene load_steps=6 format=3 uid="uid://c5diyoudfe1og"]
+
+[ext_resource type="Texture2D" uid="uid://duyso3ir31een" path="res://Screenshot_2025-09-27_at_12.22.05_pm-removebg-preview.png" id="1_7k104"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4gyqm"]
+atlas = ExtResource("1_7k104")
+region = Rect2(74, 246, 65, 82)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qi2p4"]
+atlas = ExtResource("1_7k104")
+region = Rect2(148, 246, 65, 82)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iifgy"]
+atlas = ExtResource("1_7k104")
+region = Rect2(222, 246, 65, 82)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_epg4t"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4gyqm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qi2p4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iifgy")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 5.0
+}]
+>>>>>>> Stashed changes
 
 [node name="enemy" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_epg4t")
+animation = &"attack"
 
 [node name="Area2D" type="Area2D" parent="."]
