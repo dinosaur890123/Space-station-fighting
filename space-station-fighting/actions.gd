@@ -18,7 +18,6 @@ func _on_overcharge_button_pressed():
 	if GameData.overcharge_count >= 4:
 		print("ERROR: Maximum Overcharge Reached!")
 		return
-
 	GameData.current_battery = GameData.max_battery
 	GameData.overcharge_count += 1
 	GameData.max_battery = GameData.MAX_CAPACITY - (GameData.MAX_CAPACITY * (0.25 * GameData.overcharge_count))
