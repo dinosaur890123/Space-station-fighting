@@ -1,7 +1,7 @@
 extends AnimatedSprite2D
 @export var speed: float = 300 
-@export var right_limit: float = 0
-@export var left_limit: float = 656
+@export var left_limit: float = 2
+@export var right_limit: float = 1150
 
 
 # Called when the node enters the scene tree for the first time.
@@ -12,7 +12,6 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	var moving = false
-	var direction = 0
 	if Input.is_action_pressed("left"):
 		position.x -= speed * delta  # Move up
 		play("run")
@@ -23,5 +22,4 @@ func _process(delta):
 		moving = true
 		
 	 
-	position.y += direction * speed * delta
-	position.y = clamp(position.y, right_limit, left_limit)
+	position.x = clamp(position.x, left_limit, right_limit)
