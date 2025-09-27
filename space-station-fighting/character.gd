@@ -25,6 +25,14 @@ func _process(delta):
 		position.x += speed * delta
 		play("run")
 		moving = true
+	if Input.is_action_pressed("up"):
+		position.y -= speed * delta
+		play("run")
+		moving = true
+	if Input.is_action_pressed("down"):
+		position.y += speed * delta
+		play("run")
+		moving = true
 	if Input.is_action_just_pressed("jump") and on_ground:
 		velocity_y = -jump_speed
 		on_ground = false
