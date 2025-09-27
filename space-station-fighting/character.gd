@@ -39,8 +39,8 @@ func _process(delta):
 	if not on_ground:
 		velocity_y += gravity * delta
 		position.y += velocity_y * delta
-	if position.y >= 485:
-		position.y = 485
+	if position.y >= 645:
+		position.y = 645
 		velocity_y = 0
 		on_ground = true
 	if moving == false:
