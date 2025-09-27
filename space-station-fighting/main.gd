@@ -60,13 +60,13 @@ func _process(delta):
 	if Input.is_action_just_pressed("attack_air") and not $bullet.visible:
 		$bullet.global_position = $character.global_position
 		$bullet.show()
-		_bullet_direction = -1 if $character.flip_h else 1
 	if $bullet.visible:
 		$bullet.global_position.x += 800 * delta * _bullet_direction
-		if $bullet.global_position.x > right_limit or $bullet.global_position.x < left_limit:
-			$bullet.hide()
-	else:
+		# Check for hits while bullet is active
 		_check_bullet_hits()
+		# If bullet was hidden due to a hit, skip out-of-bounds check
+		if $bullet.visible and ($bullet.global_position.x > right_limit or $bullet.global_position.x < left_limit):
+			$bullet.hide()
 func _check_bullet_hits():
 	var bullet_area := $bullet.get_node_or_null("shot/shot_area")
 	if not (bullet_area and bullet_area is Area2D):
