@@ -10,19 +10,16 @@ var moving = false
 var on_ground: bool = true  
 func _ready() -> void:
 	$shot.hide() 
-	$running_back.hide()
 	pass
 
 func _process(delta):
 	moving = false
 	if Input.is_action_pressed("left"):
+		flip_h = true
 		position.x -= speed * delta
-		$running_back.show()
-		$running_back.play("back")
 		moving = true
 	if Input.is_action_pressed("right"):
-		self.modulate.a = 1
-		$running_back.hide()
+		flip_h = false
 		position.x += speed * delta
 		play("run")
 		moving = true
