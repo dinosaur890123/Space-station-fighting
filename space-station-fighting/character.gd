@@ -16,14 +16,32 @@ func _process(delta):
 	moving = false
 	if Input.is_action_pressed("left"):
 		flip_h = true
+		$shot.flip_h = false
 		position.x -= speed * delta
 		play("run")
 		moving = true
 	if Input.is_action_pressed("right"):
 		flip_h = false
+		$shot.flip_h = false
 		position.x += speed * delta
 		play("run")
 		moving = true
+<<<<<<< Updated upstream
+=======
+		right = true
+	if Input.is_action_just_pressed("attack_air") and not $shot.visible:
+		$shot.global_position = position
+		$shot.flip_h = false  # start at player
+		$shot.show()
+	if $shot.visible and right == true:
+		$shot.global_position.x += 800 * delta  # move at bullet speed
+		if $shot.global_position.x > right_limit:
+			$shot.hide()  # hide when off-screen
+	if $shot.visible and right == false:
+		$shot.global_position.x -= 800 * delta  # move at bullet speed
+		if $shot.global_position.x < left_limit:
+			$shot.hide()  # hide when off-screen
+>>>>>>> Stashed changes
 	if Input.is_action_just_pressed("jump") and on_ground:
 		velocity_y = -jump_speed
 		on_ground = false

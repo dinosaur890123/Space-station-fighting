@@ -1,4 +1,8 @@
+<<<<<<< Updated upstream
 [gd_scene load_steps=13 format=3 uid="uid://clp2yya284ks"]
+=======
+[gd_scene load_steps=13 format=3 uid="uid://cbxoi8afg8x5r"]
+>>>>>>> Stashed changes
 
 [ext_resource type="Texture2D" uid="uid://btlxcb3senrev" path="res://Screenshot_2025-09-27_at_2.00.50_PM-removebg-preview.png" id="1_676v5"]
 
@@ -83,6 +87,10 @@ animations = [{
 [node name="Bullet" type="Node2D"]
 
 [node name="shot" type="AnimatedSprite2D" parent="."]
+<<<<<<< Updated upstream
+=======
+position = Vector2(21.2, 1.2)
+>>>>>>> Stashed changes
 scale = Vector2(0.1, 0.1)
 sprite_frames = SubResource("SpriteFrames_mgk3c")
 animation = &"shot"
