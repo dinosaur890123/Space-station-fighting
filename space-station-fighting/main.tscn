@@ -1,18 +1,16 @@
 [gd_scene load_steps=6 format=3 uid="uid://bk1vy0rr1lry7"]
 
 [ext_resource type="PackedScene" uid="uid://bq23m3f7jfw0b" path="res://character.tscn" id="1_aw4sl"]
-[ext_resource type="Script" path="res://main.gd" id="1_bquf4"]
-[ext_resource type="Script" path="res://actions.gd" id="2_0xm2m"]
+[ext_resource type="Script" uid="uid://cbiah0ieoaanp" path="res://main.gd" id="1_bquf4"]
+[ext_resource type="Script" uid="uid://csesvry1vxl4y" path="res://actions.gd" id="2_0xm2m"]
 [ext_resource type="Texture2D" uid="uid://jr71a7v3xkrg" path="res://hello-worked-today-on-an-animated-reactor-for-the-spaceship-v0-3lbhd4q0m6gc1.webp" id="3_h2yge"]
 [ext_resource type="PackedScene" uid="uid://clp2yya284ks" path="res://bullet.tscn" id="4_5cqrd"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_bquf4")
-left_limit = null
-right_limit = null
 
 [node name="HelloWorkedTodayOnAnAnimatedReactorForTheSpaceshipV03Lbhd4q0m6Gc1" type="Sprite2D" parent="."]
-position = Vector2(363, 262)
+position = Vector2(574, 378)
 scale = Vector2(1.85337, 1.87321)
 texture = ExtResource("3_h2yge")
 
@@ -70,6 +68,7 @@ offset_left = 25.0
 offset_top = 603.0
 offset_right = 379.0
 offset_bottom = 630.0
+value = 100.0
 rounded = true
 
 [node name="SignalLabel" type="Label" parent="."]

@@ -94,5 +94,4 @@ func _draw():
 	if is_megabot:
 		col = Color(1,0.25,0.25)
 	draw_rect(fill_rect, col, true)
-	# Optional thin outline
 	draw_rect(back_rect, Color(0.9,0.9,0.9,0.8), false, 1.0)

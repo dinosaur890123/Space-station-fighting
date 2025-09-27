@@ -1,7 +1,6 @@
 extends Node
 
 func _ready():
-	# Adjusted paths: buttons are direct children of Main (no HBoxContainer in current scene)
 	_connect_button("/root/Main/OverchargeButton", _on_overcharge_button_pressed)
 	_connect_button("/root/Main/DivertShieldButton", _on_divert_shield_button_pressed)
 	_connect_button("/root/Main/DivertSignalButton", _on_divert_signal_button_pressed)
@@ -29,18 +28,16 @@ func _on_divert_signal_button_pressed():
 	print("Diverting power to signal!")
 
 func _on_overcharge_button_pressed():
-	# Limit to 3 safe overcharges (avoid reducing max battery to 0 which causes instant loss)
 	if GameData.overcharge_count >= 3:
 		print("ERROR: Maximum Overcharge Reached!")
 		var btn = get_node_or_null("/root/Main/OverchargeButton")
 		if btn:
 			btn.disabled = true
 		return
-	# Refill then shrink capacity for future (25% reduction per use)
 	GameData.current_battery = GameData.max_battery
 	GameData.overcharge_count += 1
 	GameData.max_battery = GameData.MAX_CAPACITY * (1.0 - 0.25 * GameData.overcharge_count)
-	GameData.max_battery = max(10.0, GameData.max_battery) # safety floor
+	GameData.max_battery = max(10.0, GameData.max_battery)
 	GameData.current_battery = clamp(GameData.current_battery, 0.0, GameData.max_battery)
 	if GameData.overcharge_count >= 3:
 		var btn2 = get_node_or_null("/root/Main/OverchargeButton")

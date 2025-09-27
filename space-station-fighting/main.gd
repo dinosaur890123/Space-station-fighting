@@ -19,12 +19,11 @@ func _ready():
 	GameData.reset()
 	get_tree().paused = false
 	randomize()
-	# Ensure restart button is connected even if not wired in the editor.
 	var restart_btn = get_node_or_null("GameOverScreen/VBoxContainer/RestartButton")
 	if restart_btn and not restart_btn.pressed.is_connected(_on_restart_button_pressed):
 		restart_btn.pressed.connect(_on_restart_button_pressed)
 
-var _bullet_direction: int = 1 # 1 = right, -1 = left
+var _bullet_direction: int = 1
 
 func _process(delta):
 	if get_tree().paused or _game_over:
@@ -57,7 +56,6 @@ func _process(delta):
 	
 	if GameData.signal_progress >= GameData.MAX_CAPACITY:
 		game_over("SUCCESS: Signal Transmission Complete!")
-	# Simple bullet firing (independent of character script bullet). Direction based on character flip.
 	if Input.is_action_just_pressed("attack_air"):
 		if character and character is Sprite2D:
 			_bullet_direction = -1 if character.flip_h else 1
@@ -71,21 +69,18 @@ func _process(delta):
 			_check_bullet_hits()
 
 func _check_bullet_hits():
-	# naive AABB check against enemies
 	var bullet_area := $bullet.get_node_or_null("shot/shot_area")
-	if bullet_area and bullet_area is Area2D:
-		for body in get_tree().get_nodes_in_group("enemies"):
-			if not body is Node2D:
-				continue
-			if body.get_rect() if body.has_method("get_rect") else false:
-				# skip, custom rect method not standard; fallback to distance sphere
-				pass
-			var dist = bullet_area.global_position.distance_to(body.global_position)
-			if dist < 40: # rough collision radius
-				if body.has_method("take_hit"):
-					body.take_hit(10.0)
-				$bullet.hide()
-				break
+	if not (bullet_area and bullet_area is Area2D):
+		return
+	for body in get_tree().get_nodes_in_group("enemies"):
+		if not body is Node2D:
+			continue
+		var dist = bullet_area.global_position.distance_to(body.global_position)
+		if dist < 40:
+			if body.has_method("take_hit"):
+				body.take_hit(10.0)
+			$bullet.hide()
+			break
 
 func _handle_enemy_spawning(delta: float) -> void:
 	spawn_timer -= delta
