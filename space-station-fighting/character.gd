@@ -1,25 +1,48 @@
 extends AnimatedSprite2D
+
 @export var speed: float = 300 
 @export var left_limit: float = 2
 @export var right_limit: float = 1150
-
-
+@export var jump_speed: float = 500   # initial jump velocity
+@export var gravity: float = 1200     # how fast the player falls
+var velocity_y: float = 0 
+var moving = false
+var on_ground: bool = true    
+ 
 # Called when the node enters the scene tree for the first time.
+
 func _ready() -> void:
+	$shot.hide() 
 	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	var moving = false
+	moving = false
 	if Input.is_action_pressed("left"):
 		position.x -= speed * delta  # Move up
 		play("run")
 		moving = true
-	elif Input.is_action_pressed("right"):
+	if Input.is_action_pressed("right"):
 		position.x += speed * delta
-		play("run_forward")
+		play("run")
 		moving = true
+	if Input.is_action_just_pressed("attack_air"):
+		$shot.show()
+		$shot.position.x += 20 
+	if Input.is_action_just_pressed("jump") and on_ground:
+		velocity_y = -jump_speed
+		on_ground = false
+	if not on_ground:
+		velocity_y += gravity * delta
+		position.y += velocity_y * delta
+	if position.y >= 485:  # replace 400 with your ground Y
+		position.y = 485
+		velocity_y = 0
+		on_ground = true
+	if moving == false:
+		play("standing")
+		
 		
 	 
 	position.x = clamp(position.x, left_limit, right_limit)
