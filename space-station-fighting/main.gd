@@ -1,7 +1,7 @@
 extends Control
 
-@onready var game_over_screen = $GameOverScreen
-@onready var result_message = $GameOverScreen/VBoxContainer/ResultMessage
+@onready var game_over_screen: Control = $GameOverScreen
+@onready var result_message: Label = $GameOverScreen/VBoxContainer/ResultMessage
 func _ready():
 	GameData.reset()
 	get_tree().paused = false
@@ -34,6 +34,7 @@ func _process(delta):
 	if GameData.signal_progress >= GameData.MAX_CAPACITY:
 		game_over("SUCCESS: Signal Transmission Complete!")
 func game_over(reason: String):
+	if not game_over_screen: return
 	result_message.text = reason
 	game_over_screen.visible = true
 	get_tree().paused = true

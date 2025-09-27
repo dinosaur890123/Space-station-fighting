@@ -6,38 +6,37 @@ extends AnimatedSprite2D
 @export var jump_speed: float = 500
 @export var gravity: float = 1200
 var velocity_y: float = 0 
-var moving = false
+var _moving = false
 var on_ground: bool = true  
 var right = true
 func _ready() -> void:
-	$shot.hide() 
-	pass
+	$shot.hide()
 
 func _process(delta):
-	moving = false
+	_moving = false
 	if Input.is_action_pressed("left"):
 		flip_h = true
 		position.x -= speed * delta
 		play("run")
-		moving = true
+		_moving = true
 		right = false
 	if Input.is_action_pressed("right"):
 		flip_h = false
 		position.x += speed * delta
 		play("run")
-		moving = true
+		_moving = true
 		right = true
 	if Input.is_action_just_pressed("attack_air"):
-		$shot.global_position = position  # start at player
+		$shot.global_position = position
 		$shot.show()
 	if $shot.visible and right == true:
-		$shot.global_position.x += 800 * delta  # move at bullet speed
+		$shot.global_position.x += 800 * delta
 		if $shot.global_position.x > right_limit:
-			$shot.hide()  # hide when off-screen
+			$shot.hide()
 	if $shot.visible and right == false:
-		$shot.global_position.x -= 800 * delta  # move at bullet speed
+		$shot.global_position.x -= 800 * delta
 		if $shot.global_position.x > right_limit:
-			$shot.hide()  # hide when off-screen
+			$shot.hide()
 	if Input.is_action_just_pressed("jump") and on_ground:
 		velocity_y = -jump_speed
 		on_ground = false
@@ -48,6 +47,6 @@ func _process(delta):
 		position.y = 485
 		velocity_y = 0
 		on_ground = true
-	if moving == false:
+	if _moving == false:
 		play("standing")
 	position.x = clamp(position.x, left_limit, right_limit)

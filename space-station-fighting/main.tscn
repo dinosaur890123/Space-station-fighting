@@ -1,10 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://bk1vy0rr1lry7"]
+[gd_scene load_steps=5 format=3 uid="uid://bk1vy0rr1lry7"]
 
 [ext_resource type="PackedScene" uid="uid://bq23m3f7jfw0b" path="res://character.tscn" id="1_aw4sl"]
 [ext_resource type="Script" uid="uid://csesvry1vxl4y" path="res://actions.gd" id="2_0xm2m"]
 [ext_resource type="Texture2D" uid="uid://jr71a7v3xkrg" path="res://hello-worked-today-on-an-animated-reactor-for-the-spaceship-v0-3lbhd4q0m6gc1.webp" id="3_h2yge"]
+[ext_resource type="Script" path="res://ui_controller.gd" id="5_ui"]
 
-[node name="Main" type="Node2D"]
+[ext_resource type="Script" path="res://main.gd" id="4_main"]
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("4_main")
 
 [node name="HelloWorkedTodayOnAnAnimatedReactorForTheSpaceshipV03Lbhd4q0m6Gc1" type="Sprite2D" parent="."]
 position = Vector2(581, 308)
@@ -120,6 +128,25 @@ grow_vertical = 2
 [node name="ActionsManager" type="Node" parent="."]
 script = ExtResource("2_0xm2m")
 
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchors_preset = 10
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -300.0
+offset_top = 8.0
+offset_right = 300.0
+offset_bottom = 48.0
+alignment = 1
+
+[node name="DivertShieldButton" type="Button" parent="HBoxContainer"]
+text = "Divert -> Shields"
+
+[node name="DivertSignalButton" type="Button" parent="HBoxContainer"]
+text = "Divert -> Signal"
+
+[node name="OverchargeButton" type="Button" parent="HBoxContainer"]
+text = "Emergency Overcharge"
+
 [node name="BatteryGroup" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
@@ -213,3 +240,46 @@ offset_left = 795.0
 offset_top = 228.0
 offset_right = 1149.0
 offset_bottom = 255.0
+
+[node name="UIController" type="Control" parent="."]
+script = ExtResource("5_ui")
+
+[node name="GameOverScreen" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+modulate = Color(1, 1, 1, 0.92)
+
+[node name="ColorRect" type="ColorRect" parent="GameOverScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0, 0, 0, 0.58)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameOverScreen"]
+layout_mode = 0
+offset_left = 362.0
+offset_top = 164.0
+offset_right = 963.0
+offset_bottom = 640.0
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="ResultMessage" type="Label" parent="GameOverScreen/VBoxContainer"]
+layout_mode = 2
+text = "Game Over"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="RestartButton" type="Button" parent="GameOverScreen/VBoxContainer"]
+layout_mode = 2
+text = "Restart"
+focus_mode = 2
+
+[connection signal="pressed" from="GameOverScreen/VBoxContainer/RestartButton" to="Main" method="_on_restart_button_pressed"]
