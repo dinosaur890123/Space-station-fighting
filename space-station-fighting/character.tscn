@@ -77,11 +77,12 @@ animations = [{
 }],
 "loop": true,
 "name": &"run",
-"speed": 5.0
+"speed": 12.0
 }]
 
 [node name="Character" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_d4y6u")
 animation = &"run"
+frame_progress = 0.461069
 
 [node name="AnimatedSprite2D" type="Area2D" parent="."]
