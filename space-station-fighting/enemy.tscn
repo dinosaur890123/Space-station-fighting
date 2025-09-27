@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://c5diyoudfe1og"]
+[gd_scene load_steps=0 format=3 uid="uid://c5diyoudfe1og"]
 
 [node name="enemy" type="AnimatedSprite2D"]
 
