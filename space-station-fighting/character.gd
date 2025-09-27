@@ -5,6 +5,7 @@ extends AnimatedSprite2D
 @export var right_limit: float = 1150.0
 
 var _facing_right: bool = true
+var _attacking = false
 
 func _ready() -> void:
 	if not is_in_group("player"):
@@ -20,13 +21,18 @@ func _process(delta: float) -> void:
 	var dir_x: float = Input.get_action_strength("right") - Input.get_action_strength("left")
 	var dir_y: float = Input.get_action_strength("down") - Input.get_action_strength("up")
 	var moving: bool = abs(dir_x) > 0.1 or abs(dir_y) > 0.1
-	if abs(dir_x) > 0.1:
-		_set_facing(dir_x > 0)
-		_play_if_exists("run")
-	elif moving:
-		_play_if_exists("run")
-	else:
-		_play_if_exists("standing")
+	if Input.is_action_just_pressed("attack_slash") and not _attacking == true:
+		_attacking = true
+		play("attack 1")
+		return
+	if _attacking == false:
+		if abs(dir_x) > 0.1:
+			_set_facing(dir_x > 0)
+			_play_if_exists("run")
+		elif moving:
+			_play_if_exists("run")
+		else:
+			_play_if_exists("standing")
 	position.x += dir_x * move_speed * delta
 	position.y += dir_y * move_speed * delta
 	position.x = clamp(position.x, left_limit, right_limit)
