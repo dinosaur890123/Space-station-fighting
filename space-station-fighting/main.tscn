@@ -15,68 +15,6 @@ texture = ExtResource("3_h2yge")
 position = Vector2(117, 448)
 frame_progress = 0.872475
 
-[node name="BatteryLabel" type="Label" parent="."]
-offset_left = 21.0
-offset_top = 21.0
-offset_right = 375.0
-offset_bottom = 44.0
-text = "Battery"
-
-[node name="BatteryBar" type="ProgressBar" parent="."]
-modulate = Color(0, 1, 0, 1)
-offset_left = 21.0
-offset_top = 48.0
-offset_right = 225.0
-offset_bottom = 75.0
-value = 100.0
-rounded = true
-
-[node name="ShieldLabel" type="Label" parent="."]
-offset_left = 24.0
-offset_top = 518.0
-offset_right = 378.0
-offset_bottom = 541.0
-text = "Shield"
-
-[node name="ShieldBar" type="ProgressBar" parent="."]
-modulate = Color(0, 0.713726, 1, 1)
-offset_left = 24.0
-offset_top = 545.0
-offset_right = 202.0
-offset_bottom = 572.0
-max_value = 50.0
-step = 1.0
-value = 50.0
-rounded = true
-
-[node name="HealthLabel" type="Label" parent="."]
-offset_left = 25.0
-offset_top = 576.0
-offset_right = 379.0
-offset_bottom = 599.0
-text = "Health"
-
-[node name="HealthBar" type="ProgressBar" parent="."]
-modulate = Color(0, 1, 0, 1)
-offset_left = 25.0
-offset_top = 603.0
-offset_right = 379.0
-offset_bottom = 630.0
-rounded = true
-
-[node name="SignalLabel" type="Label" parent="."]
-offset_left = 795.0
-offset_top = 201.0
-offset_right = 1149.0
-offset_bottom = 224.0
-text = "Signal"
-
-[node name="SignalBar" type="ProgressBar" parent="."]
-offset_left = 795.0
-offset_top = 228.0
-offset_right = 1149.0
-offset_bottom = 255.0
-
 [node name="DivertShieldButton" type="Button" parent="."]
 modulate = Color(1, 0.141176, 0, 1)
 offset_left = 907.0
@@ -116,3 +54,89 @@ grow_vertical = 2
 
 [node name="ActionsManager" type="Node" parent="."]
 script = ExtResource("2_0xm2m")
+
+[node name="BatteryGroup" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BatteryLabel" type="Label" parent="BatteryGroup"]
+offset_left = 21.0
+offset_top = 21.0
+offset_right = 375.0
+offset_bottom = 44.0
+text = "Battery"
+
+[node name="BatteryBar" type="ProgressBar" parent="BatteryGroup"]
+modulate = Color(0, 1, 0, 1)
+offset_left = 21.0
+offset_top = 48.0
+offset_right = 225.0
+offset_bottom = 75.0
+value = 100.0
+rounded = true
+
+[node name="ShieldGroup" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ShieldLabel" type="Label" parent="ShieldGroup"]
+offset_left = 24.0
+offset_top = 518.0
+offset_right = 378.0
+offset_bottom = 541.0
+text = "Shield"
+
+[node name="ShieldBar" type="ProgressBar" parent="ShieldGroup"]
+modulate = Color(0, 0.713726, 1, 1)
+offset_left = 24.0
+offset_top = 545.0
+offset_right = 202.0
+offset_bottom = 572.0
+max_value = 50.0
+step = 1.0
+value = 50.0
+rounded = true
+
+[node name="HealthGroup" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HealthLabel" type="Label" parent="HealthGroup"]
+offset_left = 25.0
+offset_top = 576.0
+offset_right = 379.0
+offset_bottom = 599.0
+text = "Health"
+
+[node name="HealthBar" type="ProgressBar" parent="HealthGroup"]
+modulate = Color(0, 1, 0, 1)
+offset_left = 25.0
+offset_top = 603.0
+offset_right = 379.0
+offset_bottom = 630.0
+rounded = true
+
+[node name="SignalGroup" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SignalLabel" type="Label" parent="SignalGroup"]
+offset_left = 795.0
+offset_top = 201.0
+offset_right = 1149.0
+offset_bottom = 224.0
+text = "Signal"
+
+[node name="SignalBar" type="ProgressBar" parent="SignalGroup"]
+offset_left = 795.0
+offset_top = 228.0
+offset_right = 1149.0
+offset_bottom = 255.0
