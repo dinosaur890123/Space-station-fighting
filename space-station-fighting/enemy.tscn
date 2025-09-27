@@ -38,6 +38,7 @@ size = Vector2(50, 62)
 [node name="enemy" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_epg4t")
 animation = &"attack"
+flip_h = true
 script = ExtResource("2_enemy")
 
 [node name="Area2D" type="Area2D" parent="."]
