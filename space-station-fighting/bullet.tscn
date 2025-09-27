@@ -1,0 +1,91 @@
+[gd_scene load_steps=13 format=3 uid="uid://clp2yya284ks"]
+
+[ext_resource type="Texture2D" uid="uid://btlxcb3senrev" path="res://Screenshot_2025-09-27_at_2.00.50_PM-removebg-preview.png" id="1_676v5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xvy8s"]
+atlas = ExtResource("1_676v5")
+region = Rect2(0, 0, 101, 98)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ww3mc"]
+atlas = ExtResource("1_676v5")
+region = Rect2(101, 0, 101, 98)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7k77w"]
+atlas = ExtResource("1_676v5")
+region = Rect2(202, 0, 101, 98)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kydnv"]
+atlas = ExtResource("1_676v5")
+region = Rect2(303, 0, 101, 98)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tbi4c"]
+atlas = ExtResource("1_676v5")
+region = Rect2(404, 0, 101, 98)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nbnjt"]
+atlas = ExtResource("1_676v5")
+region = Rect2(505, 0, 101, 98)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iuynb"]
+atlas = ExtResource("1_676v5")
+region = Rect2(606, 0, 101, 98)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hfrad"]
+atlas = ExtResource("1_676v5")
+region = Rect2(707, 0, 101, 98)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ddgi7"]
+atlas = ExtResource("1_676v5")
+region = Rect2(808, 0, 101, 98)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cn76c"]
+atlas = ExtResource("1_676v5")
+region = Rect2(909, 0, 101, 98)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mgk3c"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xvy8s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ww3mc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7k77w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kydnv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tbi4c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nbnjt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iuynb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hfrad")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ddgi7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cn76c")
+}],
+"loop": true,
+"name": &"shot",
+"speed": 5.0
+}]
+
+[node name="Bullet" type="Node2D"]
+
+[node name="shot" type="AnimatedSprite2D" parent="."]
+position = Vector2(21.2, 1.2)
+scale = Vector2(0.1, 0.1)
+sprite_frames = SubResource("SpriteFrames_mgk3c")
+animation = &"shot"
+
+[node name="shot_area" type="Area2D" parent="shot"]

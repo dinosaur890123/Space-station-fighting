@@ -431,7 +431,6 @@ animation = &"attack 1"
 script = ExtResource("2_dspso")
 
 [node name="area" type="Area2D" parent="."]
-scale = Vector2(1, 1)
 
 [node name="shot" type="AnimatedSprite2D" parent="."]
 position = Vector2(21.2, 1.2)
