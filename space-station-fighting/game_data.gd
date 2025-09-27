@@ -17,4 +17,3 @@ func reset():
 	overcharge_count = 0
 	shield_boost_timer = 0.0
 	signal_boost_timer = 0.0
-
