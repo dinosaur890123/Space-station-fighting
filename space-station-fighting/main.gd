@@ -11,6 +11,7 @@ var min_spawn_interval: float = 0.75
 var spawn_accel: float = 0.02 
 var battery_tick_timer: float = 0.0
 const ENABLE_AUTO_SHIELD_RECHARGE := false
+var _game_over: bool = false
 
 func _ready():
 	GameData.reset()
@@ -18,7 +19,7 @@ func _ready():
 	randomize()
 
 func _process(delta):
-	if get_tree().paused:
+	if get_tree().paused or _game_over:
 		return
 	_handle_enemy_spawning(delta)
 	battery_tick_timer += delta
@@ -41,8 +42,10 @@ func _process(delta):
 			var to_transfer = min(power_needed, recharge_rate, GameData.current_battery)
 			GameData.shield_integrity += to_transfer
 			GameData.current_battery -= to_transfer
-	if GameData.health <= 0.0 or GameData.current_battery <= 0.0:
-		game_over("FAILURE: Health Depleted or Power Depleted")
+	if GameData.health <= 0.0:
+		game_over("FAILURE: Health Depleted")
+	elif GameData.current_battery <= 0.0:
+		game_over("FAILURE: Power Depleted")
 	
 	if GameData.signal_progress >= GameData.MAX_CAPACITY:
 		game_over("SUCCESS: Signal Transmission Complete!")
@@ -71,13 +74,18 @@ func _spawn_enemy():
 	if enemy is CanvasItem:
 		enemy.z_index = 1
 func game_over(reason: String):
-	if not game_over_screen: return
+	if _game_over:
+		return
+	_game_over = true
+	if not game_over_screen:
+		return
 	result_message.text = reason
 	game_over_screen.visible = true
 	get_tree().paused = true
 
 func _on_restart_button_pressed():
 	get_tree().paused = false
+	_game_over = false
 	if typeof(GameData) != TYPE_NIL:
 		GameData.reset()
 	get_tree().reload_current_scene()

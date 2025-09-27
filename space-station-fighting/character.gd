@@ -16,10 +16,6 @@ func _ready() -> void:
 	if shot_area and not shot_area.area_entered.is_connected(_on_shot_area_entered):
 		shot_area.area_entered.connect(_on_shot_area_entered)
 var shot = false
-func _ready() -> void:
-	$shot.hide() 
-	pass
-
 func _process(delta):
 	moving = false
 	if Input.is_action_pressed("left"):
@@ -35,16 +31,16 @@ func _process(delta):
 		moving = true
 		right = true
 	if Input.is_action_just_pressed("attack_air") and not $shot.visible:
-		$shot.global_position = position  # start at player
+		$shot.global_position = position
 		$shot.show()
 	if $shot.visible and right == true:
-		$shot.global_position.x += 800 * delta  # move at bullet speed
+		$shot.global_position.x += 800 * delta
 		if $shot.global_position.x > right_limit:
-			$shot.hide()  # hide when off-screen
+			$shot.hide() 
 	if $shot.visible and right == false:
-		$shot.global_position.x -= 800 * delta  # move at bullet speed
+		$shot.global_position.x -= 800 * delta 
 		if $shot.global_position.x < left_limit:
-			$shot.hide()  # hide when off-screen
+			$shot.hide()
 	if Input.is_action_just_pressed("jump") and on_ground:
 		velocity_y = -jump_speed
 		on_ground = false
