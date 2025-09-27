@@ -11,7 +11,7 @@ var signal_boost_timer: float = 0.0
 func reset():
 	current_battery = 100.0
 	max_battery = 100.0
-	shield_integrity = 100.0
+	shield_integrity = 50.0
 	health = 100.0
 	signal_progress = 0.0
 	overcharge_count = 0
