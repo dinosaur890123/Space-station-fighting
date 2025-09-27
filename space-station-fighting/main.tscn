@@ -12,8 +12,8 @@ left_limit = null
 right_limit = null
 
 [node name="HelloWorkedTodayOnAnAnimatedReactorForTheSpaceshipV03Lbhd4q0m6Gc1" type="Sprite2D" parent="."]
-position = Vector2(581, 308)
-scale = Vector2(1.975, 1.99614)
+position = Vector2(363, 262)
+scale = Vector2(1.85337, 1.87321)
 texture = ExtResource("3_h2yge")
 
 [node name="character" parent="." instance=ExtResource("1_aw4sl")]
