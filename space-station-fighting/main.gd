@@ -1,4 +1,4 @@
-extends Node 2
+extends Control
 
 @onready var game_over_screen: Control = $GameOverScreen
 @onready var result_message: Label = $GameOverScreen/VBoxContainer/ResultMessage
