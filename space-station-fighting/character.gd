@@ -19,9 +19,7 @@ func _process(delta):
 		moving = true
 	elif Input.is_action_pressed("right"):
 		position.x += speed * delta
-		play("run")
+		play("run_forward")
 		moving = true  
-	if moving == false:
-		play("standing")
 	position.y += direction * speed * delta
 	position.y = clamp(position.y, upper_limit, lower_limit)
