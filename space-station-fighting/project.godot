@@ -12,13 +12,14 @@ config_version=5
 
 config/name="space station fighting"
 run/main_scene="uid://bk1vy0rr1lry7"
-config/features=PackedStringArray("4.5", "GL Compatibility")
+config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[autoload]
+
+GameData="*res://game_data.gd"
 
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
-
-[autoload]
-GameData="*res://game_data.gd"
