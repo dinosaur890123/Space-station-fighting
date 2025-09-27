@@ -1,9 +1,10 @@
-extends Control
+extends Node 2
 
 @onready var game_over_screen: Control = $GameOverScreen
 @onready var result_message: Label = $GameOverScreen/VBoxContainer/ResultMessage
 @onready var character: Node2D = $Character
-
+@export var left_limit: float = 2
+@export var right_limit: float = 1150
 var enemy_scene: PackedScene = preload("res://enemy.tscn")
 var spawn_timer: float = 0.0
 var spawn_interval: float = 3.0
@@ -13,6 +14,7 @@ var battery_tick_timer: float = 0.0
 const ENABLE_AUTO_SHIELD_RECHARGE := false
 
 func _ready():
+	$bullet.hide()
 	GameData.reset()
 	get_tree().paused = false
 
@@ -52,6 +54,17 @@ func _process(delta):
 	
 	if GameData.signal_progress >= GameData.MAX_CAPACITY:
 		game_over("SUCCESS: Signal Transmission Complete!")
+	if Input.is_action_just_pressed("attack_air"):
+		$bullet.global_position = $character.position  # start at player
+		$bullet.show()
+	if $bullet.visible:
+		$bullet.global_position.x += 800 * delta  # move at bullet speed
+		if $bullet.global_position.x > right_limit:
+			$bullet.hide()  # hide when off-screen
+	if $bullet.visible:
+		$bullet.global_position.x -= 800 * delta  # move at bullet speed
+		if $bullet.global_position.x < left_limit:
+			$bullet.hide()  # hide when off-screen
 
 func _handle_enemy_spawning(delta: float) -> void:
 	spawn_timer -= delta

@@ -83,7 +83,6 @@ animations = [{
 [node name="Bullet" type="Node2D"]
 
 [node name="shot" type="AnimatedSprite2D" parent="."]
-position = Vector2(21.2, 1.2)
 scale = Vector2(0.1, 0.1)
 sprite_frames = SubResource("SpriteFrames_mgk3c")
 animation = &"shot"
