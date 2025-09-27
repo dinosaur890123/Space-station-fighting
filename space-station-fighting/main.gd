@@ -8,7 +8,7 @@ var enemy_scene: PackedScene = preload("res://enemy.tscn")
 var spawn_timer: float = 0.0
 var spawn_interval: float = 3.0
 var min_spawn_interval: float = 0.75
-var spawn_accel: float = 0.02 # how much to shrink interval per second (difficulty ramp)
+var spawn_accel: float = 0.02 
 
 func _ready():
 	GameData.reset()

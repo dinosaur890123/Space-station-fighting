@@ -28,6 +28,7 @@ frame_progress = 0.872475
 script = ExtResource("2_0xm2m")
 
 [node name="GameOverScreen" type="Control" parent="."]
+process_mode = 3
 visible = false
 modulate = Color(1, 1, 1, 0.92)
 layout_mode = 1
@@ -36,7 +37,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-process_mode = 3
 
 [node name="ColorRect" type="ColorRect" parent="GameOverScreen"]
 layout_mode = 1
@@ -66,8 +66,6 @@ autowrap_mode = 2
 [node name="RestartButton" type="Button" parent="GameOverScreen/VBoxContainer"]
 layout_mode = 2
 text = "Restart"
-
-[connection signal="pressed" from="GameOverScreen/VBoxContainer/RestartButton" to="Main" method="_on_restart_button_pressed"]
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 0
