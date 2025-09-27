@@ -9,6 +9,7 @@ var velocity_y: float = 0
 var moving = false
 var on_ground: bool = true  
 var right = true
+var shot = false
 func _ready() -> void:
 	$shot.hide() 
 	pass
@@ -27,7 +28,7 @@ func _process(delta):
 		play("run")
 		moving = true
 		right = true
-	if Input.is_action_just_pressed("attack_air"):
+	if Input.is_action_just_pressed("attack_air") and not $shot.visible:
 		$shot.global_position = position  # start at player
 		$shot.show()
 	if $shot.visible and right == true:
@@ -36,7 +37,7 @@ func _process(delta):
 			$shot.hide()  # hide when off-screen
 	if $shot.visible and right == false:
 		$shot.global_position.x -= 800 * delta  # move at bullet speed
-		if $shot.global_position.x > right_limit:
+		if $shot.global_position.x < left_limit:
 			$shot.hide()  # hide when off-screen
 	if Input.is_action_just_pressed("jump") and on_ground:
 		velocity_y = -jump_speed

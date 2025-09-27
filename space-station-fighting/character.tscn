@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://b6wxnerdip1kj" path="res://Screenshot 2025-09-27 at 11.10.13 AM-Photoroom.png" id="1_nnsqy"]
 [ext_resource type="Texture2D" uid="uid://btlxcb3senrev" path="res://Screenshot_2025-09-27_at_2.00.50_PM-removebg-preview.png" id="2_b1mlr"]
-[ext_resource type="Script" uid="uid://dkbqp2vvi8dtu" path="res://character.gd" id="2_dspso"]
+[ext_resource type="Script" path="res://character.gd" id="2_dspso"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d7k38"]
 atlas = ExtResource("1_nnsqy")
@@ -431,6 +431,7 @@ animation = &"attack 1"
 script = ExtResource("2_dspso")
 
 [node name="area" type="Area2D" parent="."]
+scale = Vector2(1, 1)
 
 [node name="shot" type="AnimatedSprite2D" parent="."]
 position = Vector2(21.2, 1.2)
@@ -440,13 +441,3 @@ animation = &"shot"
 frame_progress = 0.429457
 
 [node name="shot_area" type="Area2D" parent="shot"]
-<<<<<<< Updated upstream
-=======
-
-[node name="running_back" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_shhrb")
-animation = &"back"
-flip_h = true
-
-[node name="back_area" type="Area2D" parent="running_back"]
->>>>>>> Stashed changes
