@@ -1,0 +1,192 @@
+[gd_scene load_steps=6 format=3 uid="uid://bk1vy0rr1lry7"]
+
+[ext_resource type="PackedScene" uid="uid://bq23m3f7jfw0b" path="res://character.tscn" id="1_aw4sl"]
+[ext_resource type="Script" uid="uid://csesvry1vxl4y" path="res://actions.gd" id="2_0xm2m"]
+[ext_resource type="Texture2D" uid="uid://jr71a7v3xkrg" path="res://hello-worked-today-on-an-animated-reactor-for-the-spaceship-v0-3lbhd4q0m6gc1.webp" id="3_h2yge"]
+[ext_resource type="Script" uid="uid://cbiah0ieoaanp" path="res://main.gd" id="4_main"]
+[ext_resource type="Script" uid="uid://cpw4ywmh2sveo" path="res://ui_controller.gd" id="5_ui"]
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 191.0
+offset_top = 96.0
+offset_right = 191.0
+offset_bottom = 96.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_main")
+
+[node name="HelloWorkedTodayOnAnAnimatedReactorForTheSpaceshipV03Lbhd4q0m6Gc1" type="Sprite2D" parent="."]
+position = Vector2(581, 308)
+scale = Vector2(1.975, 1.99614)
+texture = ExtResource("3_h2yge")
+
+[node name="Character" parent="." instance=ExtResource("1_aw4sl")]
+position = Vector2(117, 448)
+frame_progress = 0.872475
+
+[node name="ActionsManager" type="Node" parent="."]
+script = ExtResource("2_0xm2m")
+
+[node name="GameOverScreen" type="Control" parent="."]
+process_mode = 3
+visible = false
+modulate = Color(1, 1, 1, 0.92)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="GameOverScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.58)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameOverScreen"]
+layout_mode = 0
+offset_left = 362.0
+offset_top = 164.0
+offset_right = 963.0
+offset_bottom = 640.0
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="ResultMessage" type="Label" parent="GameOverScreen/VBoxContainer"]
+layout_mode = 2
+text = "Game Over"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="RestartButton" type="Button" parent="GameOverScreen/VBoxContainer"]
+layout_mode = 2
+text = "Restart"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -300.0
+offset_top = 8.0
+offset_right = 300.0
+offset_bottom = 48.0
+alignment = 1
+
+[node name="DivertShieldButton" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "Divert Battery Energy-> Shields"
+
+[node name="DivertSignalButton" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "Divert Battery Energy-> Signal"
+
+[node name="OverchargeButton" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "Emergency Overcharge"
+
+[node name="BatteryGroup" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BatteryLabel" type="Label" parent="BatteryGroup"]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 21.0
+offset_right = 375.0
+offset_bottom = 44.0
+text = "Battery"
+
+[node name="BatteryBar" type="ProgressBar" parent="BatteryGroup"]
+modulate = Color(0, 1, 0, 1)
+layout_mode = 0
+offset_left = 21.0
+offset_top = 48.0
+offset_right = 225.0
+offset_bottom = 75.0
+value = 100.0
+rounded = true
+
+[node name="ShieldGroup" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ShieldLabel" type="Label" parent="ShieldGroup"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 518.0
+offset_right = 378.0
+offset_bottom = 541.0
+text = "Shield"
+
+[node name="ShieldBar" type="ProgressBar" parent="ShieldGroup"]
+modulate = Color(0, 0.713726, 1, 1)
+layout_mode = 0
+offset_left = 24.0
+offset_top = 545.0
+offset_right = 202.0
+offset_bottom = 572.0
+max_value = 50.0
+step = 1.0
+value = 50.0
+rounded = true
+
+[node name="HealthGroup" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HealthLabel" type="Label" parent="HealthGroup"]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 576.0
+offset_right = 379.0
+offset_bottom = 599.0
+text = "Health"
+
+[node name="HealthBar" type="ProgressBar" parent="HealthGroup"]
+modulate = Color(0, 1, 0, 1)
+layout_mode = 0
+offset_left = 25.0
+offset_top = 603.0
+offset_right = 379.0
+offset_bottom = 630.0
+rounded = true
+
+[node name="SignalGroup" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SignalLabel" type="Label" parent="SignalGroup"]
+layout_mode = 0
+offset_left = 795.0
+offset_top = 201.0
+offset_right = 1149.0
+offset_bottom = 224.0
+text = "Signal"
+
+[node name="SignalBar" type="ProgressBar" parent="SignalGroup"]
+layout_mode = 0
+offset_left = 795.0
+offset_top = 228.0
+offset_right = 1149.0
+offset_bottom = 255.0
+
+[node name="UIController" type="Control" parent="."]
+anchors_preset = 0
+script = ExtResource("5_ui")
