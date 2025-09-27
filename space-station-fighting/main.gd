@@ -1,4 +1,5 @@
 extends Control
+
 @onready var game_over_screen = $GameOverScreen
 @onready var result_message = $GameOverScreen/VBoxContainer/ResultMessage
 func _ready():
@@ -37,7 +38,6 @@ func game_over(reason: String):
 	result_message.text = reason
 	game_over_screen.visible = true
 	get_tree().paused = true
-
 
 func _on_restart_button_pressed():
 	get_tree().reload_current_scene()
