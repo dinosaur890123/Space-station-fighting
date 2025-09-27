@@ -353,3 +353,5 @@ script = ExtResource("2_dspso")
 
 [node name="area" type="Area2D" parent="."]
 collision_layer = 2
+
+[connection signal="animation_finished" from="." to="." method="_on_animation_finished"]
