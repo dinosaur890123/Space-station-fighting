@@ -20,7 +20,7 @@ func _process(delta):
 	if GameData.shield_boost_timer > 0:
 		signal_gain_rate *= 0.1 
 	if GameData.signal_boost_timer > 0:
-		signal_gain_rate *= 4.0 
+		signal_gain_rate *= 4.0
 	GameData.signal_progress += signal_gain_rate * delta
 	GameData.shield_boost_timer = max(0, GameData.shield_boost_timer - delta)
 	GameData.signal_boost_timer = max(0, GameData.signal_boost_timer - delta)
@@ -33,7 +33,6 @@ func _process(delta):
 	
 	if GameData.signal_progress >= GameData.MAX_CAPACITY:
 		game_over("SUCCESS: Signal Transmission Complete!")
-
 func game_over(reason: String):
 	result_message.text = reason
 	game_over_screen.visible = true
