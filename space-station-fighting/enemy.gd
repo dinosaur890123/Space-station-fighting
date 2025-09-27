@@ -7,6 +7,10 @@ extends AnimatedSprite2D
 var max_health: float = 25.0
 var health: float = 25.0
 var is_megabot: bool = false
+@export var show_health_bar: bool = true
+@export var health_bar_width: float = 50.0
+@export var health_bar_height: float = 5.0
+@export var health_bar_offset_y: float = 60.0
 
 var _player: Node = null
 
@@ -51,10 +55,12 @@ func _process(delta: float) -> void:
 		queue_free()
 	if position.x < -200:
 		queue_free()
+	if show_health_bar:
+		queue_redraw()
 
 func _apply_contact_damage():
 	if GameData.shield_integrity > 0.0:
-		var take = min(damage, GameData.shield_integrity)
+		var take: float = min(damage, GameData.shield_integrity)
 		GameData.shield_integrity -= take
 		damage -= take
 	if damage > 0.0:
@@ -64,3 +70,29 @@ func take_hit(amount: float):
 	health -= amount
 	if health <= 0:
 		queue_free()
+	elif show_health_bar:
+		queue_redraw()
+
+func _draw():
+	if not show_health_bar:
+		return
+	if health <= 0:
+		return
+	var ratio: float = clamp(health / max_health, 0.0, 1.0)
+	var w: float = health_bar_width
+	if is_megabot:
+		w *= 1.25
+	var h: float = health_bar_height
+	var y: float = health_bar_offset_y
+	if is_megabot:
+		y *= 1.1
+	var x: float = -w * 0.5
+	var back_rect: Rect2 = Rect2(Vector2(x, y), Vector2(w, h))
+	draw_rect(back_rect, Color(0,0,0,0.55), true)
+	var fill_rect: Rect2 = Rect2(Vector2(x, y), Vector2(w * ratio, h))
+	var col: Color = Color(0.25,1,0.25)
+	if is_megabot:
+		col = Color(1,0.25,0.25)
+	draw_rect(fill_rect, col, true)
+	# Optional thin outline
+	draw_rect(back_rect, Color(0.9,0.9,0.9,0.8), false, 1.0)
