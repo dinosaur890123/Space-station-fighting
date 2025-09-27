@@ -13,6 +13,8 @@ var spawn_accel: float = 0.02
 var battery_tick_timer: float = 0.0
 const ENABLE_AUTO_SHIELD_RECHARGE := false
 var _game_over: bool = false
+var _bullet_direction: Vector2 = Vector2.ZERO 
+var bullet_speed: float = 800 
 
 func _ready():
 	$bullet.hide()
@@ -23,7 +25,6 @@ func _ready():
 	if restart_btn and not restart_btn.pressed.is_connected(_on_restart_button_pressed):
 		restart_btn.pressed.connect(_on_restart_button_pressed)
 
-var _bullet_direction: int = 1
 
 func _process(delta):
 	if get_tree().paused or _game_over:
@@ -60,10 +61,34 @@ func _process(delta):
 	if Input.is_action_just_pressed("attack_air") and not $bullet.visible:
 		$bullet.global_position = $character.global_position
 		$bullet.show()
+		var dir_x := 0
+		var dir_y := 0
+		if Input.is_action_pressed("right"):
+			dir_x = 1
+			$bullet.rotation = 0
+			$bullet/shot.play("shot")
+		elif Input.is_action_pressed("left"):
+			dir_x = -1
+			$bullet.rotation = 180
+			$bullet/shot.play("shot")
+		if Input.is_action_pressed("up"):
+			dir_y = -1
+			$bullet.rotation = 90
+			$bullet/shot.play("shot")
+		elif Input.is_action_pressed("down"):
+			dir_y = 1
+			$bullet.rotation = 270
+			$bullet/shot.play("shot")
+		if dir_x == 0 and dir_y == 0:
+			dir_x = -1 if $character.flip_h else 1
+		_bullet_direction = Vector2(dir_x, dir_y).normalized()  # normalize for diagonal speed
 	if $bullet.visible:
-		$bullet.global_position.x += 800 * delta * _bullet_direction
+		$bullet.global_position += _bullet_direction * bullet_speed * delta
 		_check_bullet_hits()
-		if $bullet.visible and ($bullet.global_position.x > right_limit or $bullet.global_position.x < left_limit):
+		
+		# Hide bullet if it goes off screen
+		if $bullet.global_position.x < left_limit or $bullet.global_position.x > right_limit \
+		or $bullet.global_position.y < 0 or $bullet.global_position.y > 720:  # adjust vertical limit
 			$bullet.hide()
 func _check_bullet_hits():
 	var bullet_area := $bullet.get_node_or_null("shot/shot_area")
