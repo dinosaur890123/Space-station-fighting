@@ -119,8 +119,6 @@ grow_vertical = 2
 
 [node name="ActionsManager" type="Node" parent="."]
 script = ExtResource("2_0xm2m")
-<<<<<<< Updated upstream
-=======
 
 [node name="BatteryGroup" type="Control" parent="."]
 layout_mode = 3
@@ -215,4 +213,3 @@ offset_left = 795.0
 offset_top = 228.0
 offset_right = 1149.0
 offset_bottom = 255.0
->>>>>>> Stashed changes
