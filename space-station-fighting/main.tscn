@@ -1,12 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://bk1vy0rr1lry7"]
 
 [ext_resource type="PackedScene" uid="uid://bq23m3f7jfw0b" path="res://character.tscn" id="1_aw4sl"]
-<<<<<<< Updated upstream
-[ext_resource type="Script" uid="uid://csesvry1vxl4y" path="res://actions.gd" id="2_0xm2m"]
-=======
 [ext_resource type="Script" path="res://actions.gd" id="2_0xm2m"]
 [ext_resource type="Texture2D" uid="uid://nvsys3xvytjt" path="res://hello-worked-today-on-an-animated-reactor-for-the-spaceship-v0-3lbhd4q0m6gc1.webp" id="3_h2yge"]
->>>>>>> Stashed changes
 
 [node name="Main" type="Node2D"]
 
