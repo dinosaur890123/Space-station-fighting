@@ -17,6 +17,10 @@ func _ready():
 	GameData.reset()
 	get_tree().paused = false
 	randomize()
+	# Ensure restart button is connected even if not wired in the editor.
+	var restart_btn = get_node_or_null("GameOverScreen/VBoxContainer/RestartButton")
+	if restart_btn and not restart_btn.pressed.is_connected(_on_restart_button_pressed):
+		restart_btn.pressed.connect(_on_restart_button_pressed)
 
 func _process(delta):
 	if get_tree().paused or _game_over:
