@@ -8,26 +8,20 @@ extends AnimatedSprite2D
 var _player: Node = null
 
 func _ready():
-	# Cache player (may be null if scene not ready yet)
 	if has_node(player_path):
 		_player = get_node(player_path)
-	# Ensure we play default animation if not already
 	if not is_playing():
 		play()
 
 func _process(delta: float) -> void:
 	if get_tree().paused:
 		return
-	# Basic leftward movement
 	position.x -= speed * delta
-	# Clamp to ground if needed
 	if position.y != ground_y:
 		position.y = ground_y
-	# If passed player x, apply damage then remove
 	if _player and position.x <= _player.position.x:
 		_apply_contact_damage()
 		queue_free()
-	# Despawn if far off screen
 	if position.x < -200:
 		queue_free()
 
