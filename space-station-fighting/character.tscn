@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=3 uid="uid://bq23m3f7jfw0b"]
+[gd_scene load_steps=61 format=3 uid="uid://bq23m3f7jfw0b"]
 
 [ext_resource type="Texture2D" uid="uid://b6wxnerdip1kj" path="res://Screenshot 2025-09-27 at 11.10.13 AM-Photoroom.png" id="1_nnsqy"]
 [ext_resource type="Texture2D" uid="uid://btlxcb3senrev" path="res://Screenshot_2025-09-27_at_2.00.50_PM-removebg-preview.png" id="2_b1mlr"]
@@ -423,6 +423,9 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wa5vi"]
+size = Vector2(500, 364)
+
 [node name="character" type="AnimatedSprite2D"]
 position = Vector2(1, -1)
 scale = Vector2(2.5, 2.5)
@@ -440,6 +443,10 @@ animation = &"shot"
 frame_progress = 0.429457
 
 [node name="shot_area" type="Area2D" parent="shot"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="shot/shot_area"]
+position = Vector2(-186, 6)
+shape = SubResource("RectangleShape2D_wa5vi")
 
 [node name="running_back" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_d4y6u")

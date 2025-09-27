@@ -15,6 +15,7 @@ const ENABLE_AUTO_SHIELD_RECHARGE := false
 func _ready():
 	GameData.reset()
 	get_tree().paused = false
+	randomize()
 
 func _process(delta):
 	if get_tree().paused:
@@ -25,13 +26,6 @@ func _process(delta):
 		var ticks = int(battery_tick_timer / 4.0)
 		GameData.current_battery = max(0.0, GameData.current_battery - ticks * (GameData.max_battery * 0.01))
 		battery_tick_timer -= ticks * 4.0
-	var shield_drain_rate = 0.8
-	if GameData.shield_boost_timer > 0:
-		shield_drain_rate *= 0.5
-	if GameData.shield_integrity > 0:
-		GameData.shield_integrity -= shield_drain_rate * delta
-	else:
-		GameData.health -= shield_drain_rate * delta
 	var signal_gain_rate = 0.2
 	if GameData.shield_boost_timer > 0:
 		signal_gain_rate *= 0.1 
@@ -65,10 +59,17 @@ func _spawn_enemy():
 		return
 	var enemy = enemy_scene.instantiate()
 	var viewport_width = get_viewport_rect().size.x
-	enemy.position = Vector2(viewport_width + 50, 485)
+	var spawn_y = 485
+	var spawn_x = viewport_width - 20
+	enemy.position = Vector2(spawn_x, spawn_y)
+	var megabot = randf() < 0.15
+	if megabot and enemy.has_method("configure_variant"):
+		enemy.configure_variant(true)
+	elif enemy.has_method("configure_variant"):
+		enemy.configure_variant(false)
 	add_child(enemy)
 	if enemy is CanvasItem:
-		enemy.z_index = -1
+		enemy.z_index = 1
 func game_over(reason: String):
 	if not game_over_screen: return
 	result_message.text = reason

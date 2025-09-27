@@ -9,8 +9,12 @@ var velocity_y: float = 0
 var _moving = false
 var on_ground: bool = true  
 var right = true
+const SHOT_DAMAGE := 15.0
+@onready var shot_area: Area2D = $shot/shot_area
 func _ready() -> void:
 	$shot.hide()
+	if shot_area and not shot_area.area_entered.is_connected(_on_shot_area_entered):
+		shot_area.area_entered.connect(_on_shot_area_entered)
 
 func _process(delta):
 	_moving = false
@@ -50,3 +54,17 @@ func _process(delta):
 	if _moving == false:
 		play("standing")
 	position.x = clamp(position.x, left_limit, right_limit)
+
+func _on_shot_area_entered(area: Area2D):
+	if not $shot.visible:
+		return
+	var node = area
+	for i in 4:
+		if node.has_method("take_hit"):
+			node.take_hit(SHOT_DAMAGE)
+			$shot.hide()
+			return
+		if node.get_parent():
+			node = node.get_parent()
+		else:
+			break
