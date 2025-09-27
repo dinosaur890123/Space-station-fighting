@@ -79,9 +79,9 @@ func _process(delta):
 			$bullet/shot.play("shot")
 		if dir_x == 0 and dir_y == 0:
 			dir_x = -1 if $character.flip_h else 1
+		_bullet_direction = Vector2(dir_x, dir_y).normalized()
 		$bullet.rotation = _bullet_direction.angle()
 		$bullet/shot.play("shot")
-		_bullet_direction = Vector2(dir_x, dir_y).normalized()
 	if $bullet.visible:
 		$bullet.global_position += _bullet_direction * bullet_speed * delta
 		_check_bullet_hits()
