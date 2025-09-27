@@ -19,17 +19,7 @@ func _process(delta):
 		moving = true
 	elif Input.is_action_pressed("right"):
 		position.x += speed * delta
-		play("run")
+		play("run_forward")
 		moving = true  
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-	if moving == false:
-		play("standing")
-=======
-=======
->>>>>>> Stashed changes
-	elif not moving:
-		play("Standing")
->>>>>>> Stashed changes
 	position.y += direction * speed * delta
 	position.y = clamp(position.y, upper_limit, lower_limit)
