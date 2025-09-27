@@ -313,7 +313,7 @@ animations = [{
 
 [node name="Character" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_d4y6u")
-animation = &"death"
+animation = &"standing"
 script = ExtResource("2_dspso")
 
 [node name="AnimatedSprite2D" type="Area2D" parent="."]

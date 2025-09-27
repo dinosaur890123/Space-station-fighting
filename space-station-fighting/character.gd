@@ -13,8 +13,9 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	var direction = 0
 	if Input.is_action_pressed("left"):
-		direction = -1  # Move up
+		position.x += -1  # Move up
 	elif Input.is_action_pressed("right"):
-		direction = 1  # Move down	
+		position.x += 1
+		  # Move down	
 	position.y += direction * speed * delta
 	position.y = clamp(position.y, upper_limit, lower_limit)
