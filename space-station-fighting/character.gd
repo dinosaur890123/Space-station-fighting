@@ -21,7 +21,15 @@ func _process(delta):
 		position.x += speed * delta
 		play("run")
 		moving = true  
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
 	if moving == false:
 		play("standing")
+=======
+=======
+>>>>>>> Stashed changes
+	elif not moving:
+		play("Standing")
+>>>>>>> Stashed changes
 	position.y += direction * speed * delta
 	position.y = clamp(position.y, upper_limit, lower_limit)

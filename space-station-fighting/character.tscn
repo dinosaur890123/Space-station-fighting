@@ -312,10 +312,11 @@ animations = [{
 }]
 
 [node name="character" type="AnimatedSprite2D"]
-position = Vector2(0, -1)
+position = Vector2(1, -1)
 scale = Vector2(2.5, 2.5)
 sprite_frames = SubResource("SpriteFrames_d4y6u")
-animation = &"attack 1"
+animation = &"run"
+offset = Vector2(0, -10)
 script = ExtResource("2_dspso")
 
 [node name="AnimatedSprite2D" type="Area2D" parent="."]
