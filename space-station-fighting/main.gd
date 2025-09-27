@@ -57,8 +57,8 @@ func _process(delta):
 	if GameData.signal_progress >= GameData.MAX_CAPACITY:
 		game_over("SUCCESS: Signal Transmission Complete!")
 	if Input.is_action_just_pressed("attack_air"):
-		if character and character is Sprite2D:
-			_bullet_direction = -1 if character.flip_h else 1
+		if character and character.has_method("get_facing_direction"):
+			_bullet_direction = character.get_facing_direction()
 		$bullet.global_position = character.global_position
 		$bullet.show()
 	if $bullet.visible:
