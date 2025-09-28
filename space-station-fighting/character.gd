@@ -4,8 +4,9 @@ extends AnimatedSprite2D
 @export var left_limit: float = 2.0
 @export var right_limit: float = 1150.0
 var _facing_right: bool = true
-var _attacking = false
-var area_entered = false
+var _attacking: bool = false
+var area_entered: bool = false
+var previous_position: Vector2 = Vector2.ZERO
 func _ready() -> void:
 	if not is_in_group("player"):
 		add_to_group("player")
@@ -17,18 +18,21 @@ func _ready() -> void:
 			play(names[0])
 
 func _process(delta: float) -> void:
-	if area_entered == false:
+	if not area_entered:
 		previous_position = global_position
-		var input_vector := Vector2( Input.get_action_strength("right") - Input.get_action_strength("left"),Input.get_action_strength("down") - Input.get_action_strength("up"))
-		var moving:= input_vector.length() > 0
+		var input_vector := Vector2(
+			Input.get_action_strength("right") - Input.get_action_strength("left"),
+			Input.get_action_strength("down") - Input.get_action_strength("up")
+		)
+		var _moving := input_vector.length() > 0
 		if Input.is_action_just_pressed("attack_slash") and not _attacking:
 			_attacking = true
-			play("attack 1")
+			_play_if_exists("attack1")
 			return
 		if input_vector.length() > 0:
 			input_vector = input_vector.normalized()
 		if not _attacking:
-			if moving:
+			if _moving:
 				_set_facing(input_vector.x > 0)
 				_play_if_exists("run")
 			else:
@@ -37,9 +41,10 @@ func _process(delta: float) -> void:
 		position = new_pos
 		position.x = clamp(position.x, left_limit, right_limit)
 		position.y = clamp(position.y, 0, 700)
-	if area_entered == true:
+	else:
 		global_position = previous_position
-		$timer.start
+		if has_node("timer"):
+			$timer.start()
 func _on_animation_finished() -> void:
 	if animation == "attack1":
 		_attacking = false

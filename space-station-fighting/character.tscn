@@ -1,7 +1,7 @@
 [gd_scene load_steps=50 format=3 uid="uid://bq23m3f7jfw0b"]
 
 [ext_resource type="Texture2D" uid="uid://b6wxnerdip1kj" path="res://Screenshot 2025-09-27 at 11.10.13 AM-Photoroom.png" id="1_nnsqy"]
-[ext_resource type="Script" path="res://character.gd" id="2_dspso"]
+[ext_resource type="Script" uid="uid://dkbqp2vvi8dtu" path="res://character.gd" id="2_dspso"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d7k38"]
 atlas = ExtResource("1_nnsqy")
@@ -380,6 +380,4 @@ shape = SubResource("CapsuleShape2D_th3w5")
 [connection signal="area_entered" from="area" to="." method="_on_area_area_entered"]
 [connection signal="area_exited" from="area" to="." method="_on_area_area_exited"]
 [connection signal="timeout" from="timer" to="." method="_on_timer_timeout"]
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeoutt"]
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="area_entered" from="attack_area" to="." method="_on_attack_area_area_entered"]
