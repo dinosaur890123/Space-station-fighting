@@ -28,7 +28,7 @@ func _process(delta: float) -> void:
 			play("attack 1")
 			return
 		if input_vector.length() > 0:
-			input_vector = input_vector.normalized()  # prevent faster diagonal movement
+			input_vector = input_vector.normalized()
 		if not _attacking:
 			if moving:
 				_set_facing(input_vector.x > 0)
@@ -36,7 +36,7 @@ func _process(delta: float) -> void:
 			else:
 				_play_if_exists("standing")
 		var new_pos = position + input_vector * move_speed * delta
-		position = new_pos  # move normally 
+		position = new_pos
 		position.x = clamp(position.x, left_limit, right_limit)
 		position.y = clamp(position.y, 0, 700)
 	if area_entered == true:

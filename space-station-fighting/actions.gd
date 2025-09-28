@@ -17,15 +17,13 @@ func _on_divert_shield_button_pressed():
 
 func _on_divert_signal_button_pressed():
 	GameData.shield_boost_timer = 0.0
-	var damage_to_deal = 20.0
-	if GameData.shield_integrity >= damage_to_deal:
-		GameData.shield_integrity -= damage_to_deal
+	var health_cost = 30.0
+	if GameData.health >= health_cost:
+		GameData.health -= health_cost
+		GameData.signal_progress += 80
+		print("Signal boost: +80 signal for -30 health!")
 	else:
-		var remaining_damage = damage_to_deal - GameData.shield_integrity
-		GameData.shield_integrity = 0
-		GameData.health -= remaining_damage
-	GameData.signal_boost_timer = 5.0
-	print("Diverting power to signal!")
+		print("Not enough health for signal boost!")
 
 func _on_overcharge_button_pressed():
 	if GameData.overcharge_count >= 3:
