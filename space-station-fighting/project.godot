@@ -11,8 +11,8 @@ config_version=5
 [application]
 
 config/name="space station fighting"
-run/main_scene="uid://bk1vy0rr1lry7"
-config/features=PackedStringArray("4.4", "GL Compatibility")
+run/main_scene="uid://bb8ku5bs4s80h"
+config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
