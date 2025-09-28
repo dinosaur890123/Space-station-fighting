@@ -2,7 +2,6 @@ extends Control
 @onready var battery_bar = get_parent().get_node("BatteryGroup/BatteryBar")
 @onready var shield_bar = get_parent().get_node("ShieldGroup/ShieldBar")
 @onready var health_bar = get_parent().get_node("HealthGroup/HealthBar")
-@onready var signal_bar = get_parent().get_node("SignalGroup/SignalBar")
 @onready var signal_label = get_parent().get_node("SignalGroup/SignalLabel")
 
 func _process(delta):
@@ -20,8 +19,5 @@ func _process(delta):
 	if is_instance_valid(health_bar):
 		health_bar.max_value = 100
 		health_bar.value = GameData.health
-	if is_instance_valid(signal_bar):
-		signal_bar.max_value = GameData.MAX_CAPACITY
-		signal_bar.value = GameData.signal_progress
 	if is_instance_valid(signal_label):
 		signal_label.text = "Signal: %d / %d" % [int(GameData.signal_progress), int(GameData.MAX_CAPACITY)]
