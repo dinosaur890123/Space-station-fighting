@@ -40,9 +40,9 @@ func configure_variant(make_mega: bool):
 		damage = 60.0
 		speed = 60.0
 	else:
-		max_health = 40.0
-		health = 40.0
-		damage = 15.0
+		max_health = 60.0
+		health = 60.0
+		damage = 20.0
 		speed = 200.0
 	_update_visual()
 var move_direction: Vector2 = Vector2(-1, 0)
