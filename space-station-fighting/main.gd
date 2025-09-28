@@ -25,7 +25,7 @@ func _ready():
 	$bullet.hide()
 	GameData.reset()
 	randomize()
-    GameData.shield_integrity = 100.0
+	GameData.shield_integrity = 100.0
 	if typeof(MusicManager) != TYPE_NIL and not MusicManager.is_playing():
 		MusicManager.play_track("res://Bad Beat - Dyalla.mp3", true, 1.0)
 	var restart_btn = get_node_or_null("GameOverScreen/Panel/ResultMessage/HBoxContainer/RestartButton")
@@ -44,10 +44,10 @@ func _process(delta):
 		GameData.current_battery = max(0.0, GameData.current_battery - ticks * (GameData.max_battery * 0.01))
 		battery_tick_timer -= ticks * 4.0
 	_signal_tick_timer += delta
-	if _signal_tick_timer >= 10.0:
-		var ticks = int(_signal_tick_timer / 10.0)
-		GameData.signal_progress += ticks * 20
-		_signal_tick_timer -= ticks * 10.0
+	if _signal_tick_timer >= 5.0:
+		var ticks = int(_signal_tick_timer / 5.0)
+		GameData.signal_progress += ticks * 10
+		_signal_tick_timer -= ticks * 5.0
 	GameData.shield_boost_timer = max(0, GameData.shield_boost_timer - delta)
 	GameData.signal_boost_timer = max(0, GameData.signal_boost_timer - delta)
 	if ENABLE_AUTO_SHIELD_RECHARGE:
@@ -187,7 +187,7 @@ func _on_restart_button_pressed():
 	_game_over = false
 	if typeof(GameData) != TYPE_NIL:
 		GameData.reset()
-        GameData.shield_integrity = 100.0
+		GameData.shield_integrity = 100.0
 	get_tree().change_scene_to_file("res://intro_screen.tscn")
 
 func _on_quit_pressed():
