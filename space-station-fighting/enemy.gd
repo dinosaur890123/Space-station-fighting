@@ -103,9 +103,9 @@ func _die():
 	_exploding = true
 	# Award signal on defeat
 	if is_megabot:
-		GameData.signal_progress += 15
+		GameData.signal_progress += 50
 	else:
-		GameData.signal_progress += 8
+		GameData.signal_progress += 30
 	var explosion_sprite = get_node_or_null("Explosion")
 	if explosion_sprite and explosion_sprite is AnimatedSprite2D:
 		explosion_sprite.visible = true
