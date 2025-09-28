@@ -3,7 +3,7 @@ extends ProgressBar
 
 func _ready():
 	self.value_changed.connect(_on_value_changed)
-	shield_label.text = str("50")
+	shield_label.text = str("100")
 	
 	
 func _on_value_changed(new_value):
