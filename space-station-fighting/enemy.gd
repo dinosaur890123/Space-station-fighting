@@ -26,8 +26,11 @@ func _ready():
 		play()
 	_update_visual()
 	add_to_group("enemies")
-	if not is_connected("animation_finished", Callable(self, "_on_animation_finished")):
-		connect("animation_finished", Callable(self, "_on_animation_finished"))
+	var explosion_sprite = get_node_or_null("Explosion")
+	if explosion_sprite:
+		explosion_sprite.visible = false
+		if not explosion_sprite.is_connected("animation_finished", Callable(self, "_on_explosion_finished")):
+			explosion_sprite.connect("animation_finished", Callable(self, "_on_explosion_finished"))
 
 func configure_variant(make_mega: bool):
 	is_megabot = make_mega
@@ -62,23 +65,16 @@ func _process(delta: float) -> void:
 	if _exploding:
 		return
 	position += move_direction * speed * delta
-	# Only lock y position if moving horizontally (left/right)
 	if abs(move_direction.y) < 0.01:
 		if position.y != ground_y:
 			position.y = ground_y
-	# Otherwise, allow vertical movement
 	if not _player:
 		_player = get_tree().get_first_node_in_group("player")
-		if _player:
-			print("Enemy: found player at runtime:", _player, "player_global=", _player.global_position)
 	if _player:
 		var contact_distance = 40.0
 		var dist = global_position.distance_to(_player.global_position)
-		print("Enemy: checking contact: dist=", dist, " contact_distance=", contact_distance, " enemy_global=", global_position, " player_global=", _player.global_position)
 		if dist < contact_distance:
-			print("Enemy: contact! Applying damage. Damage=", damage, " shield=", GameData.shield_integrity, " health=", GameData.health)
 			_apply_contact_damage()
-			print("Enemy: after damage shield=", GameData.shield_integrity, " health=", GameData.health)
 			_die()
 	if position.x < -200:
 		queue_free()
@@ -86,19 +82,13 @@ func _process(delta: float) -> void:
 		queue_redraw()
 
 func _apply_contact_damage():
-	print("Enemy._apply_contact_damage: entering; damage=", damage, " GameData=", GameData)
 	var remaining_damage = damage
-	print("Enemy._apply_contact_damage: before shield=", GameData.shield_integrity, " health=", GameData.health)
 	if GameData.shield_integrity > 0.0:
 		var shield_take = min(remaining_damage, GameData.shield_integrity)
 		GameData.shield_integrity -= shield_take
 		remaining_damage -= shield_take
-		print("Enemy._apply_contact_damage: shield_take=", shield_take, " shield_after=", GameData.shield_integrity, " remaining_damage=", remaining_damage)
 	if remaining_damage > 0.0:
-		var old_health = GameData.health
 		GameData.health = max(0.0, GameData.health - remaining_damage)
-		print("Enemy._apply_contact_damage: applied_to_health=", remaining_damage, " health_before=", old_health, " health_after=", GameData.health)
-	print("Enemy._apply_contact_damage: exiting; shield=", GameData.shield_integrity, " health=", GameData.health)
 
 func take_hit(amount: float):
 	health -= amount
@@ -109,29 +99,24 @@ func take_hit(amount: float):
 
 func _die():
 	if _exploding:
-		print("[ENEMY DEBUG] _die() called but already exploding, abort.")
 		return
 	_exploding = true
-	print("[ENEMY DEBUG] _die() called, checking for explode animation...")
-	if sprite_frames:
-		var anims = sprite_frames.get_animation_names()
-		print("[ENEMY DEBUG] Available animations:", anims)
+	var explosion_sprite = get_node_or_null("Explosion")
+	if explosion_sprite and explosion_sprite is AnimatedSprite2D:
+		explosion_sprite.visible = true
+		var anims = explosion_sprite.sprite_frames.get_animation_names()
 		if "explode" in anims:
-			print("[ENEMY DEBUG] Playing 'explode' animation!")
-			visible = true
-			play("explode")
+			explosion_sprite.play("explode")
 		else:
-			print("[ENEMY DEBUG] 'explode' animation NOT found, freeing node.")
 			queue_free()
 	else:
-		print("[ENEMY DEBUG] sprite_frames is null, freeing node.")
 		queue_free()
 
-func _on_animation_finished():
-	print("[ENEMY DEBUG] animation_finished signal received. Current animation:", animation)
-	if _exploding and animation == "explode":
-		print("[ENEMY DEBUG] Explode animation finished, freeing node.")
-		queue_free()
+func _on_explosion_finished():
+	var explosion_sprite = get_node_or_null("Explosion")
+	if explosion_sprite and explosion_sprite is AnimatedSprite2D:
+		if _exploding and explosion_sprite.animation == "explode":
+			queue_free()
 
 func _draw():
 	if not show_health_bar:
