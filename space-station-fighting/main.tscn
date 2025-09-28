@@ -48,12 +48,12 @@ font = SubResource("SystemFont_kek77")
 script = ExtResource("1_bquf4")
 
 [node name="HelloWorkedTodayOnAnAnimatedReactorForTheSpaceshipV03Lbhd4q0m6Gc1" type="Sprite2D" parent="."]
-position = Vector2(593, 378)
+position = Vector2(587, 290)
 scale = Vector2(1.85337, 1.87321)
 texture = ExtResource("3_h2yge")
 
 [node name="character" parent="." instance=ExtResource("1_aw4sl")]
-position = Vector2(834, 341)
+position = Vector2(173, 229)
 frame_progress = 0.872475
 
 [node name="CollisionShape2D8" type="CollisionShape2D" parent="character"]
@@ -68,23 +68,23 @@ scale = Vector2(0.5, 0.5)
 collision_mask = 2
 
 [node name="cant_walk" type="CollisionShape2D" parent="cant_walk"]
-position = Vector2(592, 384)
+position = Vector2(586, 300)
 shape = SubResource("CapsuleShape2D_ssnb4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="cant_walk"]
-position = Vector2(241.5, 441.5)
+position = Vector2(232, 351)
 shape = SubResource("RectangleShape2D_ufqvt")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="cant_walk"]
-position = Vector2(945, 435.5)
+position = Vector2(942, 358)
 shape = SubResource("RectangleShape2D_vpbxl")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="cant_walk"]
-position = Vector2(128.5, 104.5)
+position = Vector2(137, 30)
 shape = SubResource("RectangleShape2D_s8oua")
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="cant_walk"]
-position = Vector2(1027, 114)
+position = Vector2(1040, 15)
 shape = SubResource("RectangleShape2D_0ihgc")
 
 [node name="CollisionShape2D5" type="CollisionShape2D" parent="cant_walk"]
@@ -96,15 +96,15 @@ position = Vector2(1048, 764)
 shape = SubResource("RectangleShape2D_odkhh")
 
 [node name="CollisionShape2D7" type="CollisionShape2D" parent="cant_walk"]
-position = Vector2(595, 22)
+position = Vector2(601, -67)
 shape = SubResource("RectangleShape2D_2svhv")
 
 [node name="CollisionShape2D8" type="CollisionShape2D" parent="cant_walk"]
-position = Vector2(315, 195)
+position = Vector2(316, 62)
 shape = SubResource("RectangleShape2D_n8pj1")
 
 [node name="CollisionShape2D9" type="CollisionShape2D" parent="cant_walk"]
-position = Vector2(364, 122)
+position = Vector2(362, -15)
 shape = SubResource("RectangleShape2D_n8pj1")
 
 [node name="CollisionShape2D9" type="CollisionShape2D" parent="cant_walk/CollisionShape2D9"]
@@ -124,7 +124,7 @@ position = Vector2(364, 122)
 shape = SubResource("RectangleShape2D_n8pj1")
 
 [node name="CollisionShape2D10" type="CollisionShape2D" parent="cant_walk"]
-position = Vector2(415, 49)
+position = Vector2(414, -68)
 shape = SubResource("RectangleShape2D_n8pj1")
 
 [node name="DivertShieldButton" type="Button" parent="."]
