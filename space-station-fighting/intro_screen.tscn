@@ -1,29 +1,67 @@
-[gd_scene format=3 uid="uid://dilybho524scj"]
+[gd_scene load_steps=3 format=3 uid="uid://bb8ku5bs4s80h"]
+
+[ext_resource type="Script" uid="uid://ojjc3k2wfc1h" path="res://intro_screen.gd" id="1_6c87n"]
+[ext_resource type="Texture2D" uid="uid://jr71a7v3xkrg" path="res://hello-worked-today-on-an-animated-reactor-for-the-spaceship-v0-3lbhd4q0m6gc1.webp" id="2_6a5pb"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1153.0
 offset_bottom = 648.0
+script = ExtResource("1_6c87n")
+
+[node name="HelloWorkedTodayOnAnAnimatedReactorForTheSpaceshipV03Lbhd4q0m6Gc1" type="Sprite2D" parent="."]
+position = Vector2(585, 354.00003)
+scale = Vector2(1.890625, 1.8509934)
+texture = ExtResource("2_6a5pb")
 
 [node name="TitleLabel" type="Label" parent="."]
 layout_mode = 0
-offset_left = 445.0
-offset_top = 242.0
-offset_right = 716.0
-offset_bottom = 265.0
-text = "Welcome to Space Station Fighting!"
+offset_left = 154.0
+offset_top = 76.0
+offset_right = 1022.0
+offset_bottom = 145.0
+theme_override_font_sizes/font_size = 50
+text = "untitled space station fighting game"
 horizontal_alignment = 1
 
-[node name="InstructionsLabel" type="RichTextLabel" parent="."]
+[node name="StartButton" type="Button" parent="."]
+modulate = Color(0, 1, 0, 1)
+layout_mode = 0
+offset_left = 408.0
+offset_top = 211.0
+offset_right = 766.0
+offset_bottom = 356.0
+theme_override_font_sizes/font_size = 100
+text = "START"
+
+[node name="TutorialButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 305.0
+offset_top = 387.0
+offset_right = 861.0
+offset_bottom = 532.0
+theme_override_font_sizes/font_size = 100
+text = "TUTORIAL"
+
+[node name="QuitButton" type="Button" parent="."]
+modulate = Color(1, 0, 0, 1)
+layout_mode = 0
+offset_left = 985.0
+offset_top = 559.0
+offset_right = 1121.0
+offset_bottom = 622.0
+theme_override_font_sizes/font_size = 40
+text = "QUIT"
+
+[node name="TutorialPanel" type="PanelContainer" parent="."]
+visible = false
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="StartButton" type="Button" parent="."]
-layout_mode = 0
-offset_left = 564.0
-offset_top = 307.0
-offset_right = 610.0
-offset_bottom = 338.0
-text = "Start"
+[node name="ExitButton" type="Button" parent="TutorialPanel"]
+layout_mode = 2
+
+[node name="TutorialWords" type="Label" parent="TutorialPanel"]
+layout_mode = 2
