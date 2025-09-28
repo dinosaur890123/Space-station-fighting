@@ -1,4 +1,3 @@
-
 extends Node2D
 @onready var game_over_screen: Control = $GameOverScreen
 @onready var result_message: Label = $GameOverScreen/Panel/ResultMessage/ResultLabel
@@ -8,8 +7,8 @@ extends Node2D
 @onready var intro_screen = $IntroScreen
 var enemy_scene: PackedScene = preload("res://enemy.tscn")
 var spawn_timer: float = 0.0
-var spawn_interval: float = 1.0
-var min_spawn_interval: float = 0.75
+var spawn_interval: float = 0.1
+var min_spawn_interval: float = 0.25
 var spawn_accel: float = 0.02 
 var battery_tick_timer: float = 0.0
 var _signal_tick_timer: float = 0.0
@@ -117,39 +116,45 @@ func _handle_enemy_spawning(delta: float) -> void:
 func _spawn_enemy():
 	if not enemy_scene:
 		return
+
 	var enemy = enemy_scene.instantiate()
 	var viewport_rect = get_viewport_rect()
 	var viewport_width = viewport_rect.size.x
 	var viewport_height = viewport_rect.size.y
+
+	# Pick a random edge for spawning
 	var side = randi() % 4
 	var spawn_x
 	var spawn_y
-	var move_dir = Vector2.ZERO
 	match side:
 		0:
 			spawn_x = 0
 			spawn_y = randf_range(0, viewport_height)
-			move_dir = Vector2(1, 0)
 		1:
 			spawn_x = viewport_width
 			spawn_y = randf_range(0, viewport_height)
-			move_dir = Vector2(-1, 0)
 		2:
 			spawn_x = randf_range(0, viewport_width)
 			spawn_y = 0
-			move_dir = Vector2(0, 1)
 		3:
 			spawn_x = randf_range(0, viewport_width)
 			spawn_y = viewport_height
-			move_dir = Vector2(0, -1)
+
 	enemy.position = Vector2(spawn_x, spawn_y)
+
+	# Random move direction
+	var angle = randf_range(0, TAU)
+	var move_dir = Vector2.RIGHT.rotated(angle).normalized()
 	if enemy.has_method("set_move_direction"):
 		enemy.set_move_direction(move_dir)
+
+	# Configure variant
 	var megabot = randf() < 0.15
 	if megabot and enemy.has_method("configure_variant"):
 		enemy.configure_variant(true)
 	elif enemy.has_method("configure_variant"):
 		enemy.configure_variant(false)
+
 	add_child(enemy)
 	if enemy is CanvasItem:
 		enemy.z_index = 1
