@@ -1,7 +1,7 @@
 extends Node2D
 
 @onready var game_over_screen: Control = $GameOverScreen
-@onready var result_message: Label = $GameOverScreen/VBoxContainer/ResultMessage
+@onready var result_message: Label = $GameOverScreen/Panel/ResultMessage/ResultLabel
 @onready var character: Node2D = $character
 @export var left_limit: float = 2
 @export var right_limit: float = 1150
@@ -11,7 +11,7 @@ var spawn_interval: float = 3.0
 var min_spawn_interval: float = 0.75
 var spawn_accel: float = 0.02 
 var battery_tick_timer: float = 0.0
-const ENABLE_AUTO_SHIELD_RECHARGE := true
+const ENABLE_AUTO_SHIELD_RECHARGE := false
 var _game_over: bool = false
 var _bullet_direction: Vector2 = Vector2.ZERO 
 var bullet_speed: float = 800 
@@ -23,11 +23,12 @@ func _ready():
 	randomize()
 	if typeof(MusicManager) != TYPE_NIL and not MusicManager.is_playing():
 		MusicManager.play_track("res://Bad Beat - Dyalla.mp3", true, 1.0)
-	var restart_btn = get_node_or_null("GameOverScreen/VBoxContainer/RestartButton")
-	if restart_btn and not restart_btn.pressed.is_connected(_on_restart_button_pressed):
-		restart_btn.pressed.connect(_on_restart_button_pressed)
-
-
+	var restart_btn = get_node_or_null("GameOverScreen/Panel/ResultMessage/HBoxContainer/RestartButton")
+	if restart_btn and not restart_btn.pressed.is_connected(Callable(self, "_on_restart_button_pressed")):
+		restart_btn.pressed.connect(Callable(self, "_on_restart_button_pressed"))
+	var quit_btn = get_node_or_null("GameOverScreen/Panel/ResultMessage/HBoxContainer/QuitButton")
+	if quit_btn and not quit_btn.pressed.is_connected(Callable(self, "_on_quit_pressed")):
+		quit_btn.pressed.connect(Callable(self, "_on_quit_pressed"))
 func _process(delta):
 	if get_tree().paused or _game_over:
 		return
@@ -48,7 +49,7 @@ func _process(delta):
 	if ENABLE_AUTO_SHIELD_RECHARGE:
 		var power_needed = GameData.MAX_CAPACITY - GameData.shield_integrity
 		if power_needed > 0.0 and GameData.current_battery > 0.0:
-			var recharge_rate = 1.0 * delta
+			var recharge_rate = 5.0 * delta
 			var to_transfer = min(power_needed, recharge_rate, GameData.current_battery)
 			GameData.shield_integrity += to_transfer
 			GameData.current_battery -= to_transfer
@@ -85,10 +86,8 @@ func _process(delta):
 	if $bullet.visible:
 		$bullet.global_position += _bullet_direction * bullet_speed * delta
 		_check_bullet_hits()
-		
-		# Hide bullet if it goes off screen
-		if $bullet.global_position.x < left_limit or $bullet.global_position.x > right_limit \
-		or $bullet.global_position.y < 0 or $bullet.global_position.y > 720:  # adjust vertical limit
+		if ($bullet.global_position.x < left_limit or $bullet.global_position.x > right_limit
+			or $bullet.global_position.y < 0 or $bullet.global_position.y > 720):
 			$bullet.hide()
 func _check_bullet_hits():
 	var bullet_area := $bullet.get_node_or_null("shot/shot_area")
@@ -135,6 +134,9 @@ func game_over(reason: String):
 		return
 	result_message.text = reason
 	game_over_screen.visible = true
+	var restart_btn = get_node_or_null("GameOverScreen/Panel/ResultMessage/HBoxContainer/RestartButton")
+	if restart_btn:
+		restart_btn.grab_focus()
 	get_tree().paused = true
 
 func _on_restart_button_pressed():
@@ -143,3 +145,6 @@ func _on_restart_button_pressed():
 	if typeof(GameData) != TYPE_NIL:
 		GameData.reset()
 	get_tree().reload_current_scene()
+
+func _on_quit_pressed():
+	get_tree().quit()
