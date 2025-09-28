@@ -1,3 +1,4 @@
+
 extends Node2D
 
 var intro_screen_scene: PackedScene = preload("res://intro_screen.tscn")
@@ -17,7 +18,11 @@ const ENABLE_AUTO_SHIELD_RECHARGE := true
 var _game_over: bool = false
 var _bullet_direction: Vector2 = Vector2.ZERO 
 var bullet_speed: float = 800 
-
+func _on_intro_start_pressed():
+	if intro_screen:
+		intro_screen.queue_free()
+	get_tree().paused = false
+	intro_screen = null
 func _ready():
 	$bullet.hide()
 	GameData.reset()
@@ -36,10 +41,6 @@ func _ready():
 	var start_btn = intro_screen.get_node_or_null("StartButton")
 	if start_btn:
 		start_btn.pressed.connect(Callable(self, "_on_intro_start_pressed"))
-	if intro_screen:
-		intro_screen.queue_free()
-	get_tree().paused = false
-	intro_screen = null
 func _process(delta):
 	if get_tree().paused or _game_over:
 		return
