@@ -36,7 +36,7 @@ func configure_variant(make_mega: bool):
 	is_megabot = make_mega
 	if is_megabot:
 		max_health = 100.0
-		health = 100.0
+		health = 200.0
 		damage = 60.0
 		speed = 90.0
 	else:
