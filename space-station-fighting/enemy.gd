@@ -71,16 +71,11 @@ func _process(delta: float) -> void:
     # Otherwise, allow vertical movement
     if not _player:
         _player = get_tree().get_first_node_in_group("player")
-        if _player:
-            print("Enemy: found player at runtime:", _player, "player_global=", _player.global_position)
     if _player:
         var contact_distance = 40.0
         var dist = global_position.distance_to(_player.global_position)
-        print("Enemy: checking contact: dist=", dist, " contact_distance=", contact_distance, " enemy_global=", global_position, " player_global=", _player.global_position)
         if dist < contact_distance:
-            print("Enemy: contact! Applying damage. Damage=", damage, " shield=", GameData.shield_integrity, " health=", GameData.health)
             _apply_contact_damage()
-            print("Enemy: after damage shield=", GameData.shield_integrity, " health=", GameData.health)
             _explode_and_die()
     if position.x < -200:
         queue_free()
@@ -111,17 +106,24 @@ func take_hit(amount: float):
     elif show_health_bar:
         queue_redraw()
 func _explode_and_die():
+    print("_explode_and_die called")
     if _exploding:
+        print("Already exploding, returning")
         return
     _exploding = true
     var explosion = get_node_or_null("Explosion")
+    print("Explosion node:", explosion)
     if explosion and explosion is AnimatedSprite2D:
         explosion.visible = true
-        explosion.position = position # Use local position
-        explosion.z_index = 100 # Ensure explosion is on top
+        explosion.position = Vector2.ZERO # Ensure explosion is at (0,0) relative to enemy
+        explosion.z_index = 100
+        explosion.scale = Vector2.ONE # Reset scale
+        explosion.modulate = Color(1,1,1,1) # Reset modulate
+        print("Playing explode animation")
         explosion.play("explode")
         visible = false
     else:
+        print("Explosion node not found or not AnimatedSprite2D, queue_free")
         queue_free()
 
 func _on_explosion_finished():

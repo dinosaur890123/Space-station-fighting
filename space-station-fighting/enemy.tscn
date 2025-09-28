@@ -33,9 +33,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4gyqm"]
-size = Vector2(50, 62)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_epg4t"]
 atlas = ExtResource("3_qi2p4")
 region = Rect2(0, 0, 80, 80)
@@ -93,20 +90,23 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4gyqm"]
+size = Vector2(50, 62)
+
 [node name="enemy" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_epg4t")
 animation = &"attack"
 flip_h = true
 script = ExtResource("2_enemy")
 
-[node name="Area2D" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0, 4)
-shape = SubResource("RectangleShape2D_4gyqm")
-
 [node name="Explosion" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_n0g06")
 animation = &"explode"
 frame = 1
 frame_progress = 0.313887
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_4gyqm")
