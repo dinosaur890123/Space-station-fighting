@@ -65,7 +65,7 @@ shape = SubResource("RectangleShape2D_n8pj1")
 
 [node name="bullet" parent="." instance=ExtResource("4_5cqrd")]
 position = Vector2(123, 480)
-scale = Vector2(0.5, 0.5)
+scale = Vector2(1.4, 1.4)
 
 [node name="cant_walk" type="Area2D" parent="."]
 collision_mask = 2
@@ -157,8 +157,12 @@ theme_override_colors/icon_hover_color = Color(1, 0, 0, 1)
 text = "Emergency Overcharge"
 
 [node name="GameOverScreen" type="PanelContainer" parent="."]
-offset_left = -46.0
-offset_right = 7.0
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="ColorRect" type="ColorRect" parent="GameOverScreen"]
 layout_mode = 2
@@ -183,10 +187,8 @@ grow_vertical = 2
 alignment = 1
 
 [node name="ResultLabel" type="Label" parent="GameOverScreen/Panel/ResultMessage"]
-modulate = Color(1, 0, 0, 1)
 layout_mode = 2
-theme_override_font_sizes/font_size = 55
-text = "ＤＥＦＥＡＴ"
+text = "Game Over"
 horizontal_alignment = 1
 vertical_alignment = 1
 
