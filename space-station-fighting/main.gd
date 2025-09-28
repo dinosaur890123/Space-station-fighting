@@ -8,7 +8,7 @@ extends Node2D
 var enemy_scene: PackedScene = preload("res://enemy.tscn")
 var spawn_timer: float = 0.0
 var spawn_interval: float = 0.01
-var min_spawn_interval: float = 0.1
+var min_spawn_interval: float = 0.15
 var spawn_accel: float = 0.02 
 var battery_tick_timer: float = 0.0
 var _signal_tick_timer: float = 0.0

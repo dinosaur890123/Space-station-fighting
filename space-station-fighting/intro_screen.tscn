@@ -1,10 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://bb8ku5bs4s80h"]
+[gd_scene load_steps=4 format=3 uid="uid://b03t2ynhp7qdd"]
 
-[ext_resource type="Script" uid="uid://ojjc3k2wfc1h" path="res://intro_screen.gd" id="1_6c87n"]
+[ext_resource type="Script" path="res://intro_screen.gd" id="1_6c87n"]
 [ext_resource type="Texture2D" uid="uid://jr71a7v3xkrg" path="res://hello-worked-today-on-an-animated-reactor-for-the-spaceship-v0-3lbhd4q0m6gc1.webp" id="2_6a5pb"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6c87n"]
-bg_color = Color(0.027112683, 0.027112683, 0.027112683, 0.9372549)
+bg_color = Color(0.0271127, 0.0271127, 0.0271127, 0.937255)
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -14,8 +14,8 @@ offset_bottom = 648.0
 script = ExtResource("1_6c87n")
 
 [node name="HelloWorkedTodayOnAnAnimatedReactorForTheSpaceshipV03Lbhd4q0m6Gc1" type="Sprite2D" parent="."]
-position = Vector2(585, 354.00003)
-scale = Vector2(1.890625, 1.8509934)
+position = Vector2(585, 354)
+scale = Vector2(1.89062, 1.85099)
 texture = ExtResource("2_6a5pb")
 
 [node name="TitleLabel" type="Label" parent="."]
@@ -91,7 +91,7 @@ Shield regenerates but your health doesn't
 Keybinds: 
 WASD | Movement
 / | Melee Attack
-SHIFT | Main Attack
+SHIFT | Magic Bullet SHIRUKEN
 "
 horizontal_alignment = 1
 vertical_alignment = 1
