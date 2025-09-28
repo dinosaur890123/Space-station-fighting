@@ -32,18 +32,9 @@ func _process(delta: float) -> void:
 			_play_if_exists("run")
 		else:
 			_play_if_exists("standing")
-	var new_pos = position + input_vector * move_speed * delta
-	var blocked = false
-	for hole in get_tree().get_nodes_in_group("holes"):
-		if hole is Area2D:
-			global_position = new_pos  # temporarily move player
-			if hole.get_overlapping_bodies().has(self):
-				blocked = true
-				break
-	if not blocked:
-		position = new_pos  # only move if not blocked
-		position.x = clamp(position.x, left_limit, right_limit)
-		position.y = clamp(position.y, 0, 700)
+	
+	position.x = clamp(position.x, left_limit, right_limit)
+	position.y = clamp(position.y, 0, 700)
 func _on_animation_finished() -> void:
 	if animation == "attack 1":
 		_attacking = false
