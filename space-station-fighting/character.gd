@@ -19,7 +19,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	var input_vector := Vector2( Input.get_action_strength("right") - Input.get_action_strength("left"),Input.get_action_strength("down") - Input.get_action_strength("up"))
-	var moving := input_vector.length() > 0
+	var moving:= input_vector.length() > 0
 	if Input.is_action_just_pressed("attack_slash") and not _attacking:
 		_attacking = true
 		play("attack 1")
@@ -27,13 +27,11 @@ func _process(delta: float) -> void:
 	if input_vector.length() > 0:
 		input_vector = input_vector.normalized()  # prevent faster diagonal movement
 	if not _attacking:
-		if abs(input_vector.x) > 0.1:
+		if moving:
 			_set_facing(input_vector.x > 0)
 			_play_if_exists("run")
-	elif moving:
-		_play_if_exists("run")
-	else:
-		_play_if_exists("standing")
+		else:
+			_play_if_exists("standing")
 	var new_pos = position + input_vector * move_speed * delta
 	var blocked = false
 	for hole in get_tree().get_nodes_in_group("holes"):
@@ -49,7 +47,6 @@ func _process(delta: float) -> void:
 func _on_animation_finished() -> void:
 	if animation == "attack 1":
 		_attacking = false
-
 func _set_facing(right: bool) -> void:
 	if right == _facing_right:
 		return
@@ -66,13 +63,3 @@ func _play_if_exists(anim_name: String) -> void:
 
 func force_face_right(right: bool):
 	_set_facing(right)
-
-# --- Helpers ---
-
-
-func _on_area_area_entered(area: Area2D) -> void:
-	move_speed = 10 # Replace with function body.
-
-
-func _on_area_area_exited(area: Area2D) -> void:
-	move_speed = 300 # Replace with function body.
