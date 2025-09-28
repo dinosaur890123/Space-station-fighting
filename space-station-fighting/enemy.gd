@@ -35,7 +35,7 @@ func _ready():
 func configure_variant(make_mega: bool):
 	is_megabot = make_mega
 	if is_megabot:
-		max_health = 50.0 # Reduced from 100.0
+		max_health = 50.0
 		health = 50.0
 		damage = 40.0
 		speed = 90.0
@@ -103,9 +103,9 @@ func _die():
 	_exploding = true
 	# Award signal on defeat
 	if is_megabot:
-		GameData.signal_progress += 15
+		GameData.signal_progress += 30
 	else:
-		GameData.signal_progress += 8
+		GameData.signal_progress += 14
 	var explosion_sprite = get_node_or_null("Explosion")
 	if explosion_sprite and explosion_sprite is AnimatedSprite2D:
 		explosion_sprite.visible = true

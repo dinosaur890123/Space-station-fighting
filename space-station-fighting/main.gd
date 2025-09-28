@@ -41,9 +41,8 @@ func _process(delta):
 	battery_tick_timer += delta
 	if battery_tick_timer >= 4.0:
 		var ticks = int(battery_tick_timer / 4.0)
-		GameData.current_battery = max(0.0, GameData.current_battery - ticks * (GameData.max_battery * 0.01)) # 1% every 4 seconds
+		GameData.current_battery = max(0.0, GameData.current_battery - ticks * (GameData.max_battery * 0.01))
 		battery_tick_timer -= ticks * 4.0
-	# Signal increases slowly on its own
 	_signal_tick_timer += delta
 	if _signal_tick_timer >= 10.0:
 		var ticks = int(_signal_tick_timer / 10.0)
@@ -172,7 +171,7 @@ func _on_restart_button_pressed():
 	_game_over = false
 	if typeof(GameData) != TYPE_NIL:
 		GameData.reset()
-	get_tree().reload_current_scene()
+	get_tree().change_scene_to_file("res://intro_screen.tscn")
 
 func _on_quit_pressed():
 	get_tree().quit()
