@@ -13,6 +13,7 @@ var is_megabot: bool = false
 @export var health_bar_offset_y: float = 60.0
 
 var _player: Node = null
+var _exploding: bool = false
 
 func _ready():
     if has_node(player_path):
@@ -25,6 +26,10 @@ func _ready():
         play()
     _update_visual()
     add_to_group("enemies")
+    var explosion = get_node_or_null("Explosion")
+    if explosion and explosion is AnimatedSprite2D:
+        explosion.visible = false
+        explosion.connect("animation_finished", Callable(self, "_on_explosion_finished"))
 
 func configure_variant(make_mega: bool):
     is_megabot = make_mega
@@ -56,6 +61,8 @@ func _update_visual():
 func _process(delta: float) -> void:
     if get_tree().paused:
         return
+    if _exploding:
+        return
     position += move_direction * speed * delta
     # Only lock y position if moving horizontally (left/right)
     if abs(move_direction.y) < 0.01:
@@ -74,7 +81,7 @@ func _process(delta: float) -> void:
             print("Enemy: contact! Applying damage. Damage=", damage, " shield=", GameData.shield_integrity, " health=", GameData.health)
             _apply_contact_damage()
             print("Enemy: after damage shield=", GameData.shield_integrity, " health=", GameData.health)
-            queue_free()
+            _explode_and_die()
     if position.x < -200:
         queue_free()
     if show_health_bar:
@@ -96,11 +103,29 @@ func _apply_contact_damage():
     print("Enemy._apply_contact_damage: exiting; shield=", GameData.shield_integrity, " health=", GameData.health)
 
 func take_hit(amount: float):
+    if _exploding:
+        return
     health -= amount
     if health <= 0:
-        queue_free()
+        _explode_and_die()
     elif show_health_bar:
         queue_redraw()
+func _explode_and_die():
+    if _exploding:
+        return
+    _exploding = true
+    var explosion = get_node_or_null("Explosion")
+    if explosion and explosion is AnimatedSprite2D:
+        explosion.visible = true
+        explosion.position = position # Use local position
+        explosion.z_index = 100 # Ensure explosion is on top
+        explosion.play("explode")
+        visible = false
+    else:
+        queue_free()
+
+func _on_explosion_finished():
+    queue_free()
 
 func _draw():
     if not show_health_bar:
