@@ -53,7 +53,7 @@ func _process(delta):
 	if ENABLE_AUTO_SHIELD_RECHARGE:
 		var power_needed = GameData.MAX_CAPACITY - GameData.shield_integrity
 		if power_needed > 0.0:
-			var recharge_rate = 1.0 * delta
+			var recharge_rate = 0.5 * delta
 			var to_transfer = min(power_needed, recharge_rate)
 			GameData.shield_integrity += to_transfer
 	if GameData.health <= 0.0:
