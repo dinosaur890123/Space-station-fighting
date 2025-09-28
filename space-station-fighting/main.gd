@@ -67,24 +67,21 @@ func _process(delta):
 	if Input.is_action_just_pressed("attack_air") and not $bullet.visible:
 		$bullet.global_position = $character.global_position
 		$bullet.show()
-		var direction := Vector2.ZERO
-		if Input.is_action_pressed("right"):
-			direction.x += 1
-			$bullet/shot.play("shot")
-		elif Input.is_action_pressed("left"):
-			direction.x -= 1
-			$bullet/shot.play("shot")
-		if Input.is_action_pressed("up"):
-			direction.y -= 1
-			$bullet/shot.play("shot")
-		elif Input.is_action_pressed("down"):
-			direction.y += +1
-			$bullet/shot.play("shot")
-		if direction == Vector2.ZERO:
-			direction.x = 1 if not $character.flip_h else -1
-		_bullet_direction = direction.normalized()
-		$bullet.rotation = _bullet_direction.angle()
-		$bullet/shot.play("shot")
+	var direction := Vector2.ZERO
+# Check all keys without elif so diagonal is possible
+	if Input.is_action_pressed("right"):
+		direction.x += 1
+	if Input.is_action_pressed("left"):
+		direction.x -= 1
+	if Input.is_action_pressed("up"):
+		direction.y -= 1
+	if Input.is_action_pressed("down"):
+		direction.y += 1
+	if direction == Vector2.ZERO:
+		direction.x = 1 if not $character.flip_h else -1
+	_bullet_direction = direction.normalized()
+	$bullet.rotation = _bullet_direction.angle()
+	$bullet/shot.play("shot")
 	if $bullet.visible:
 		if _bullet_direction == Vector2.ZERO:
 			_bullet_direction = Vector2(1, 0)
