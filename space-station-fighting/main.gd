@@ -136,7 +136,7 @@ func _spawn_enemy():
 	var viewport_width = viewport_rect.size.x
 	var viewport_height = viewport_rect.size.y
 
-    
+	
 	var side = randi() % 4
 	var spawn_x
 	var spawn_y
@@ -156,13 +156,13 @@ func _spawn_enemy():
 
 	enemy.position = Vector2(spawn_x, spawn_y)
 
-    
+	
 	var angle = randf_range(0, TAU)
 	var move_dir = Vector2.RIGHT.rotated(angle).normalized()
 	if enemy.has_method("set_move_direction"):
 		enemy.set_move_direction(move_dir)
 
-    
+	
 	var megabot = randf() < 0.15
 	if megabot and enemy.has_method("configure_variant"):
 		enemy.configure_variant(true)

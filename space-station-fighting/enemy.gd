@@ -101,7 +101,7 @@ func _die():
 	if _exploding:
 		return
 	_exploding = true
-    
+	
 	if is_megabot:
 		GameData.signal_progress += 50
 	else:
