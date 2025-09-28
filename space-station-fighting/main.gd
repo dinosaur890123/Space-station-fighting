@@ -87,12 +87,12 @@ func _process(delta):
 		$bullet/shot.play("shot")
 	if $bullet.visible:
 		if _bullet_direction == Vector2.ZERO:
-			_bullet_direction = Vector2(1, 0) # Default right if something goes wrong
+			_bullet_direction = Vector2(1, 0)
 		$bullet.position += _bullet_direction * bullet_speed * delta
 		_check_bullet_hits()
 	if $bullet.position.x < left_limit or $bullet.position.x > right_limit or $bullet.position.y < 0 or $bullet.position.y > 720:
 		$bullet.hide()
-		_bullet_direction = Vector2.ZERO  # Reset the direction
+	_bullet_direction = Vector2.ZERO
 	if Input.is_action_just_pressed("attack_slash"):
 		var melee_radius = 100.0
 		var melee_damage = 5.0
@@ -117,7 +117,7 @@ func _check_bullet_hits():
 			if body.has_method("take_hit"):
 				body.take_hit(10.0)
 			$bullet.hide()
-			_bullet_direction = Vector2.ZERO  # Reset the direction
+			_bullet_direction = Vector2.ZERO
 			break
 
 func _handle_enemy_spawning(delta: float) -> void:
@@ -136,7 +136,7 @@ func _spawn_enemy():
 	var viewport_width = viewport_rect.size.x
 	var viewport_height = viewport_rect.size.y
 
-	# Pick a random edge for spawning
+    
 	var side = randi() % 4
 	var spawn_x
 	var spawn_y
@@ -156,13 +156,13 @@ func _spawn_enemy():
 
 	enemy.position = Vector2(spawn_x, spawn_y)
 
-	# Random move direction
+    
 	var angle = randf_range(0, TAU)
 	var move_dir = Vector2.RIGHT.rotated(angle).normalized()
 	if enemy.has_method("set_move_direction"):
 		enemy.set_move_direction(move_dir)
 
-	# Configure variant
+    
 	var megabot = randf() < 0.15
 	if megabot and enemy.has_method("configure_variant"):
 		enemy.configure_variant(true)
