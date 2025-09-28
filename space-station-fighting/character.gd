@@ -4,9 +4,8 @@ extends AnimatedSprite2D
 @export var left_limit: float = 2.0
 @export var right_limit: float = 1150.0
 var _facing_right: bool = true
-var _attacking: bool = false
-var area_entered: bool = false
-var previous_position: Vector2 = Vector2.ZERO
+var _attacking = false
+var area_entered = false
 func _ready() -> void:
 	if not is_in_group("player"):
 		add_to_group("player")
@@ -18,33 +17,23 @@ func _ready() -> void:
 			play(names[0])
 
 func _process(delta: float) -> void:
-	if not area_entered:
-		previous_position = global_position
-		var input_vector := Vector2(
-			Input.get_action_strength("right") - Input.get_action_strength("left"),
-			Input.get_action_strength("down") - Input.get_action_strength("up")
-		)
-		var _moving := input_vector.length() > 0
-		if Input.is_action_just_pressed("attack_slash") and not _attacking:
-			_attacking = true
-			_play_if_exists("attack1")
-			return
-		if input_vector.length() > 0:
-			input_vector = input_vector.normalized()
-		if not _attacking:
-			if _moving:
-				_set_facing(input_vector.x > 0)
-				_play_if_exists("run")
-			else:
-				_play_if_exists("standing")
-		var new_pos = position + input_vector * move_speed * delta
-		position = new_pos
-		position.x = clamp(position.x, left_limit, right_limit)
-		position.y = clamp(position.y, 0, 700)
-	else:
-		global_position = previous_position
-		if has_node("timer"):
-			$timer.start()
+	var input_vector := Vector2( Input.get_action_strength("right") - Input.get_action_strength("left"),Input.get_action_strength("down") - Input.get_action_strength("up"))
+	var moving:= input_vector.length() > 0
+	if Input.is_action_just_pressed("attack_slash") and not _attacking:
+		_attacking = true
+		play("attack1")
+	if input_vector.length() > 0:
+		input_vector = input_vector.normalized()
+	if not _attacking:
+		if moving:
+			_set_facing(input_vector.x > 0)
+			_play_if_exists("run")
+		else:
+			_play_if_exists("standing")
+	var new_pos = position + input_vector * move_speed * delta
+	position = new_pos
+	position.x = clamp(position.x, left_limit, right_limit)
+	position.y = clamp(position.y, 0, 700)
 func _on_animation_finished() -> void:
 	if animation == "attack1":
 		_attacking = false
@@ -65,7 +54,7 @@ func force_face_right(right: bool):
 	_set_facing(right)
 
 func _on_area_area_entered(area: Area2D) -> void:
-	move_speed = 100
+	move_speed = 90
 
 
 func _on_area_area_exited(area: Area2D) -> void:
