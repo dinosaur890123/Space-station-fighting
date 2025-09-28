@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bk1vy0rr1lry7"]
+[gd_scene load_steps=17 format=3 uid="uid://bk1vy0rr1lry7"]
 
 [ext_resource type="PackedScene" uid="uid://bq23m3f7jfw0b" path="res://character.tscn" id="1_aw4sl"]
 [ext_resource type="Script" path="res://main.gd" id="1_bquf4"]
@@ -12,6 +12,18 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ssnb4"]
 radius = 133.0
 height = 278.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ufqvt"]
+size = Vector2(81, 91)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vpbxl"]
+size = Vector2(78, 93)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s8oua"]
+size = Vector2(333, 415)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0ihgc"]
+size = Vector2(254.5, 330)
 
 [sub_resource type="Theme" id="Theme_5vw27"]
 
@@ -45,6 +57,22 @@ collision_mask = 2
 [node name="cant_walk" type="CollisionShape2D" parent="cant_walk"]
 position = Vector2(592, 384)
 shape = SubResource("CapsuleShape2D_ssnb4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="cant_walk"]
+position = Vector2(241.5, 478.5)
+shape = SubResource("RectangleShape2D_ufqvt")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="cant_walk"]
+position = Vector2(945, 474.5)
+shape = SubResource("RectangleShape2D_vpbxl")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="cant_walk"]
+position = Vector2(128.5, 145.5)
+shape = SubResource("RectangleShape2D_s8oua")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="cant_walk"]
+position = Vector2(1024.25, 168)
+shape = SubResource("RectangleShape2D_0ihgc")
 
 [node name="DivertShieldButton" type="Button" parent="."]
 modulate = Color(0, 1, 0, 1)
