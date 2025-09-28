@@ -63,25 +63,27 @@ func _process(delta):
 	if GameData.signal_progress >= GameData.MAX_CAPACITY:
 		game_over("SUCCESS: Signal Transmission Complete!")
 
-	if Input.is_action_just_pressed("attack_air"):
-		var dir_x := 0
-		var dir_y := 0
+	if Input.is_action_just_pressed("attack_air") and not $bullet.visible:
+		$bullet.global_position = $character.global_position
+		$bullet.show()
+		var direction := Vector2.ZERO
 		if Input.is_action_pressed("right"):
-			dir_x = 1
+			direction.x = 1
+			$bullet/shot.play("shot")
 		elif Input.is_action_pressed("left"):
-			dir_x = -1
+			direction.x = -1
+			$bullet/shot.play("shot")
 		if Input.is_action_pressed("up"):
-			dir_y = -1
+			direction.y = -1
+			$bullet/shot.play("shot")
 		elif Input.is_action_pressed("down"):
-			dir_y = 1
-		if dir_x == 0 and dir_y == 0:
-			dir_x = -1 if $character.flip_h else 1
-		var bullet_scene = preload("res://bullet.tscn")
-		var bullet_instance = bullet_scene.instantiate()
-		bullet_instance.global_position = $character.global_position
-		if bullet_instance.has_method("set_direction"):
-			bullet_instance.set_direction(Vector2(dir_x, dir_y).normalized())
-		add_child(bullet_instance)
+			direction.y = +1
+			$bullet/shot.play("shot")
+		if direction == Vector2.ZERO:
+			direction.x = 1 if not $character.flip_h else -1
+		_bullet_direction = direction.normalized()
+		$bullet.rotation = _bullet_direction.angle()
+		$bullet/shot.play("shot")
 	if Input.is_action_just_pressed("attack_slash"):
 		var melee_radius = 100.0
 		var melee_damage = 20.0
@@ -123,6 +125,8 @@ func _spawn_enemy():
 	var viewport_rect = get_viewport_rect()
 	var viewport_width = viewport_rect.size.x
 	var viewport_height = viewport_rect.size.y
+
+	# Pick a random edge for spawning
 	var side = randi() % 4
 	var spawn_x
 	var spawn_y
