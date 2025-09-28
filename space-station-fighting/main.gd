@@ -19,10 +19,9 @@ var _bullet_direction: Vector2 = Vector2.ZERO
 var bullet_speed: float = 800 
 
 func _ready():
-	$bullet.hide()
-	GameData.reset()
-	get_tree().paused = false
-	randomize()
+		$bullet.hide()
+		GameData.reset()
+		randomize()
 	if typeof(MusicManager) != TYPE_NIL and not MusicManager.is_playing():
 		MusicManager.play_track("res://Bad Beat - Dyalla.mp3", true, 1.0)
 	var restart_btn = get_node_or_null("GameOverScreen/Panel/ResultMessage/HBoxContainer/RestartButton")
