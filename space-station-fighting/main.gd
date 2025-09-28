@@ -29,6 +29,7 @@ func _ready():
 	if typeof(MusicManager) != TYPE_NIL and not MusicManager.is_playing():
 		MusicManager.play_track("res://Bad Beat - Dyalla.mp3", true, 1.0)
 	var restart_btn = get_node_or_null("GameOverScreen/Panel/ResultMessage/HBoxContainer/RestartButton")
+	print("RestartButton found:", restart_btn)
 	if restart_btn and not restart_btn.pressed.is_connected(Callable(self, "_on_restart_button_pressed")):
 		restart_btn.pressed.connect(Callable(self, "_on_restart_button_pressed"))
 	var quit_btn = get_node_or_null("GameOverScreen/Panel/ResultMessage/HBoxContainer/QuitButton")

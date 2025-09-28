@@ -187,10 +187,6 @@ vertical_alignment = 1
 layout_mode = 2
 alignment = 1
 
-[node name="RestartButton" type="Button" parent="GameOverScreen/Panel/ResultMessage/HBoxContainer"]
-layout_mode = 2
-text = "Restart"
-
 [node name="ActionsManager" type="Node" parent="."]
 script = ExtResource("2_0xm2m")
 
@@ -320,4 +316,3 @@ label_settings = SubResource("LabelSettings_4c57u")
 horizontal_alignment = 1
 
 [connection signal="area_shape_entered" from="cant_walk" to="character" method="_on_cant_walk_area_shape_entered"]
-[connection signal="pressed" from="GameOverScreen/Panel/ResultMessage/HBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]

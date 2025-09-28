@@ -25,5 +25,5 @@ func _check_bullet_hits():
 		if dist < 40:
 			if body.has_method("take_hit"):
 				body.take_hit(10.0)
-			queue_free()
+            queue_free()
 			break
