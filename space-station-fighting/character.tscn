@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://bq23m3f7jfw0b"]
+[gd_scene load_steps=49 format=3 uid="uid://bq23m3f7jfw0b"]
 
 [ext_resource type="Texture2D" uid="uid://b6wxnerdip1kj" path="res://Screenshot 2025-09-27 at 11.10.13 AM-Photoroom.png" id="1_nnsqy"]
 [ext_resource type="Script" path="res://character.gd" id="2_dspso"]
@@ -344,6 +344,8 @@ animations = [{
 "speed": 6.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g2vp8"]
+
 [node name="character" type="AnimatedSprite2D"]
 position = Vector2(1, -1)
 scale = Vector2(2.5, 2.5)
@@ -354,4 +356,9 @@ script = ExtResource("2_dspso")
 [node name="area" type="Area2D" parent="."]
 collision_layer = 2
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="area"]
+shape = SubResource("CapsuleShape2D_g2vp8")
+
 [connection signal="animation_finished" from="." to="." method="_on_animation_finished"]
+[connection signal="area_entered" from="area" to="." method="_on_area_area_entered"]
+[connection signal="area_exited" from="area" to="." method="_on_area_area_exited"]

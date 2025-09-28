@@ -18,6 +18,7 @@ func _ready() -> void:
 			play(names[0])
 
 func _process(delta: float) -> void:
+	var input_vector := Vector2(Input.get_action_strength("right") - Input.get_action_strength("left"),Input.get_action_strength("down") - Input.get_action_strength("up"))
 	var dir_x: float = Input.get_action_strength("right") - Input.get_action_strength("left")
 	var dir_y: float = Input.get_action_strength("down") - Input.get_action_strength("up")
 	var moving: bool = abs(dir_x) > 0.1 or abs(dir_y) > 0.1
@@ -25,6 +26,8 @@ func _process(delta: float) -> void:
 		_attacking = true
 		play("attack 1")
 		return
+	if input_vector.length() > 0:
+		input_vector = input_vector.normalized()
 	if _attacking == false:
 		if abs(dir_x) > 0.1:
 			_set_facing(dir_x > 0)
@@ -33,8 +36,16 @@ func _process(delta: float) -> void:
 			_play_if_exists("run")
 		else:
 			_play_if_exists("standing")
-	position.x += dir_x * move_speed * delta
-	position.y += dir_y * move_speed * delta
+	var new_pos = position + input_vector * move_speed * delta
+	var blocked = false
+	for hole in get_tree().get_nodes_in_group("holes"):
+		if hole is Area2D:
+			global_position = new_pos
+		if hole.get_overlapping_bodies().has(self):
+			blocked = true
+			break
+	if not blocked:
+		position = new_pos
 	position.x = clamp(position.x, left_limit, right_limit)
 	position.y = clamp(position.y, 0, 700)
 func _on_animation_finished() -> void:
@@ -59,3 +70,11 @@ func force_face_right(right: bool):
 	_set_facing(right)
 
 # --- Helpers ---
+
+
+func _on_area_area_entered(area: Area2D) -> void:
+	move_speed = 10 # Replace with function body.
+
+
+func _on_area_area_exited(area: Area2D) -> void:
+	move_speed = 300 # Replace with function body.
