@@ -27,16 +27,11 @@ func _process(delta: float) -> void:
 	if input_vector.length() > 0:
 		input_vector = input_vector.normalized()  # prevent faster diagonal movement
 	if not _attacking:
-		if abs(input_vector.x) > 0.1:
-			moving == true
+		if moving:
 			_set_facing(input_vector.x > 0)
 			_play_if_exists("run")
 		else:
 			_play_if_exists("standing")
-	elif moving == true:
-		_play_if_exists("run")
-	else:
-		_play_if_exists("standing")
 	var new_pos = position + input_vector * move_speed * delta
 	var blocked = false
 	for hole in get_tree().get_nodes_in_group("holes"):
@@ -52,7 +47,6 @@ func _process(delta: float) -> void:
 func _on_animation_finished() -> void:
 	if animation == "attack 1":
 		_attacking = false
-
 func _set_facing(right: bool) -> void:
 	if right == _facing_right:
 		return
