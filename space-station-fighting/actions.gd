@@ -11,9 +11,15 @@ func _connect_button(path: String, method_ref):
 		btn.pressed.connect(method_ref)
 
 func _on_divert_shield_button_pressed():
-	GameData.signal_boost_timer = 0.0
-	GameData.shield_boost_timer = 5.0
-	print("Diverting power to shields!")
+	var signal_cost = 20.0
+	var heal_amount = 20.0
+	if GameData.signal_progress >= signal_cost:
+		GameData.signal_progress -= signal_cost
+		GameData.health += heal_amount
+		GameData.health = min(GameData.health, GameData.MAX_CAPACITY)
+		print("Health boost: -20 signal, +20 health!")
+	else:
+		print("Not enough signal for health boost!")
 
 func _on_divert_signal_button_pressed():
 	GameData.shield_boost_timer = 0.0
@@ -26,19 +32,4 @@ func _on_divert_signal_button_pressed():
 		print("Not enough health for signal boost!")
 
 func _on_overcharge_button_pressed():
-	if GameData.overcharge_count >= 3:
-		print("ERROR: Maximum Overcharge Reached!")
-		var btn = get_node_or_null("/root/Main/OverchargeButton")
-		if btn:
-			btn.disabled = true
-		return
-	GameData.current_battery = GameData.max_battery
-	GameData.overcharge_count += 1
-	GameData.max_battery = GameData.MAX_CAPACITY * (1.0 - 0.25 * GameData.overcharge_count)
-	GameData.max_battery = max(10.0, GameData.max_battery)
-	GameData.current_battery = clamp(GameData.current_battery, 0.0, GameData.max_battery)
-	if GameData.overcharge_count >= 3:
-		var btn2 = get_node_or_null("/root/Main/OverchargeButton")
-		if btn2:
-			btn2.disabled = true
-	print("Emergency Overcharge Activated! (" + str(GameData.overcharge_count) + "/3)")
+	pass
