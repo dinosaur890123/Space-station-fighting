@@ -1,29 +1,38 @@
-[gd_scene load_steps=17 format=3 uid="uid://bk1vy0rr1lry7"]
+[gd_scene load_steps=20 format=3 uid="uid://bk1vy0rr1lry7"]
 
 [ext_resource type="PackedScene" uid="uid://bq23m3f7jfw0b" path="res://character.tscn" id="1_aw4sl"]
-[ext_resource type="Script" uid="uid://cbiah0ieoaanp" path="res://main.gd" id="1_bquf4"]
-[ext_resource type="Script" uid="uid://csesvry1vxl4y" path="res://actions.gd" id="2_0xm2m"]
+[ext_resource type="Script" path="res://main.gd" id="1_bquf4"]
+[ext_resource type="Script" path="res://actions.gd" id="2_0xm2m"]
 [ext_resource type="Texture2D" uid="uid://jr71a7v3xkrg" path="res://hello-worked-today-on-an-animated-reactor-for-the-spaceship-v0-3lbhd4q0m6gc1.webp" id="3_h2yge"]
 [ext_resource type="PackedScene" uid="uid://cbxoi8afg8x5r" path="res://bullet.tscn" id="4_5cqrd"]
-[ext_resource type="Script" uid="uid://cpw4ywmh2sveo" path="res://ui_controller.gd" id="5_ui"]
+[ext_resource type="Script" path="res://ui_controller.gd" id="5_ui"]
 [ext_resource type="Script" path="res://health_bar.gd" id="7_5vw27"]
-[ext_resource type="Script" uid="uid://cv1twd15faqee" path="res://shield_bar.gd" id="7_272bh"]
+[ext_resource type="Script" path="res://shield_bar.gd" id="7_272bh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n8pj1"]
+size = Vector2(45.875, 184.125)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ssnb4"]
 radius = 133.0
 height = 278.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ufqvt"]
-size = Vector2(81, 91)
+size = Vector2(81, 17)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vpbxl"]
-size = Vector2(78, 93)
+size = Vector2(78, 15)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s8oua"]
-size = Vector2(333, 415)
+size = Vector2(333, 333)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0ihgc"]
 size = Vector2(254.5, 330)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_odkhh"]
+size = Vector2(281, 73)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2svhv"]
+size = Vector2(594, 136)
 
 [sub_resource type="Theme" id="Theme_5vw27"]
 
@@ -44,8 +53,13 @@ scale = Vector2(1.85337, 1.87321)
 texture = ExtResource("3_h2yge")
 
 [node name="character" parent="." instance=ExtResource("1_aw4sl")]
-position = Vector2(117, 448)
+position = Vector2(834, 341)
 frame_progress = 0.872475
+
+[node name="CollisionShape2D8" type="CollisionShape2D" parent="character"]
+position = Vector2(-20.4, -321.2)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_n8pj1")
 
 [node name="bullet" parent="." instance=ExtResource("4_5cqrd")]
 position = Vector2(123, 480)
@@ -59,20 +73,60 @@ position = Vector2(592, 384)
 shape = SubResource("CapsuleShape2D_ssnb4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="cant_walk"]
-position = Vector2(241.5, 478.5)
+position = Vector2(241.5, 441.5)
 shape = SubResource("RectangleShape2D_ufqvt")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="cant_walk"]
-position = Vector2(945, 474.5)
+position = Vector2(945, 435.5)
 shape = SubResource("RectangleShape2D_vpbxl")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="cant_walk"]
-position = Vector2(128.5, 145.5)
+position = Vector2(128.5, 104.5)
 shape = SubResource("RectangleShape2D_s8oua")
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="cant_walk"]
-position = Vector2(1024.25, 168)
+position = Vector2(1027, 114)
 shape = SubResource("RectangleShape2D_0ihgc")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="cant_walk"]
+position = Vector2(166, 766)
+shape = SubResource("RectangleShape2D_odkhh")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="cant_walk"]
+position = Vector2(1048, 764)
+shape = SubResource("RectangleShape2D_odkhh")
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="cant_walk"]
+position = Vector2(595, 22)
+shape = SubResource("RectangleShape2D_2svhv")
+
+[node name="CollisionShape2D8" type="CollisionShape2D" parent="cant_walk"]
+position = Vector2(315, 195)
+shape = SubResource("RectangleShape2D_n8pj1")
+
+[node name="CollisionShape2D9" type="CollisionShape2D" parent="cant_walk"]
+position = Vector2(364, 122)
+shape = SubResource("RectangleShape2D_n8pj1")
+
+[node name="CollisionShape2D9" type="CollisionShape2D" parent="cant_walk/CollisionShape2D9"]
+position = Vector2(510, 58)
+shape = SubResource("RectangleShape2D_n8pj1")
+
+[node name="CollisionShape2D9" type="CollisionShape2D" parent="cant_walk/CollisionShape2D9/CollisionShape2D9"]
+position = Vector2(-46, -40)
+shape = SubResource("RectangleShape2D_n8pj1")
+
+[node name="CollisionShape2D10" type="CollisionShape2D" parent="cant_walk/CollisionShape2D9/CollisionShape2D9"]
+position = Vector2(-95, -97)
+shape = SubResource("RectangleShape2D_n8pj1")
+
+[node name="CollisionShape2D9" type="CollisionShape2D" parent="cant_walk/CollisionShape2D9/CollisionShape2D9/CollisionShape2D10"]
+position = Vector2(364, 122)
+shape = SubResource("RectangleShape2D_n8pj1")
+
+[node name="CollisionShape2D10" type="CollisionShape2D" parent="cant_walk"]
+position = Vector2(415, 49)
+shape = SubResource("RectangleShape2D_n8pj1")
 
 [node name="DivertShieldButton" type="Button" parent="."]
 modulate = Color(0, 1, 0, 1)
