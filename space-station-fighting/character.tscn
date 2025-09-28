@@ -195,7 +195,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_1sapg")
 }],
 "loop": false,
-"name": &"attack 1",
+"name": &"attack1",
 "speed": 12.0
 }, {
 "frames": [{
@@ -218,7 +218,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_s7dso")
 }],
 "loop": false,
-"name": &"attack 2",
+"name": &"attack2",
 "speed": 12.0
 }, {
 "frames": [{
@@ -350,7 +350,7 @@ animations = [{
 position = Vector2(1, -1)
 scale = Vector2(2.5, 2.5)
 sprite_frames = SubResource("SpriteFrames_d4y6u")
-animation = &"attack 1"
+animation = &"attack2"
 script = ExtResource("2_dspso")
 
 [node name="area" type="Area2D" parent="."]
