@@ -15,34 +15,28 @@ func _ready() -> void:
 			play("standing")
 		elif names.size() > 0:
 			play(names[0])
-var previous_position = global_position
 
 func _process(delta: float) -> void:
-	if area_entered == false:
-		previous_position = global_position
-		var input_vector := Vector2( Input.get_action_strength("right") - Input.get_action_strength("left"),Input.get_action_strength("down") - Input.get_action_strength("up"))
-		var moving:= input_vector.length() > 0
-		if Input.is_action_just_pressed("attack_slash") and not _attacking:
-			_attacking = true
-			play("attack 1")
-			return
-		if input_vector.length() > 0:
-			input_vector = input_vector.normalized()  # prevent faster diagonal movement
-		if not _attacking:
-			if moving:
-				_set_facing(input_vector.x > 0)
-				_play_if_exists("run")
-			else:
-				_play_if_exists("standing")
-		var new_pos = position + input_vector * move_speed * delta
-		position = new_pos  # move normally 
-		position.x = clamp(position.x, left_limit, right_limit)
-		position.y = clamp(position.y, 0, 700)
-	if area_entered == true:
-		global_position = previous_position
-		$timer.start
+	var input_vector := Vector2( Input.get_action_strength("right") - Input.get_action_strength("left"),Input.get_action_strength("down") - Input.get_action_strength("up"))
+	var moving:= input_vector.length() > 0
+	if Input.is_action_just_pressed("attack_slash") and not _attacking:
+		_attacking = true
+		play("attack1")
+	if input_vector.length() > 0:
+		input_vector = input_vector.normalized()  # prevent faster diagonal movement
+	if not _attacking:
+		if moving:
+			_set_facing(input_vector.x > 0)
+			_play_if_exists("run")
+		else:
+			_play_if_exists("standing")
+	var new_pos = position + input_vector * move_speed * delta
+	position = new_pos
+	position.x = clamp(position.x, left_limit, right_limit)
+	position.y = clamp(position.y, 0, 700)
+
 func _on_animation_finished() -> void:
-	if animation == "attack 1":
+	if animation == "attack1":
 		_attacking = false
 func _set_facing(right: bool) -> void:
 	if right == _facing_right:
