@@ -19,7 +19,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	var input_vector := Vector2( Input.get_action_strength("right") - Input.get_action_strength("left"),Input.get_action_strength("down") - Input.get_action_strength("up"))
-	var moving := input_vector.length() > 0
+	var moving:= input_vector.length() > 0
 	if Input.is_action_just_pressed("attack_slash") and not _attacking:
 		_attacking = true
 		play("attack 1")
@@ -28,9 +28,12 @@ func _process(delta: float) -> void:
 		input_vector = input_vector.normalized()  # prevent faster diagonal movement
 	if not _attacking:
 		if abs(input_vector.x) > 0.1:
+			moving == true
 			_set_facing(input_vector.x > 0)
 			_play_if_exists("run")
-	elif moving:
+		else:
+			_play_if_exists("standing")
+	elif moving == true:
 		_play_if_exists("run")
 	else:
 		_play_if_exists("standing")
