@@ -66,13 +66,3 @@ func _play_if_exists(anim_name: String) -> void:
 
 func force_face_right(right: bool):
 	_set_facing(right)
-
-# --- Helpers ---
-
-
-func _on_area_area_entered(area: Area2D) -> void:
-	move_speed = 10 # Replace with function body.
-
-
-func _on_area_area_exited(area: Area2D) -> void:
-	move_speed = 300 # Replace with function body.
