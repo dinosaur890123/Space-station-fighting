@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://bb8ku5bs4s80h"]
+[gd_scene load_steps=4 format=3 uid="uid://bb8ku5bs4s80h"]
 
 [ext_resource type="Script" uid="uid://ojjc3k2wfc1h" path="res://intro_screen.gd" id="1_6c87n"]
 [ext_resource type="Texture2D" uid="uid://jr71a7v3xkrg" path="res://hello-worked-today-on-an-animated-reactor-for-the-spaceship-v0-3lbhd4q0m6gc1.webp" id="2_6a5pb"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6c87n"]
+bg_color = Color(0.027112683, 0.027112683, 0.027112683, 0.9372549)
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -54,14 +57,62 @@ offset_bottom = 622.0
 theme_override_font_sizes/font_size = 40
 text = "QUIT"
 
-[node name="TutorialPanel" type="PanelContainer" parent="."]
-visible = false
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="ExitButton" type="Button" parent="TutorialPanel"]
-layout_mode = 2
+[node name="TutorialPanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -444.25
+offset_top = -290.0
+offset_right = 444.25
+offset_bottom = 290.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_6c87n")
 
 [node name="TutorialWords" type="Label" parent="TutorialPanel"]
-layout_mode = 2
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -318.5
+offset_top = -232.5
+offset_right = 318.5
+offset_bottom = 232.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+text = "How to play:
+1. Press START
+2. Survive the robots before your battery runs out
+3. Use the power switches to help you
+4. Contact support by getting signal to 1000%
+
+Health boost:  Increases HP but sacrifices signal speed
+Signal boost: Speeds up signal but sacrifices health
+Emergency Overcharge: Sets battery to 100% but reduces it's max capacity by 25% 
+(only usable 4 times)
+You can run through walls but it slows you.
+Shield regenerates but your health doesn't
+
+Keybinds: 
+WASD | Movement
+/ | Melee Attack
+SHIFT | Main Attack
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="TutorialPanel"]
+modulate = Color(1, 0, 0, 1)
+layout_mode = 0
+offset_left = 787.75
+offset_top = 22.0
+offset_right = 859.75
+offset_bottom = 99.0
+theme_override_font_sizes/font_size = 50
+text = "X"
