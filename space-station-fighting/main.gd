@@ -93,6 +93,7 @@ func _process(delta):
 		if ($bullet.global_position.x < left_limit or $bullet.global_position.x > right_limit
 			or $bullet.global_position.y < 0 or $bullet.global_position.y > 720):
 			$bullet.hide()
+	
 func _check_bullet_hits():
 	var bullet_area := $bullet.get_node_or_null("shot/shot_area")
 	if not (bullet_area and bullet_area is Area2D):

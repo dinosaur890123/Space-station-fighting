@@ -7,7 +7,6 @@ var _facing_right: bool = true
 var _attacking = false
 var area_entered = false
 func _ready() -> void:
-	$Timer.start
 	if not is_in_group("player"):
 		add_to_group("player")
 	var names = sprite_frames.get_animation_names()
@@ -16,7 +15,6 @@ func _ready() -> void:
 			play("standing")
 		elif names.size() > 0:
 			play(names[0])
-var previous_position = global_position
 
 func _process(delta: float) -> void:
 	if area_entered == false:
@@ -43,7 +41,7 @@ func _process(delta: float) -> void:
 		global_position = previous_position
 		$timer.start
 func _on_animation_finished() -> void:
-	if animation == "attack 1":
+	if animation == "attack1":
 		_attacking = false
 func _set_facing(right: bool) -> void:
 	if right == _facing_right:
