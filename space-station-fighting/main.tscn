@@ -49,8 +49,6 @@ font = SubResource("SystemFont_kek77")
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_bquf4")
-left_limit = null
-right_limit = null
 
 [node name="HelloWorkedTodayOnAnAnimatedReactorForTheSpaceshipV03Lbhd4q0m6Gc1" type="Sprite2D" parent="."]
 position = Vector2(587, 290)
