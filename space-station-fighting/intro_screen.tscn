@@ -47,16 +47,6 @@ offset_bottom = 532.0
 theme_override_font_sizes/font_size = 100
 text = "TUTORIAL"
 
-[node name="QuitButton" type="Button" parent="."]
-modulate = Color(1, 0, 0, 1)
-layout_mode = 0
-offset_left = 985.0
-offset_top = 559.0
-offset_right = 1121.0
-offset_bottom = 622.0
-theme_override_font_sizes/font_size = 40
-text = "QUIT"
-
 [node name="TutorialPanel" type="Panel" parent="."]
 visible = false
 layout_mode = 1
