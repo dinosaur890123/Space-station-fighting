@@ -1,6 +1,16 @@
+<<<<<<< Updated upstream
 [gd_scene load_steps=2 format=3 uid="uid://dxg3h2vjkeah0"]
 
 [ext_resource type="Script" uid="uid://cay8x3uyxhhi8" path="res://control.gd" id="1_8hh42"]
+=======
+[gd_scene load_steps=4 format=3 uid="uid://dxg3h2vjkeah0"]
+
+[ext_resource type="Script" uid="uid://bjhv7c62ux2kc" path="res://control.gd" id="1_8hh42"]
+
+[sub_resource type="Theme" id="Theme_togc3"]
+
+[sub_resource type="Theme" id="Theme_8hh42"]
+>>>>>>> Stashed changes
 
 [node name="Node2D" type="Node2D"]
 
@@ -26,6 +36,7 @@ layout_mode = 0
 offset_left = 408.0
 offset_top = 184.0
 offset_right = 752.0
+<<<<<<< Updated upstream
 offset_bottom = 344.0
 theme_override_font_sizes/font_size = 100
 text = "START"
@@ -94,3 +105,34 @@ offset_right = 353.99997
 offset_bottom = -4.2160034
 theme_override_font_sizes/font_size = 49
 text = "x"
+=======
+offset_bottom = 329.0
+theme = SubResource("Theme_togc3")
+theme_override_font_sizes/font_size = 100
+text = "START"
+
+[node name="TutorialButton" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 336.0
+offset_top = 344.0
+offset_right = 825.0
+offset_bottom = 489.0
+theme_override_font_sizes/font_size = 100
+text = "TUTORIAL"
+
+[node name="ExitButton" type="Button" parent="Control/TutorialButton"]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="QuitButton" type="Button" parent="Control"]
+modulate = Color(1, 0, 0, 1)
+layout_mode = 0
+offset_left = 976.0
+offset_top = 547.0
+offset_right = 1128.0
+offset_bottom = 624.0
+theme = SubResource("Theme_8hh42")
+theme_override_font_sizes/font_size = 50
+text = "QUIT"
+>>>>>>> Stashed changes
