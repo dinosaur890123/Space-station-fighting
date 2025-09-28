@@ -58,7 +58,6 @@ frame_progress = 0.872475
 
 [node name="CollisionShape2D8" type="CollisionShape2D" parent="character"]
 position = Vector2(-20.4, -321.2)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_n8pj1")
 
 [node name="bullet" parent="." instance=ExtResource("4_5cqrd")]

@@ -7,7 +7,6 @@ var _facing_right: bool = true
 var _attacking = false
 var area_entered = false
 func _ready() -> void:
-	$Timer.start
 	if not is_in_group("player"):
 		add_to_group("player")
 	var names = sprite_frames.get_animation_names()
