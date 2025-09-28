@@ -147,6 +147,15 @@ offset_right = 1119.0
 offset_bottom = 543.0
 text = "Signal Boost"
 
+[node name="OverchargeButton" type="Button" parent="."]
+modulate = Color(1, 0, 0, 1)
+offset_left = 768.0
+offset_top = 569.0
+offset_right = 968.0
+offset_bottom = 620.0
+theme_override_colors/icon_hover_color = Color(1, 0, 0, 1)
+text = "Emergency Overcharge"
+
 [node name="GameOverScreen" type="PanelContainer" parent="."]
 visible = false
 anchors_preset = 15
