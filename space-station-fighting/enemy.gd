@@ -35,15 +35,15 @@ func _ready():
 func configure_variant(make_mega: bool):
 	is_megabot = make_mega
 	if is_megabot:
-		max_health = 50.0 # Reduced from 100.0
-		health = 50.0
-		damage = 40.0
+		max_health = 100.0 # Reduced from 100.0
+		health = 100.0
+		damage = 60.0
 		speed = 90.0
 	else:
-		max_health = 25.0
-		health = 25.0
-		damage = 20.0
-		speed = 120.0
+		max_health = 40.0
+		health = 40.0
+		damage = 10.0
+		speed = 200.0
 	_update_visual()
 var move_direction: Vector2 = Vector2(-1, 0) # default: left
 
