@@ -114,10 +114,33 @@ func _spawn_enemy():
 	if not enemy_scene:
 		return
 	var enemy = enemy_scene.instantiate()
-	var viewport_width = get_viewport_rect().size.x
-	var spawn_y = 485
-	var spawn_x = viewport_width - 20
+	var viewport_rect = get_viewport_rect()
+	var viewport_width = viewport_rect.size.x
+	var viewport_height = viewport_rect.size.y
+	var side = randi() % 4
+	var spawn_x
+	var spawn_y
+	var move_dir = Vector2.ZERO
+	match side:
+		0:
+			spawn_x = 0
+			spawn_y = randf_range(0, viewport_height)
+			move_dir = Vector2(1, 0)
+		1:
+			spawn_x = viewport_width
+			spawn_y = randf_range(0, viewport_height)
+			move_dir = Vector2(-1, 0)
+		2:
+			spawn_x = randf_range(0, viewport_width)
+			spawn_y = 0
+			move_dir = Vector2(0, 1)
+		3:
+			spawn_x = randf_range(0, viewport_width)
+			spawn_y = viewport_height
+			move_dir = Vector2(0, -1)
 	enemy.position = Vector2(spawn_x, spawn_y)
+	if enemy.has_method("set_move_direction"):
+		enemy.set_move_direction(move_dir)
 	var megabot = randf() < 0.15
 	if megabot and enemy.has_method("configure_variant"):
 		enemy.configure_variant(true)
