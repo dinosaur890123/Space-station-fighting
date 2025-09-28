@@ -86,7 +86,7 @@ func _process(delta):
 		$bullet/shot.play("shot")
 	if Input.is_action_just_pressed("attack_slash"):
 		var melee_radius = 100.0
-		var melee_damage = 20.0
+		var melee_damage = 5.0
 		var char_pos = $character.global_position
 		for body in get_tree().get_nodes_in_group("enemies"):
 			if not body is Node2D:
