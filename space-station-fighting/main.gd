@@ -95,7 +95,7 @@ func _process(delta):
 	_bullet_direction = Vector2.ZERO
 	if Input.is_action_just_pressed("attack_slash"):
 		var melee_radius = 100.0
-		var melee_damage = 5.0
+		var melee_damage = 7.5
 		var char_pos = $character.global_position
 		for body in get_tree().get_nodes_in_group("enemies"):
 			if not body is Node2D:
@@ -115,7 +115,7 @@ func _check_bullet_hits():
 		var dist = bullet_area.global_position.distance_to(body.global_position)
 		if dist < 40:
 			if body.has_method("take_hit"):
-				body.take_hit(10.0)
+				body.take_hit(10)
 			$bullet.hide()
 			_bullet_direction = Vector2.ZERO
 			break
