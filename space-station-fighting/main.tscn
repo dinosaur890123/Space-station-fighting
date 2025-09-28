@@ -18,6 +18,7 @@ height = 278.0
 [sub_resource type="SystemFont" id="SystemFont_kek77"]
 font_weight = 999
 font_stretch = 50
+subpixel_positioning = 0
 
 [sub_resource type="LabelSettings" id="LabelSettings_4c57u"]
 font = SubResource("SystemFont_kek77")
@@ -46,26 +47,28 @@ position = Vector2(592, 384)
 shape = SubResource("CapsuleShape2D_ssnb4")
 
 [node name="DivertShieldButton" type="Button" parent="."]
-modulate = Color(1, 0.141176, 0, 1)
-offset_left = 907.0
+modulate = Color(0, 1, 0, 1)
+offset_left = 985.0
 offset_top = 569.0
 offset_right = 1119.0
 offset_bottom = 620.0
-text = "Divert Battery to Health
+text = "Health Boost
 "
 
 [node name="DivertSignalButton" type="Button" parent="."]
-offset_left = 905.0
+self_modulate = Color(1, 1, 0, 1)
+offset_left = 986.0
 offset_top = 495.0
-offset_right = 1114.0
+offset_right = 1119.0
 offset_bottom = 543.0
-text = "Divert to Signal"
+text = "Signal Boost"
 
 [node name="OverchargeButton" type="Button" parent="."]
-offset_left = 663.0
-offset_top = 571.0
-offset_right = 863.0
-offset_bottom = 625.0
+modulate = Color(1, 0, 0, 1)
+offset_left = 768.0
+offset_top = 569.0
+offset_right = 968.0
+offset_bottom = 620.0
 theme_override_colors/icon_hover_color = Color(1, 0, 0, 1)
 text = "Emergency Overcharge"
 
@@ -181,7 +184,7 @@ modulate = Color(0, 1, 0, 1)
 layout_mode = 0
 offset_left = 21.0
 offset_top = 48.0
-offset_right = 225.0
+offset_right = 277.0
 offset_bottom = 75.0
 value = 100.0
 rounded = true
