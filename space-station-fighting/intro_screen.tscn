@@ -107,7 +107,7 @@ SHIFT | Main Attack
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Button" type="Button" parent="TutorialPanel"]
+[node name="CloseButton" type="Button" parent="TutorialPanel"]
 modulate = Color(1, 0, 0, 1)
 layout_mode = 0
 offset_left = 787.75
@@ -116,3 +116,5 @@ offset_right = 859.75
 offset_bottom = 99.0
 theme_override_font_sizes/font_size = 50
 text = "X"
+
+[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
