@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://jr71a7v3xkrg" path="res://hello-worked-today-on-an-animated-reactor-for-the-spaceship-v0-3lbhd4q0m6gc1.webp" id="3_h2yge"]
 [ext_resource type="PackedScene" uid="uid://cbxoi8afg8x5r" path="res://bullet.tscn" id="4_5cqrd"]
 [ext_resource type="Script" uid="uid://cpw4ywmh2sveo" path="res://ui_controller.gd" id="5_ui"]
-[ext_resource type="Script" path="res://health_bar.gd" id="7_5vw27"]
+[ext_resource type="Script" uid="uid://mvvf5ipix07n" path="res://health_bar.gd" id="7_5vw27"]
 [ext_resource type="Script" uid="uid://cv1twd15faqee" path="res://shield_bar.gd" id="7_272bh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n8pj1"]
