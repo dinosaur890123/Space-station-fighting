@@ -157,12 +157,8 @@ theme_override_colors/icon_hover_color = Color(1, 0, 0, 1)
 text = "Emergency Overcharge"
 
 [node name="GameOverScreen" type="PanelContainer" parent="."]
-visible = false
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_left = -46.0
+offset_right = 7.0
 
 [node name="ColorRect" type="ColorRect" parent="GameOverScreen"]
 layout_mode = 2
@@ -187,8 +183,10 @@ grow_vertical = 2
 alignment = 1
 
 [node name="ResultLabel" type="Label" parent="GameOverScreen/Panel/ResultMessage"]
+modulate = Color(1, 0, 0, 1)
 layout_mode = 2
-text = "Game Over"
+theme_override_font_sizes/font_size = 55
+text = "ＤＥＦＥＡＴ"
 horizontal_alignment = 1
 vertical_alignment = 1
 
