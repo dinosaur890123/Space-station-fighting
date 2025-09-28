@@ -108,30 +108,30 @@ func take_hit(amount: float):
 		queue_redraw()
 
 func _die():
-    if _exploding:
-        print("[ENEMY DEBUG] _die() called but already exploding, abort.")
-        return
-    _exploding = true
-    print("[ENEMY DEBUG] _die() called, checking for explode animation...")
-    if sprite_frames:
-        var anims = sprite_frames.get_animation_names()
-        print("[ENEMY DEBUG] Available animations:", anims)
-        if "explode" in anims:
-            print("[ENEMY DEBUG] Playing 'explode' animation!")
-            visible = true
-            play("explode")
-        else:
-            print("[ENEMY DEBUG] 'explode' animation NOT found, freeing node.")
-            queue_free()
-    else:
-        print("[ENEMY DEBUG] sprite_frames is null, freeing node.")
-        queue_free()
+	if _exploding:
+		print("[ENEMY DEBUG] _die() called but already exploding, abort.")
+		return
+	_exploding = true
+	print("[ENEMY DEBUG] _die() called, checking for explode animation...")
+	if sprite_frames:
+		var anims = sprite_frames.get_animation_names()
+		print("[ENEMY DEBUG] Available animations:", anims)
+		if "explode" in anims:
+			print("[ENEMY DEBUG] Playing 'explode' animation!")
+			visible = true
+			play("explode")
+		else:
+			print("[ENEMY DEBUG] 'explode' animation NOT found, freeing node.")
+			queue_free()
+	else:
+		print("[ENEMY DEBUG] sprite_frames is null, freeing node.")
+		queue_free()
 
 func _on_animation_finished():
-    print("[ENEMY DEBUG] animation_finished signal received. Current animation:", animation)
-    if _exploding and animation == "explode":
-        print("[ENEMY DEBUG] Explode animation finished, freeing node.")
-        queue_free()
+	print("[ENEMY DEBUG] animation_finished signal received. Current animation:", animation)
+	if _exploding and animation == "explode":
+		print("[ENEMY DEBUG] Explode animation finished, freeing node.")
+		queue_free()
 
 func _draw():
 	if not show_health_bar:
@@ -155,4 +155,3 @@ func _draw():
 		col = Color(1,0.25,0.25)
 	draw_rect(fill_rect, col, true)
 	draw_rect(back_rect, Color(0.9,0.9,0.9,0.8), false, 1.0)
-s
