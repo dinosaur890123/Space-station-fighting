@@ -24,9 +24,3 @@ func _on_close_button_pressed():
 
 func _on_quit_button_pressed():
 	get_tree().quit()
-
-func _ready():
-	start_button.pressed.connect(_on_start_button_pressed)
-
-func _on_start_button_pressed():
-	get_tree().change_scene_to_file("res://main.tscn")

@@ -5,6 +5,7 @@ extends Node2D
 @onready var character: Node2D = $character
 @export var left_limit: float = 2
 @export var right_limit: float = 1150
+@onready var intro_screen = $IntroScreen
 var enemy_scene: PackedScene = preload("res://enemy.tscn")
 var spawn_timer: float = 0.0
 var spawn_interval: float = 3.0
