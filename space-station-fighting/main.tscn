@@ -6,7 +6,11 @@
 [ext_resource type="Texture2D" uid="uid://jr71a7v3xkrg" path="res://hello-worked-today-on-an-animated-reactor-for-the-spaceship-v0-3lbhd4q0m6gc1.webp" id="3_h2yge"]
 [ext_resource type="PackedScene" uid="uid://cbxoi8afg8x5r" path="res://bullet.tscn" id="4_5cqrd"]
 [ext_resource type="Script" uid="uid://cpw4ywmh2sveo" path="res://ui_controller.gd" id="5_ui"]
+<<<<<<< Updated upstream
 [ext_resource type="Script" path="res://health_bar.gd" id="7_5vw27"]
+=======
+[ext_resource type="Script" uid="uid://mvvf5ipix07n" path="res://health_bar.gd" id="7_5vw27"]
+>>>>>>> Stashed changes
 [ext_resource type="Script" uid="uid://cv1twd15faqee" path="res://shield_bar.gd" id="7_272bh"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ssnb4"]
@@ -34,6 +38,7 @@ subpixel_positioning = 0
 
 [sub_resource type="LabelSettings" id="LabelSettings_4c57u"]
 font = SubResource("SystemFont_kek77")
+font_size = 25
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_bquf4")
@@ -76,28 +81,29 @@ shape = SubResource("RectangleShape2D_0ihgc")
 
 [node name="DivertShieldButton" type="Button" parent="."]
 modulate = Color(0, 1, 0, 1)
-offset_left = 985.0
-offset_top = 569.0
-offset_right = 1119.0
-offset_bottom = 620.0
+offset_left = 827.0
+offset_top = 485.0
+offset_right = 961.0
+offset_bottom = 536.0
 text = "Health Boost
 "
 
 [node name="DivertSignalButton" type="Button" parent="."]
 self_modulate = Color(1, 1, 0, 1)
-offset_left = 986.0
-offset_top = 495.0
-offset_right = 1119.0
-offset_bottom = 543.0
+offset_left = 975.0
+offset_top = 486.0
+offset_right = 1108.0
+offset_bottom = 534.0
 text = "Signal Boost"
 
 [node name="OverchargeButton" type="Button" parent="."]
 modulate = Color(1, 0, 0, 1)
-offset_left = 768.0
-offset_top = 569.0
-offset_right = 968.0
-offset_bottom = 620.0
+offset_left = 825.0
+offset_top = 552.0
+offset_right = 1112.0
+offset_bottom = 618.0
 theme_override_colors/icon_hover_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 21
 text = "Emergency Overcharge"
 
 [node name="GameOverScreen" type="PanelContainer" parent="."]
@@ -277,9 +283,9 @@ horizontal_alignment = 1
 [node name="SignalBar" type="ProgressBar" parent="SignalGroup"]
 layout_mode = 0
 offset_left = 418.0
-offset_top = 44.0
+offset_top = 55.0
 offset_right = 772.0
-offset_bottom = 71.0
+offset_bottom = 82.0
 
 [connection signal="area_shape_entered" from="cant_walk" to="character" method="_on_cant_walk_area_shape_entered"]
 [connection signal="pressed" from="GameOverScreen/Panel/ResultMessage/HBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]
