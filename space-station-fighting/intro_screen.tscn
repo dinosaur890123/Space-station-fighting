@@ -3,8 +3,8 @@
 [node name="Control" type="Control"]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 1153.0
+offset_bottom = 648.0
 
 [node name="TitleLabel" type="Label" parent="."]
 layout_mode = 0

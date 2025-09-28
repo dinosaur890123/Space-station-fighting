@@ -19,9 +19,9 @@ var _bullet_direction: Vector2 = Vector2.ZERO
 var bullet_speed: float = 800 
 
 func _ready():
-		$bullet.hide()
-		GameData.reset()
-		randomize()
+	$bullet.hide()
+	GameData.reset()
+	randomize()
 	if typeof(MusicManager) != TYPE_NIL and not MusicManager.is_playing():
 		MusicManager.play_track("res://Bad Beat - Dyalla.mp3", true, 1.0)
 	var restart_btn = get_node_or_null("GameOverScreen/Panel/ResultMessage/HBoxContainer/RestartButton")
@@ -30,7 +30,6 @@ func _ready():
 	var quit_btn = get_node_or_null("GameOverScreen/Panel/ResultMessage/HBoxContainer/QuitButton")
 	if quit_btn and not quit_btn.pressed.is_connected(Callable(self, "_on_quit_pressed")):
 		quit_btn.pressed.connect(Callable(self, "_on_quit_pressed"))
-	# Show intro screen and pause game
 	intro_screen = intro_screen_scene.instantiate()
 	add_child(intro_screen)
 	get_tree().paused = true
