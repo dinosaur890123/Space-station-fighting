@@ -36,12 +36,12 @@ func configure_variant(make_mega: bool):
 	is_megabot = make_mega
 	if is_megabot:
 		max_health = 100.0
-		health = 200.0
-		damage = 60.0
+		health = 100.0
+		damage = 40.0
 		speed = 60.0
 	else:
-		max_health = 60.0
-		health = 60.0
+		max_health = 50.0
+		health = 50.0
 		damage = 20.0
 		speed = 200.0
 	_update_visual()
@@ -101,7 +101,7 @@ func _die():
 	if _exploding:
 		return
 	_exploding = true
-    
+	
 	if is_megabot:
 		GameData.signal_progress += 50
 	else:
