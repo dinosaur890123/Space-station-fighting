@@ -1,13 +1,13 @@
 [gd_scene load_steps=13 format=3 uid="uid://bk1vy0rr1lry7"]
 
 [ext_resource type="PackedScene" uid="uid://bq23m3f7jfw0b" path="res://character.tscn" id="1_aw4sl"]
-[ext_resource type="Script" uid="uid://cbiah0ieoaanp" path="res://main.gd" id="1_bquf4"]
-[ext_resource type="Script" uid="uid://csesvry1vxl4y" path="res://actions.gd" id="2_0xm2m"]
+[ext_resource type="Script" path="res://main.gd" id="1_bquf4"]
+[ext_resource type="Script" path="res://actions.gd" id="2_0xm2m"]
 [ext_resource type="Texture2D" uid="uid://jr71a7v3xkrg" path="res://hello-worked-today-on-an-animated-reactor-for-the-spaceship-v0-3lbhd4q0m6gc1.webp" id="3_h2yge"]
 [ext_resource type="PackedScene" uid="uid://cbxoi8afg8x5r" path="res://bullet.tscn" id="4_5cqrd"]
-[ext_resource type="Script" uid="uid://cpw4ywmh2sveo" path="res://ui_controller.gd" id="5_ui"]
+[ext_resource type="Script" path="res://ui_controller.gd" id="5_ui"]
 [ext_resource type="Script" path="res://health_bar.gd" id="7_5vw27"]
-[ext_resource type="Script" uid="uid://cv1twd15faqee" path="res://shield_bar.gd" id="7_272bh"]
+[ext_resource type="Script" path="res://shield_bar.gd" id="7_272bh"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ssnb4"]
 radius = 133.0
@@ -18,6 +18,7 @@ height = 278.0
 [sub_resource type="SystemFont" id="SystemFont_kek77"]
 font_weight = 999
 font_stretch = 50
+subpixel_positioning = 0
 
 [sub_resource type="LabelSettings" id="LabelSettings_4c57u"]
 font = SubResource("SystemFont_kek77")
@@ -46,26 +47,28 @@ position = Vector2(592, 384)
 shape = SubResource("CapsuleShape2D_ssnb4")
 
 [node name="DivertShieldButton" type="Button" parent="."]
-modulate = Color(1, 0.141176, 0, 1)
-offset_left = 907.0
+modulate = Color(0, 1, 0, 1)
+offset_left = 985.0
 offset_top = 569.0
 offset_right = 1119.0
 offset_bottom = 620.0
-text = "Divert Battery to Health
+text = "Health Boost
 "
 
 [node name="DivertSignalButton" type="Button" parent="."]
-offset_left = 905.0
+self_modulate = Color(1, 1, 0, 1)
+offset_left = 986.0
 offset_top = 495.0
-offset_right = 1114.0
+offset_right = 1119.0
 offset_bottom = 543.0
-text = "Divert to Signal"
+text = "Signal Boost"
 
 [node name="OverchargeButton" type="Button" parent="."]
-offset_left = 663.0
-offset_top = 571.0
-offset_right = 863.0
-offset_bottom = 625.0
+modulate = Color(1, 0, 0, 1)
+offset_left = 768.0
+offset_top = 569.0
+offset_right = 968.0
+offset_bottom = 620.0
 theme_override_colors/icon_hover_color = Color(1, 0, 0, 1)
 text = "Emergency Overcharge"
 
@@ -181,7 +184,7 @@ modulate = Color(0, 1, 0, 1)
 layout_mode = 0
 offset_left = 21.0
 offset_top = 48.0
-offset_right = 225.0
+offset_right = 277.0
 offset_bottom = 75.0
 value = 100.0
 rounded = true

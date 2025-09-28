@@ -41,9 +41,10 @@ func _process(delta: float) -> void:
 				blocked = true
 				break
 	if not blocked:
-		position = new_pos  # only move if not blocked
-		position.x = clamp(position.x, left_limit, right_limit)
-		position.y = clamp(position.y, 0, 700)
+		position = new_pos  
+	
+	position.x = clamp(position.x, left_limit, right_limit)
+	position.y = clamp(position.y, 0, 700)
 func _on_animation_finished() -> void:
 	if animation == "attack 1":
 		_attacking = false
