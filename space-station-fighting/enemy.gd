@@ -13,6 +13,7 @@ var is_megabot: bool = false
 @export var health_bar_offset_y: float = 60.0
 
 var _player: Node = null
+var _exploding: bool = false
 
 func _ready():
 	if has_node(player_path):
