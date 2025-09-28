@@ -86,12 +86,18 @@ func _process(delta):
 		_bullet_direction = Vector2(dir_x, dir_y).normalized()
 		$bullet.rotation = _bullet_direction.angle()
 		$bullet/shot.play("shot")
-	if $bullet.visible:
-		$bullet.global_position += _bullet_direction * bullet_speed * delta
-		_check_bullet_hits()
-		if ($bullet.global_position.x < left_limit or $bullet.global_position.x > right_limit
-			or $bullet.global_position.y < 0 or $bullet.global_position.y > 720):
-			$bullet.hide()
+	# Melee attack: damage all nearby enemies when '/' is pressed
+	if Input.is_action_just_pressed("attack_slash"):
+		var melee_radius = 60.0
+		var melee_damage = 20.0
+		var char_pos = $character.global_position
+		for body in get_tree().get_nodes_in_group("enemies"):
+			if not body is Node2D:
+				continue
+			var dist = char_pos.distance_to(body.global_position)
+			if dist < melee_radius:
+				if body.has_method("take_hit"):
+					body.take_hit(melee_damage)
 	
 func _check_bullet_hits():
 	var bullet_area := $bullet.get_node_or_null("shot/shot_area")
