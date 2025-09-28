@@ -25,6 +25,7 @@ func _ready():
 	$bullet.hide()
 	GameData.reset()
 	randomize()
+    GameData.shield_integrity = 100.0
 	if typeof(MusicManager) != TYPE_NIL and not MusicManager.is_playing():
 		MusicManager.play_track("res://Bad Beat - Dyalla.mp3", true, 1.0)
 	var restart_btn = get_node_or_null("GameOverScreen/Panel/ResultMessage/HBoxContainer/RestartButton")
@@ -186,6 +187,7 @@ func _on_restart_button_pressed():
 	_game_over = false
 	if typeof(GameData) != TYPE_NIL:
 		GameData.reset()
+        GameData.shield_integrity = 100.0
 	get_tree().change_scene_to_file("res://intro_screen.tscn")
 
 func _on_quit_pressed():
