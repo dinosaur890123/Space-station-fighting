@@ -1,5 +1,8 @@
+
 extends Node2D
 
+var intro_screen_scene: PackedScene = preload("res://intro_screen.tscn")
+var intro_screen: Control = null
 @onready var game_over_screen: Control = $GameOverScreen
 @onready var result_message: Label = $GameOverScreen/Panel/ResultMessage/ResultLabel
 @onready var character: Node2D = $character
@@ -15,11 +18,14 @@ const ENABLE_AUTO_SHIELD_RECHARGE := true
 var _game_over: bool = false
 var _bullet_direction: Vector2 = Vector2.ZERO 
 var bullet_speed: float = 800 
-
+func _on_intro_start_pressed():
+	if intro_screen:
+		intro_screen.queue_free()
+	get_tree().paused = false
+	intro_screen = null
 func _ready():
 	$bullet.hide()
 	GameData.reset()
-	get_tree().paused = false
 	randomize()
 	if typeof(MusicManager) != TYPE_NIL and not MusicManager.is_playing():
 		MusicManager.play_track("res://Bad Beat - Dyalla.mp3", true, 1.0)
@@ -29,6 +35,12 @@ func _ready():
 	var quit_btn = get_node_or_null("GameOverScreen/Panel/ResultMessage/HBoxContainer/QuitButton")
 	if quit_btn and not quit_btn.pressed.is_connected(Callable(self, "_on_quit_pressed")):
 		quit_btn.pressed.connect(Callable(self, "_on_quit_pressed"))
+	intro_screen = intro_screen_scene.instantiate()
+	add_child(intro_screen)
+	get_tree().paused = true
+	var start_btn = intro_screen.get_node_or_null("StartButton")
+	if start_btn:
+		start_btn.pressed.connect(Callable(self, "_on_intro_start_pressed"))
 func _process(delta):
 	if get_tree().paused or _game_over:
 		return
@@ -49,7 +61,11 @@ func _process(delta):
 	if ENABLE_AUTO_SHIELD_RECHARGE:
 		var power_needed = GameData.MAX_CAPACITY - GameData.shield_integrity
 		if power_needed > 0.0 and GameData.current_battery > 0.0:
+<<<<<<< Updated upstream
+			var recharge_rate = 3.0 * delta
+=======
 			var recharge_rate = 1.0 * delta
+>>>>>>> Stashed changes
 			var to_transfer = min(power_needed, recharge_rate, GameData.current_battery)
 			GameData.shield_integrity += to_transfer
 			GameData.current_battery -= to_transfer
