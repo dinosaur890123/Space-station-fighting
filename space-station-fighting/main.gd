@@ -68,31 +68,25 @@ func _process(delta):
 		$bullet.show()
 		var direction := Vector2.ZERO
 		if Input.is_action_pressed("right"):
-			direction.x += 1
+			direction.x = 1
 			$bullet/shot.play("shot")
-		if Input.is_action_pressed("left"):
-			direction.x -= 1
+		elif Input.is_action_pressed("left"):
+			direction.x = -1
 			$bullet/shot.play("shot")
 		if Input.is_action_pressed("up"):
-			direction.y -= 1
+			direction.y = -1
 			$bullet/shot.play("shot")
-		if Input.is_action_pressed("down"):
-			direction.y += +1
+		elif Input.is_action_pressed("down"):
+			direction.y = +1
 			$bullet/shot.play("shot")
 		if direction == Vector2.ZERO:
 			direction.x = 1 if not $character.flip_h else -1
 		_bullet_direction = direction.normalized()
 		$bullet.rotation = _bullet_direction.angle()
 		$bullet/shot.play("shot")
-	if $bullet.visible:
-		$bullet.global_position += _bullet_direction * bullet_speed * delta
-		_check_bullet_hits()
-	if $bullet.global_position.x < left_limit or $bullet.global_position.x > right_limit \
-	or $bullet.global_position.y < 0 or $bullet.global_position.y > 720:
-		$bullet.hide()
 	if Input.is_action_just_pressed("attack_slash"):
 		var melee_radius = 100.0
-		var melee_damage = 5.0
+		var melee_damage = 20.0
 		var char_pos = $character.global_position
 		for body in get_tree().get_nodes_in_group("enemies"):
 			if not body is Node2D:
