@@ -45,7 +45,7 @@ func configure_variant(make_mega: bool):
 		damage = 20.0
 		speed = 120.0
 	_update_visual()
-var move_direction: Vector2 = Vector2(-1, 0) # default: left
+var move_direction: Vector2 = Vector2(-1, 0)
 
 func set_move_direction(dir: Vector2):
 	move_direction = dir.normalized()

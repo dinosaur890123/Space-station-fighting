@@ -86,9 +86,8 @@ func _process(delta):
 		_bullet_direction = Vector2(dir_x, dir_y).normalized()
 		$bullet.rotation = _bullet_direction.angle()
 		$bullet/shot.play("shot")
-	# Melee attack: damage all nearby enemies when '/' is pressed
 	if Input.is_action_just_pressed("attack_slash"):
-		var melee_radius = 60.0
+		var melee_radius = 100.0
 		var melee_damage = 20.0
 		var char_pos = $character.global_position
 		for body in get_tree().get_nodes_in_group("enemies"):
