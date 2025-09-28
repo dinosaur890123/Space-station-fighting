@@ -161,6 +161,12 @@ func game_over(reason: String):
 		return
 	result_message.text = reason
 	game_over_screen.visible = true
+	var color_rect = game_over_screen.get_node_or_null("ColorRect")
+	if color_rect:
+		if "SUCCESS" in reason:
+			color_rect.color = Color(0, 0.7, 0.2, 0.5) # Greenish for win
+		else:
+			color_rect.color = Color(0.7, 0, 0, 0.5)   # Reddish for loss
 	var restart_btn = get_node_or_null("GameOverScreen/Panel/ResultMessage/HBoxContainer/RestartButton")
 	if restart_btn:
 		restart_btn.grab_focus()
