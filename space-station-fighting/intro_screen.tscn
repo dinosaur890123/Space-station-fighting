@@ -1,6 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://bb8ku5bs4s80h"]
+[gd_scene load_steps=4 format=3 uid="uid://b03t2ynhp7qdd"]
 
-[ext_resource type="Script" uid="uid://ojjc3k2wfc1h" path="res://intro_screen.gd" id="1_6c87n"]
+[ext_resource type="Script" path="res://intro_screen.gd" id="1_6c87n"]
 [ext_resource type="Texture2D" uid="uid://jr71a7v3xkrg" path="res://hello-worked-today-on-an-animated-reactor-for-the-spaceship-v0-3lbhd4q0m6gc1.webp" id="2_6a5pb"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6c87n"]
@@ -91,7 +91,7 @@ Shield regenerates but your health doesn't
 KEYBINDS: 
 WASD | Movement
 / | Melee Attack
-SHIFT | Main Attack
+SHIFT | Magic Bullet SHIRUKEN
 "
 horizontal_alignment = 1
 vertical_alignment = 1
