@@ -200,10 +200,6 @@ alignment = 1
 layout_mode = 2
 text = "Restart"
 
-[node name="QuitButton" type="Button" parent="GameOverScreen/Panel/ResultMessage/HBoxContainer"]
-layout_mode = 2
-text = "Quit"
-
 [node name="ActionsManager" type="Node" parent="."]
 script = ExtResource("2_0xm2m")
 

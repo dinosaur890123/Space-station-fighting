@@ -191,12 +191,13 @@ func game_over(reason: String):
 	get_tree().paused = true
 
 func _on_restart_button_pressed():
+	print("Restart button pressed!")
 	get_tree().paused = false
 	_game_over = false
 	if typeof(GameData) != TYPE_NIL:
 		GameData.reset()
 		GameData.shield_integrity = 100.0
-	get_tree().change_scene_to_file("res://intro_screen.tscn")
+	get_tree().reload_current_scene()
 
 func _on_quit_pressed():
 	get_tree().quit()
