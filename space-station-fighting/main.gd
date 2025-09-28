@@ -1,3 +1,4 @@
+
 extends Node2D
 @onready var game_over_screen: Control = $GameOverScreen
 @onready var result_message: Label = $GameOverScreen/Panel/ResultMessage/ResultLabel
@@ -14,7 +15,11 @@ const ENABLE_AUTO_SHIELD_RECHARGE := true
 var _game_over: bool = false
 var _bullet_direction: Vector2 = Vector2.ZERO 
 var bullet_speed: float = 800 
-
+func _on_intro_start_pressed():
+	if intro_screen:
+		intro_screen.queue_free()
+	get_tree().paused = false
+	intro_screen = null
 func _ready():
 	$bullet.hide()
 	GameData.reset()
